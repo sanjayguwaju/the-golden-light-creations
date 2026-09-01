@@ -1,0 +1,9 @@
+.git
+.github
+.vscode
+.cursor
+*.md
+tests/
+__tests__/
+*.test.*
+*.spec.*

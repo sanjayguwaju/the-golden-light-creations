@@ -1,0 +1,81 @@
+name: Coolify Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Coolify Deployment & Wait
+        env:
+          COOLIFY_WEBHOOK: ${{ secrets.COOLIFY_WEBHOOK }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+        run: |
+          if [ -z "$COOLIFY_WEBHOOK" ] || [ -z "$COOLIFY_TOKEN" ]; then
+            echo "Error: COOLIFY_WEBHOOK and COOLIFY_TOKEN secrets are required."
+            echo "Please add them to your GitHub repository secrets."
+            exit 1
+          fi
+
+          echo "🚀 Triggering deployment on Coolify..."
+          
+          # Print the base URL to verify http vs https (helpful for debugging timeouts)
+          BASE_URL=$(echo "$COOLIFY_WEBHOOK" | grep -o '^https\?://[^/]\+')
+          echo "Connecting to: $BASE_URL"
+          
+          RESPONSE=$(curl -4 -m 30 -s -X POST "$COOLIFY_WEBHOOK" -H "Authorization: Bearer $COOLIFY_TOKEN")
+          
+          # Extract deployment UUID (Supports both possible JSON structures from Coolify v4 API)
+          DEPLOYMENT_UUID=$(echo "$RESPONSE" | jq -r '.deployments[0].deployment_uuid // .deployment_uuid // empty')
+          
+          if [ -z "$DEPLOYMENT_UUID" ] || [ "$DEPLOYMENT_UUID" == "null" ]; then
+            echo "⚠️ Could not extract deployment UUID from response: $RESPONSE"
+            exit 1
+          fi
+          
+          echo "📦 Deployment UUID: $DEPLOYMENT_UUID"
+          echo "⏳ Waiting for deployment to finish..."
+          
+          STATUS="in_progress"
+          
+          MAX_WAIT_SECONDS=600 # 10 minutes maximum wait
+          ELAPSED=0
+          INTERVAL=10
+          
+          # Poll until it's no longer in progress or queued
+          while [[ "$STATUS" == "in_progress" || "$STATUS" == "queued" ]] && [ $ELAPSED -lt $MAX_WAIT_SECONDS ]; do
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+            
+            STATUS_RESP=$(curl -4 -m 30 -s -X GET "$BASE_URL/api/v1/deployments/$DEPLOYMENT_UUID" -H "Authorization: Bearer $COOLIFY_TOKEN")
+            
+            # Check for API errors
+            RAW_STATUS=$(echo "$STATUS_RESP" | jq -r '.status // empty')
+            if [ -z "$RAW_STATUS" ] || [ "$RAW_STATUS" == "null" ]; then
+              echo "⚠️ Error: Coolify API returned an unexpected response while polling:"
+              echo "$STATUS_RESP"
+              exit 1
+            fi
+            
+            STATUS="$RAW_STATUS"
+            
+            if [[ "$STATUS" == "in_progress" || "$STATUS" == "queued" ]]; then
+              PERCENT=$(( ELAPSED * 100 / MAX_WAIT_SECONDS ))
+              if [ $PERCENT -gt 99 ]; then PERCENT=99; fi
+              echo "🔄 Progress: $PERCENT% ($STATUS)"
+            fi
+          done
+          
+          echo "✨ 100% ($STATUS)"
+          
+          if [[ "$STATUS" == "finished" ]]; then
+            echo "✅ Deployment fully passed!"
+            exit 0
+          elif [[ "$STATUS" == "failed" ]]; then
+            echo "❌ Deployment failed!"
+            exit 1
+          else
+            echo "⚠️ Deployment timed out or ended with unknown status: $STATUS"
+            exit 1
+          fi
