@@ -4,7 +4,7 @@ export const CustomLogo = () => {
   return (
     <Image
       src="/light-logo.webp"
-      alt="Reliance Paints Logo"
+      alt="The Golden Light Creations Logo"
       width={400}
       height={400}
       style={{
@@ -21,7 +21,7 @@ export const CustomIcon = () => {
   return (
     <Image
       src="/light-logo.webp"
-      alt="Reliance Paints Logo"
+      alt="The Golden Light Creations Logo"
       width={80}
       height={60}
       style={{ objectFit: "contain" }}

@@ -3,18 +3,39 @@ const config = {
   theme: {
     extend: {
       colors: {
+        gold: {
+          DEFAULT: "var(--color-gold, #F5B301)",
+          light: "var(--color-gold-light, #FFD04A)",
+          dark: "var(--color-gold-dark, #C8920A)",
+        },
+        black: {
+          DEFAULT: "var(--color-black, #0A0A0A)",
+          soft: "var(--color-black-soft, #111111)",
+          mid: "var(--color-black-mid, #1A1A1A)",
+        },
+        white: {
+          DEFAULT: "var(--color-white, #FFFFFF)",
+          soft: "var(--color-white-soft, #F5F5F5)",
+        },
+        gray: {
+          DEFAULT: "var(--color-gray, #888888)",
+          light: "var(--color-gray-light, #CCCCCC)",
+        },
         brand: {
-          primary: "var(--color-reliance-navy)",
-          secondary: "var(--color-reliance-gold)",
-          accent: "var(--color-reliance-red)",
-          surface: "var(--color-reliance-offwhite)",
-          neutral: "var(--color-reliance-grey)",
+          primary: "var(--color-gold, #F5B301)",
+          secondary: "var(--color-gold-light, #FFD04A)",
+          accent: "var(--color-gold-dark, #C8920A)",
+          surface: "var(--color-black-soft, #111111)",
+          neutral: "var(--color-gray, #888888)",
         },
       },
       fontFamily: {
+        bebas: ["var(--font-bebas)", "sans-serif"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
+        poppins: ["var(--font-poppins)", "sans-serif"],
         nepali: ["var(--font-mukta)", "sans-serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
-        display: ["var(--font-outfit)", "sans-serif"],
+        sans: ["var(--font-poppins)", "var(--font-inter)", "sans-serif"],
+        display: ["var(--font-bebas)", "var(--font-outfit)", "sans-serif"],
       },
       boxShadow: {
         soft: "none",

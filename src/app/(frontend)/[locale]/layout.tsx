@@ -1,7 +1,28 @@
 import { cn } from "@/utilities/ui";
-import { Outfit, Inter, Mukta } from "next/font/google";
+import { Bebas_Neue, Montserrat, Poppins, Outfit, Inter, Mukta } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import React from "react";
+
+const bebas = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 const mukta = Mukta({
   subsets: ["latin", "devanagari"],
@@ -55,17 +76,17 @@ type Args = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://reliancepaintsnepal.com"),
-  title: "Reliance Paints Nepal | Official Website",
-  description: "Reliance Paints Nepal offers a wide range of decorative and industrial paints.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://the-golden-light-creations.netlify.app"),
+  title: "The Golden Light Creations | Luxury Photography & Cinematic Films · Nepal",
+  description: "Nepal's Finest Creative Studio — Luxury Photography, Cinematic Films & Digital Branding Services in Nepal. Crafting timeless visual stories since 2019.",
   facebook: {
     appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID || "1234567890",
   },
   openGraph: {
-    siteName: process.env.NEXT_PUBLIC_COMPANY_NAME || "Reliance Paints Nepal",
-    title: "Reliance Paints Nepal | Official Website",
-    description: "Reliance Paints Nepal offers a wide range of decorative and industrial paints.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://reliancepaintsnepal.com",
+    siteName: process.env.NEXT_PUBLIC_COMPANY_NAME || "The Golden Light Creations",
+    title: "The Golden Light Creations | Luxury Photography & Cinematic Films · Nepal",
+    description: "Nepal's Finest Creative Studio — Luxury Photography, Cinematic Films & Digital Branding Services in Nepal. Crafting timeless visual stories since 2019.",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://the-golden-light-creations.netlify.app",
     locale: "en_US",
     type: "website",
   },
@@ -98,7 +119,7 @@ export default async function RootLayout({ children, params }: Args) {
 
   return (
     <html
-      className={cn(outfit.variable, inter.variable, mukta.variable)}
+      className={cn(bebas.variable, montserrat.variable, poppins.variable, outfit.variable, inter.variable, mukta.variable)}
       lang={locale}
       dir={direction}
       suppressHydrationWarning

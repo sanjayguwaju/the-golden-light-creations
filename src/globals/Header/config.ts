@@ -17,13 +17,13 @@ export const Header: GlobalConfig = {
       type: "text",
       localized: true,
       required: true,
-      defaultValue: "Reliance Paints",
+      defaultValue: "The Golden Light Creations",
     },
     {
       name: "location",
       type: "text",
       localized: true,
-      defaultValue: "Baglung, Nepal",
+      defaultValue: "Kathmandu, Nepal",
     },
     {
       name: "emblem",

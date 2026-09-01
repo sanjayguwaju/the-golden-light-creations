@@ -2,7 +2,7 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
 export async function GET(): Promise<Response> {
-  const siteUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://reliancepaints.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://the-golden-light-creations.netlify.app'
   const payload = await getPayload({ config: configPromise })
 
   const pagesRes = await payload.find({

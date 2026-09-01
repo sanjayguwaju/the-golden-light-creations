@@ -25,25 +25,25 @@ export const SiteSettings: GlobalConfig = {
           name: "phone",
           type: "text",
           required: true,
-          defaultValue: "+977 1 4444444",
+          defaultValue: "+977 9810175322",
         },
         {
           name: "email",
           type: "email",
           required: true,
-          defaultValue: "info@reliancepaints.com",
+          defaultValue: "info@thegoldenlightcreations.com",
         },
         {
           name: "address",
           type: "textarea",
           required: true,
-          defaultValue: "Reliance Paints\nKathmandu, Bagmati\nNepal",
+          defaultValue: "The Golden Light Creations\nKathmandu, Nepal",
         },
         {
           name: "whatsappNumber",
           type: "text",
           required: true,
-          defaultValue: "9779851310048",
+          defaultValue: "9779810175322",
           admin: {
             description:
               "Format: Country code followed by number, no spaces or + (e.g., 9779800000000)",

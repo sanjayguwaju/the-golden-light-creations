@@ -47,8 +47,8 @@ const dirname = path.dirname(filename);
 export default buildConfig({
   admin: {
     meta: {
-      titleSuffix: "- Reliance Paints",
-      description: "Reliance Paints Pvt. Ltd.",
+      titleSuffix: "- The Golden Light Creations",
+      description: "The Golden Light Creations - Luxury Photography & Cinematic Films",
       icons: [
         {
           rel: "icon",
@@ -143,7 +143,7 @@ export default buildConfig({
   plugins,
   email: resendAdapter({
     defaultFromAddress: "onboarding@resend.dev",
-    defaultFromName: "Reliance Paints",
+    defaultFromName: "The Golden Light Creations",
     apiKey: systemConfig.RESEND_API_KEY || "",
   }),
   localization,
