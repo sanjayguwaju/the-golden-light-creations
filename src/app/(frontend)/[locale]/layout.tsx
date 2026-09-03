@@ -52,21 +52,13 @@ import { NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import localization from "@/i18n/localization";
-import { getCachedGlobal } from "@/utilities/getGlobals";
-import { SiteHeader } from "@/components/SiteHeader";
-import { DynamicNavbar } from "@/components/DynamicNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
-import { NoticeModalServer } from "@/components/NoticeModal/NoticeModalServer";
-import { ScrollToTop } from "@/components/ScrollToTop";
+import { StudioCursor } from "@/components/studio/StudioCursor";
+import { StudioNavbar } from "@/components/studio/StudioNavbar";
+import { StudioFooter } from "@/components/studio/StudioFooter";
 import { InitTheme } from "@/providers/Theme/InitTheme";
 
 import "../globals.css";
-import { QuickActionWidget } from "@/components/QuickActionWidget";
-import type { Navigation, Footer, Header as HeaderType, TopBar, SiteSetting } from "@/payload-types";
 import { GoogleAnalytics } from "@next/third-parties/google";
-// import { MockSiteFooter } from "@/components/MockSiteFooter";
-import { SplashScreen } from "@/components/SplashScreen";
-import { TawkToChat } from "@/components/TawkToChat";
 
 type Args = {
   children: React.ReactNode;
@@ -104,19 +96,6 @@ export default async function RootLayout({ children, params }: Args) {
 
   const messages = await getMessages();
 
-  const [headerData, navData, footerData, topBarData, siteSettingsData] = await Promise.all([
-    getCachedGlobal("header", 1, locale)() as Promise<HeaderType>,
-    getCachedGlobal("navigation", 1, locale)() as Promise<Navigation>,
-    getCachedGlobal("footer", 1, locale)() as Promise<Footer>,
-    getCachedGlobal("top-bar", 1, locale)() as Promise<TopBar>,
-    getCachedGlobal("site-settings", 1, locale)().catch(() => null) as Promise<SiteSetting | null>,
-  ]);
-
-  const whatsappNumber =
-    siteSettingsData?.contactDetails?.whatsappNumber ||
-    siteSettingsData?.contactDetails?.phone ||
-    footerData?.contactInfo?.phone;
-
   return (
     <html
       className={cn(bebas.variable, montserrat.variable, poppins.variable, outfit.variable, inter.variable, mukta.variable)}
@@ -127,31 +106,17 @@ export default async function RootLayout({ children, params }: Args) {
       <head suppressHydrationWarning>
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Rozha+One&family=Noto+Serif+Devanagari:wght@700;900&display=swap"
-          rel="stylesheet"
-        />
         <InitTheme />
       </head>
-      <body className={cn(locale === "ne" ? "font-nepali" : "font-sans", "antialiased")} suppressHydrationWarning>
+      <body className={cn(locale === "ne" ? "font-nepali" : "font-sans", "bg-[#0A0A0A] text-white antialiased selection:bg-[#F5B301] selection:text-[#0A0A0A]")} suppressHydrationWarning>
         <Toaster position="top-right" />
         <Providers>
           <NextIntlClientProvider messages={messages}>
-            <SplashScreen />
+            <StudioCursor />
             <NuqsAdapter>
-              <SiteHeader data={topBarData} />
-              <DynamicNavbar locale={locale} />
-              <NoticeModalServer />
-              <ScrollToTop />
-              <QuickActionWidget whatsappNumber={whatsappNumber} />
-              <main className="overflow-x-clip">{children}</main>
-              <SiteFooter data={footerData} />
-              {/* <MockSiteFooter /> */}
-              <TawkToChat 
-                isEnabled={siteSettingsData?.tawkToChat?.enableTawkTo} 
-                propertyId={siteSettingsData?.tawkToChat?.propertyId} 
-                widgetId={siteSettingsData?.tawkToChat?.widgetId} 
-              />
+              <StudioNavbar />
+              <main className="overflow-x-clip min-h-screen bg-[#0A0A0A]">{children}</main>
+              <StudioFooter />
             </NuqsAdapter>
           </NextIntlClientProvider>
         </Providers>
