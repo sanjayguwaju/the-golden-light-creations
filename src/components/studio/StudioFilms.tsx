@@ -1,70 +1,20 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Play, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "@/i18n/routing";
+import { Play, X, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { defaultFilms, type FallbackFilmItem } from "@/utilities/studioDefaults";
 
-interface FilmItem {
-  id: string;
-  thumb: string;
-  cat: string;
-  title: string;
-  dur: string;
-  videoUrl?: string;
+interface StudioFilmsProps {
+  items?: FallbackFilmItem[];
+  isHomepagePreview?: boolean;
 }
 
-const filmsData: FilmItem[] = [
-  {
-    id: "f1",
-    thumb: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1000&q=85",
-    cat: "Wedding Film",
-    title: "Priya & Aarav — A Kathmandu Love Story",
-    dur: "4:32",
-    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1",
-  },
-  {
-    id: "f2",
-    thumb: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=85",
-    cat: "Cinematic Reel",
-    title: "Mountains & Moments — Nepal Highlands",
-    dur: "3:18",
-    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1",
-  },
-  {
-    id: "f3",
-    thumb: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&q=85",
-    cat: "Event Aftermovie",
-    title: "The Grand Gala 2024",
-    dur: "6:05",
-    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1",
-  },
-  {
-    id: "f4",
-    thumb: "https://images.unsplash.com/photo-1493863641943-9b68992a8d07?w=1000&q=85",
-    cat: "Concert Film",
-    title: "Midnight Crescendo — Live at Malla Hotel",
-    dur: "5:47",
-    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1",
-  },
-  {
-    id: "f5",
-    thumb: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1000&q=85",
-    cat: "Wedding Film",
-    title: "Sita & Rohan — A Pokhara Dream",
-    dur: "7:22",
-    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1",
-  },
-  {
-    id: "f6",
-    thumb: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1000&q=85",
-    cat: "Commercial",
-    title: "Luxury Brand Campaign 2024",
-    dur: "1:30",
-    videoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1",
-  },
-];
-
-export function StudioFilms() {
-  const [activeVideo, setActiveVideo] = useState<FilmItem | null>(null);
+export function StudioFilms({
+  items = defaultFilms,
+  isHomepagePreview = false,
+}: StudioFilmsProps) {
+  const [activeVideo, setActiveVideo] = useState<FallbackFilmItem | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const scrollSlider = (direction: "left" | "right") => {
@@ -95,22 +45,33 @@ export function StudioFilms() {
             </p>
           </div>
 
-          {/* Slider Navigation Arrows */}
-          <div className="hidden sm:flex items-center gap-3">
-            <button
-              onClick={() => scrollSlider("left")}
-              aria-label="Previous Films"
-              className="w-12 h-12 border border-white/20 hover:border-[#F5B301] text-white hover:text-[#F5B301] flex items-center justify-center transition-colors bg-white/5 backdrop-blur-sm"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => scrollSlider("right")}
-              aria-label="Next Films"
-              className="w-12 h-12 border border-white/20 hover:border-[#F5B301] text-white hover:text-[#F5B301] flex items-center justify-center transition-colors bg-white/5 backdrop-blur-sm"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+          {/* Controls: Slider Arrows + Link to /films */}
+          <div className="flex items-center gap-3">
+            {isHomepagePreview && (
+              <Link
+                href="/films"
+                className="hidden sm:inline-flex items-center gap-2 text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-[#F5B301] hover:text-[#FFD04A] mr-4 transition-colors"
+              >
+                <span>View All Films</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            )}
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                onClick={() => scrollSlider("left")}
+                aria-label="Previous Films"
+                className="w-12 h-12 border border-white/20 hover:border-[#F5B301] text-white hover:text-[#F5B301] flex items-center justify-center transition-colors bg-white/5 backdrop-blur-sm"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => scrollSlider("right")}
+                aria-label="Next Films"
+                className="w-12 h-12 border border-white/20 hover:border-[#F5B301] text-white hover:text-[#F5B301] flex items-center justify-center transition-colors bg-white/5 backdrop-blur-sm"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -121,7 +82,7 @@ export function StudioFilms() {
         className="flex gap-6 overflow-x-auto px-6 sm:px-8 max-w-7xl mx-auto pb-4 scrollbar-none snap-x"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {filmsData.map((film) => (
+        {items.map((film) => (
           <div
             key={film.id}
             onClick={() => setActiveVideo(film)}
@@ -148,10 +109,10 @@ export function StudioFilms() {
             <div className="p-6 bg-gradient-to-b from-transparent to-[#0A0A0A]">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-montserrat text-[10px] font-bold tracking-[0.3em] uppercase text-[#F5B301]">
-                  {film.cat}
+                  {film.category}
                 </span>
                 <span className="font-poppins text-xs text-white/50 tracking-wider">
-                  ▶ {film.dur}
+                  ▶ {film.duration}
                 </span>
               </div>
               <h3 className="font-bebas text-2xl tracking-[0.05em] text-white uppercase group-hover:text-[#F5B301] transition-colors leading-tight">

@@ -15,11 +15,12 @@ export const plugins: Plugin[] = [
   payloadSidebar({
     // Sort order for navigation groups (lower = higher priority)
     groupOrder: {
-      Content: 1,
-      Catalog: 2,
-      Media: 3,
-      "Form Submissions": 4,
-      Operations: 5,
+      Studio: 1,
+      Content: 2,
+      Catalog: 3,
+      Media: 4,
+      "Form Submissions": 5,
+      Operations: 6,
       Settings: 10,
       Tools: 15,
       Resources: 99,
@@ -27,6 +28,11 @@ export const plugins: Plugin[] = [
 
     // Custom icons for collections and globals
     icons: {
+      portfolio: "camera",
+      films: "clapperboard",
+      services: "sparkles",
+      testimonials: "message-square-quote",
+      "studio-settings": "sliders-horizontal",
       users: "user-cog",
       media: "image",
       pages: "file-text",

@@ -70,26 +70,30 @@ export interface Config {
   collections: {
     media: Media;
     users: User;
+    portfolio: Portfolio;
+    films: Film;
+    services: Service;
+    testimonials: Testimonial;
     pages: Page;
     posts: Post;
     categories: Category;
+    albums: Album;
+    files: File;
+    'contact-submissions': ContactSubmission;
+    careers: Career;
+    'job-applications': JobApplication;
+    faqs: Faq;
     'product-categories': ProductCategory;
     'product-subcategories': ProductSubcategory;
     products: Product;
     list: List;
     staffs: Staff;
     'common-form-submissions': CommonFormSubmission;
-    albums: Album;
-    files: File;
     colors: Color;
     inspiration: Inspiration;
     'color-trends': ColorTrend;
     stores: Store;
-    'contact-submissions': ContactSubmission;
-    careers: Career;
-    'job-applications': JobApplication;
     warranties: Warranty;
-    faqs: Faq;
     'contractor-applications': ContractorApplication;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -111,26 +115,30 @@ export interface Config {
   collectionsSelect: {
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    portfolio: PortfolioSelect<false> | PortfolioSelect<true>;
+    films: FilmsSelect<false> | FilmsSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    albums: AlbumsSelect<false> | AlbumsSelect<true>;
+    files: FilesSelect<false> | FilesSelect<true>;
+    'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
+    careers: CareersSelect<false> | CareersSelect<true>;
+    'job-applications': JobApplicationsSelect<false> | JobApplicationsSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     'product-subcategories': ProductSubcategoriesSelect<false> | ProductSubcategoriesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     list: ListSelect<false> | ListSelect<true>;
     staffs: StaffsSelect<false> | StaffsSelect<true>;
     'common-form-submissions': CommonFormSubmissionsSelect<false> | CommonFormSubmissionsSelect<true>;
-    albums: AlbumsSelect<false> | AlbumsSelect<true>;
-    files: FilesSelect<false> | FilesSelect<true>;
     colors: ColorsSelect<false> | ColorsSelect<true>;
     inspiration: InspirationSelect<false> | InspirationSelect<true>;
     'color-trends': ColorTrendsSelect<false> | ColorTrendsSelect<true>;
     stores: StoresSelect<false> | StoresSelect<true>;
-    'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
-    careers: CareersSelect<false> | CareersSelect<true>;
-    'job-applications': JobApplicationsSelect<false> | JobApplicationsSelect<true>;
     warranties: WarrantiesSelect<false> | WarrantiesSelect<true>;
-    faqs: FaqsSelect<false> | FaqsSelect<true>;
     'contractor-applications': ContractorApplicationsSelect<false> | ContractorApplicationsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -149,6 +157,7 @@ export interface Config {
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ne' | 'hr') | ('en' | 'ne' | 'hr')[];
   globals: {
+    'studio-settings': StudioSetting;
     'top-bar': TopBar;
     header: Header;
     navigation: Navigation;
@@ -156,6 +165,7 @@ export interface Config {
     'site-settings': SiteSetting;
   };
   globalsSelect: {
+    'studio-settings': StudioSettingsSelect<false> | StudioSettingsSelect<true>;
     'top-bar': TopBarSelect<false> | TopBarSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     navigation: NavigationSelect<false> | NavigationSelect<true>;
@@ -312,6 +322,131 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolio".
+ */
+export interface Portfolio {
+  id: string;
+  title: string;
+  category: 'weddings' | 'events' | 'fashion' | 'concerts' | 'commercial';
+  /**
+   * Upload local/media asset image
+   */
+  image?: (string | null) | Media;
+  /**
+   * Optional fallback or external CDN/Unsplash URL if not uploading media
+   */
+  imageUrl?: string | null;
+  /**
+   * Shoot location (e.g. Kathmandu, Pokhara, Bhaktapur, Patan)
+   */
+  location?: string | null;
+  /**
+   * Client or couple name (optional)
+   */
+  client?: string | null;
+  /**
+   * Feature this item on the studio homepage preview
+   */
+  featured?: boolean | null;
+  /**
+   * Lower numbers appear first (e.g. 1, 2, 3...)
+   */
+  order?: number | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "films".
+ */
+export interface Film {
+  id: string;
+  title: string;
+  category: 'Wedding Film' | 'Cinematic Reel' | 'Event Aftermovie' | 'Concert Film' | 'Commercial' | 'Music Video';
+  /**
+   * YouTube / Vimeo embed or video URL (e.g. https://www.youtube-nocookie.com/embed/...)
+   */
+  videoUrl: string;
+  /**
+   * Poster image uploaded to media
+   */
+  posterImage?: (string | null) | Media;
+  /**
+   * Fallback direct CDN or external poster URL
+   */
+  posterUrl?: string | null;
+  /**
+   * Film duration display (e.g. 4:32, 6:05)
+   */
+  duration?: string | null;
+  /**
+   * Show in homepage films reel
+   */
+  featured?: boolean | null;
+  order?: number | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: string;
+  title: string;
+  /**
+   * 3-digit prefix number (e.g. 001, 002, 003...)
+   */
+  serviceNumber: string;
+  shortDescription: string;
+  icon?:
+    | ('camera' | 'film' | 'compass' | 'party' | 'music' | 'video' | 'smartphone' | 'sparkles' | 'tv' | 'lightbulb')
+    | null;
+  featured?: boolean | null;
+  order?: number | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: string;
+  clientName: string;
+  /**
+   * Client role and location (e.g. Bride · Kathmandu, Brand Director)
+   */
+  roleOrEvent: string;
+  quote: string;
+  rating?: number | null;
+  avatar?: (string | null) | Media;
+  /**
+   * Fallback avatar image URL
+   */
+  avatarUrl?: string | null;
+  featured?: boolean | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3312,6 +3447,114 @@ export interface SustainabilityBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "albums".
+ */
+export interface Album {
+  id: string;
+  title: string;
+  featuredImage: string | Media;
+  images: {
+    image: string | Media;
+    caption?: string | null;
+    id?: string | null;
+  }[];
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions".
+ */
+export interface ContactSubmission {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string | null;
+  subject: 'fresh-project' | 'buying-paint' | 'become-dealer' | 'book-painting-service' | 'other';
+  message: string;
+  /**
+   * Where this contact submission came from (e.g. Website Contact Page)
+   */
+  source?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers".
+ */
+export interface Career {
+  id: string;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  department: string;
+  type: 'full-time' | 'part-time' | 'contract' | 'internship';
+  location: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "job-applications".
+ */
+export interface JobApplication {
+  id: string;
+  applicantName: string;
+  email: string;
+  phone: string;
+  applicationType?: ('full-time' | 'part-time' | 'contract' | 'internship' | 'general' | 'specific') | null;
+  appliedFor?: (string | null) | Career;
+  /**
+   * Department for application (auto-filled from position or user selection)
+   */
+  preferredDepartment?: string | null;
+  cv: string | File;
+  coverLetter?: string | null;
+  status?: ('new' | 'review' | 'interview' | 'hired' | 'rejected') | null;
+  internalNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  category: 'general' | 'products' | 'technical' | 'visualizer' | 'warranty';
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "list".
  */
 export interface List {
@@ -3498,27 +3741,6 @@ export interface CommonFormSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "albums".
- */
-export interface Album {
-  id: string;
-  title: string;
-  featuredImage: string | Media;
-  images: {
-    image: string | Media;
-    caption?: string | null;
-    id?: string | null;
-  }[];
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "inspiration".
  */
 export interface Inspiration {
@@ -3616,80 +3838,6 @@ export interface Store {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact-submissions".
- */
-export interface ContactSubmission {
-  id: string;
-  name: string;
-  email: string;
-  phone?: string | null;
-  subject: 'fresh-project' | 'buying-paint' | 'become-dealer' | 'book-painting-service' | 'other';
-  message: string;
-  /**
-   * Where this contact submission came from (e.g. Website Contact Page)
-   */
-  source?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "careers".
- */
-export interface Career {
-  id: string;
-  title: string;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  department: string;
-  type: 'full-time' | 'part-time' | 'contract' | 'internship';
-  location: string;
-  description: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  isActive?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "job-applications".
- */
-export interface JobApplication {
-  id: string;
-  applicantName: string;
-  email: string;
-  phone: string;
-  applicationType?: ('full-time' | 'part-time' | 'contract' | 'internship' | 'general' | 'specific') | null;
-  appliedFor?: (string | null) | Career;
-  /**
-   * Department for application (auto-filled from position or user selection)
-   */
-  preferredDepartment?: string | null;
-  cv: string | File;
-  coverLetter?: string | null;
-  status?: ('new' | 'review' | 'interview' | 'hired' | 'rejected') | null;
-  internalNotes?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "warranties".
  */
 export interface Warranty {
@@ -3704,19 +3852,6 @@ export interface Warranty {
   invoice: string | File;
   dealerInfo: string;
   status?: ('pending' | 'active' | 'rejected' | 'expired') | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs".
- */
-export interface Faq {
-  id: string;
-  question: string;
-  answer: string;
-  category: 'general' | 'products' | 'technical' | 'visualizer' | 'warranty';
-  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -4125,6 +4260,22 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
+        relationTo: 'portfolio';
+        value: string | Portfolio;
+      } | null)
+    | ({
+        relationTo: 'films';
+        value: string | Film;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: string | Service;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: string | Testimonial;
+      } | null)
+    | ({
         relationTo: 'pages';
         value: string | Page;
       } | null)
@@ -4135,6 +4286,30 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'categories';
         value: string | Category;
+      } | null)
+    | ({
+        relationTo: 'albums';
+        value: string | Album;
+      } | null)
+    | ({
+        relationTo: 'files';
+        value: string | File;
+      } | null)
+    | ({
+        relationTo: 'contact-submissions';
+        value: string | ContactSubmission;
+      } | null)
+    | ({
+        relationTo: 'careers';
+        value: string | Career;
+      } | null)
+    | ({
+        relationTo: 'job-applications';
+        value: string | JobApplication;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: string | Faq;
       } | null)
     | ({
         relationTo: 'product-categories';
@@ -4161,14 +4336,6 @@ export interface PayloadLockedDocument {
         value: string | CommonFormSubmission;
       } | null)
     | ({
-        relationTo: 'albums';
-        value: string | Album;
-      } | null)
-    | ({
-        relationTo: 'files';
-        value: string | File;
-      } | null)
-    | ({
         relationTo: 'colors';
         value: string | Color;
       } | null)
@@ -4185,24 +4352,8 @@ export interface PayloadLockedDocument {
         value: string | Store;
       } | null)
     | ({
-        relationTo: 'contact-submissions';
-        value: string | ContactSubmission;
-      } | null)
-    | ({
-        relationTo: 'careers';
-        value: string | Career;
-      } | null)
-    | ({
-        relationTo: 'job-applications';
-        value: string | JobApplication;
-      } | null)
-    | ({
         relationTo: 'warranties';
         value: string | Warranty;
-      } | null)
-    | ({
-        relationTo: 'faqs';
-        value: string | Faq;
       } | null)
     | ({
         relationTo: 'contractor-applications';
@@ -4342,6 +4493,74 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portfolio_select".
+ */
+export interface PortfolioSelect<T extends boolean = true> {
+  title?: T;
+  category?: T;
+  image?: T;
+  imageUrl?: T;
+  location?: T;
+  client?: T;
+  featured?: T;
+  order?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "films_select".
+ */
+export interface FilmsSelect<T extends boolean = true> {
+  title?: T;
+  category?: T;
+  videoUrl?: T;
+  posterImage?: T;
+  posterUrl?: T;
+  duration?: T;
+  featured?: T;
+  order?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  serviceNumber?: T;
+  shortDescription?: T;
+  icon?: T;
+  featured?: T;
+  order?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  clientName?: T;
+  roleOrEvent?: T;
+  quote?: T;
+  rating?: T;
+  avatar?: T;
+  avatarUrl?: T;
+  featured?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -6198,6 +6417,115 @@ export interface CategoriesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "albums_select".
+ */
+export interface AlbumsSelect<T extends boolean = true> {
+  title?: T;
+  featuredImage?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "files_select".
+ */
+export interface FilesSelect<T extends boolean = true> {
+  isPrivate?: T;
+  fileCategory?: T;
+  uploadedFrom?: T;
+  uploadedBy?: T;
+  title?: T;
+  description?: T;
+  fiscalYear?: T;
+  expiryDate?: T;
+  relatedTrackingCode?: T;
+  isVerified?: T;
+  verifiedBy?: T;
+  verificationNotes?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions_select".
+ */
+export interface ContactSubmissionsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phone?: T;
+  subject?: T;
+  message?: T;
+  source?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers_select".
+ */
+export interface CareersSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  department?: T;
+  type?: T;
+  location?: T;
+  description?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "job-applications_select".
+ */
+export interface JobApplicationsSelect<T extends boolean = true> {
+  applicantName?: T;
+  email?: T;
+  phone?: T;
+  applicationType?: T;
+  appliedFor?: T;
+  preferredDepartment?: T;
+  cv?: T;
+  coverLetter?: T;
+  status?: T;
+  internalNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  category?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories_select".
  */
 export interface ProductCategoriesSelect<T extends boolean = true> {
@@ -6456,55 +6784,6 @@ export interface CommonFormSubmissionsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "albums_select".
- */
-export interface AlbumsSelect<T extends boolean = true> {
-  title?: T;
-  featuredImage?: T;
-  images?:
-    | T
-    | {
-        image?: T;
-        caption?: T;
-        id?: T;
-      };
-  generateSlug?: T;
-  slug?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "files_select".
- */
-export interface FilesSelect<T extends boolean = true> {
-  isPrivate?: T;
-  fileCategory?: T;
-  uploadedFrom?: T;
-  uploadedBy?: T;
-  title?: T;
-  description?: T;
-  fiscalYear?: T;
-  expiryDate?: T;
-  relatedTrackingCode?: T;
-  isVerified?: T;
-  verifiedBy?: T;
-  verificationNotes?: T;
-  prefix?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "colors_select".
  */
 export interface ColorsSelect<T extends boolean = true> {
@@ -6585,54 +6864,6 @@ export interface StoresSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contact-submissions_select".
- */
-export interface ContactSubmissionsSelect<T extends boolean = true> {
-  name?: T;
-  email?: T;
-  phone?: T;
-  subject?: T;
-  message?: T;
-  source?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "careers_select".
- */
-export interface CareersSelect<T extends boolean = true> {
-  title?: T;
-  generateSlug?: T;
-  slug?: T;
-  department?: T;
-  type?: T;
-  location?: T;
-  description?: T;
-  isActive?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "job-applications_select".
- */
-export interface JobApplicationsSelect<T extends boolean = true> {
-  applicantName?: T;
-  email?: T;
-  phone?: T;
-  applicationType?: T;
-  appliedFor?: T;
-  preferredDepartment?: T;
-  cv?: T;
-  coverLetter?: T;
-  status?: T;
-  internalNotes?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "warranties_select".
  */
 export interface WarrantiesSelect<T extends boolean = true> {
@@ -6646,18 +6877,6 @@ export interface WarrantiesSelect<T extends boolean = true> {
   invoice?: T;
   dealerInfo?: T;
   status?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "faqs_select".
- */
-export interface FaqsSelect<T extends boolean = true> {
-  question?: T;
-  answer?: T;
-  category?: T;
-  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -7036,6 +7255,51 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studio-settings".
+ */
+export interface StudioSetting {
+  id: string;
+  hero?: {
+    eyebrow?: string | null;
+    headlinePart1?: string | null;
+    headlinePart2?: string | null;
+    subheadline?: string | null;
+  };
+  marqueeItems?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  stats?: {
+    projectsCount?: number | null;
+    clientsCount?: number | null;
+    socialReach?: string | null;
+    yearsExperience?: number | null;
+  };
+  story?: {
+    headline?: string | null;
+    quote?: string | null;
+    paragraph1?: string | null;
+    paragraph2?: string | null;
+  };
+  contact?: {
+    phone?: string | null;
+    whatsappNumber?: string | null;
+    email?: string | null;
+    address?: string | null;
+  };
+  socialHandles?: {
+    instagram?: string | null;
+    youtube?: string | null;
+    tiktok?: string | null;
+    facebook?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "top-bar".
  */
 export interface TopBar {
@@ -7247,6 +7511,61 @@ export interface SiteSetting {
   };
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studio-settings_select".
+ */
+export interface StudioSettingsSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        eyebrow?: T;
+        headlinePart1?: T;
+        headlinePart2?: T;
+        subheadline?: T;
+      };
+  marqueeItems?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  stats?:
+    | T
+    | {
+        projectsCount?: T;
+        clientsCount?: T;
+        socialReach?: T;
+        yearsExperience?: T;
+      };
+  story?:
+    | T
+    | {
+        headline?: T;
+        quote?: T;
+        paragraph1?: T;
+        paragraph2?: T;
+      };
+  contact?:
+    | T
+    | {
+        phone?: T;
+        whatsappNumber?: T;
+        email?: T;
+        address?: T;
+      };
+  socialHandles?:
+    | T
+    | {
+        instagram?: T;
+        youtube?: T;
+        tiktok?: T;
+        facebook?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "@/i18n/routing";
+import { ArrowUpRight } from "lucide-react";
+import { defaultStudioSettings } from "@/utilities/studioDefaults";
 
 interface CounterProps {
   end: number;
@@ -57,7 +60,28 @@ function AnimatedStat({ end, suffix = "+", label }: CounterProps) {
   );
 }
 
-export function StudioStory() {
+interface StudioStoryProps {
+  headline?: string;
+  quote?: string;
+  paragraph1?: string;
+  paragraph2?: string;
+  stats?: {
+    projectsCount?: number;
+    clientsCount?: number;
+    socialReach?: string;
+    yearsExperience?: number;
+  };
+  isHomepagePreview?: boolean;
+}
+
+export function StudioStory({
+  headline = defaultStudioSettings.story.headline,
+  quote = defaultStudioSettings.story.quote,
+  paragraph1 = defaultStudioSettings.story.paragraph1,
+  paragraph2 = defaultStudioSettings.story.paragraph2,
+  stats = defaultStudioSettings.stats,
+  isHomepagePreview = false,
+}: StudioStoryProps) {
   return (
     <section id="about" className="bg-[#0A0A0A] py-24 sm:py-32 px-6 sm:px-8 border-b border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -79,7 +103,7 @@ export function StudioStory() {
             {/* Floating Glassmorphic Badge */}
             <div className="absolute bottom-6 left-6 bg-[#0A0A0A]/90 backdrop-blur-md border border-[#F5B301]/40 px-6 py-4 shadow-2xl">
               <span className="font-bebas text-3xl sm:text-4xl text-[#F5B301] block leading-none">
-                5+
+                {stats.yearsExperience}+
               </span>
               <p className="font-montserrat text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-white/90 mt-1">
                 Years of Cinematic Excellence
@@ -97,33 +121,38 @@ export function StudioStory() {
             </div>
 
             <h2 className="font-bebas text-4xl sm:text-6xl md:text-7xl tracking-[0.02em] text-white uppercase leading-[0.95] mb-6">
-              Born From <br />
-              <em className="text-[#F5B301] not-italic">Golden Light</em>
+              {headline}
             </h2>
 
             <blockquote className="font-bebas text-2xl sm:text-4xl text-[#F5B301] tracking-wide uppercase leading-tight mb-6 border-l-2 border-[#F5B301] pl-4 sm:pl-6">
-              &ldquo;Every frame tells a timeless story.&rdquo;
+              &ldquo;{quote}&rdquo;
             </blockquote>
 
             <p className="font-poppins text-sm sm:text-base text-white/70 font-light leading-relaxed mb-6">
-              The Golden Light Creations was born in the heart of Nepal with a singular vision — to
-              transform fleeting moments into eternal visual poetry. We are not just photographers
-              and filmmakers; we are storytellers, artists, and dreamers who believe every love story,
-              every brand, and every emotion deserves to be captured in its purest, most luminous form.
+              {paragraph1}
             </p>
 
-            <p className="font-poppins text-sm sm:text-base text-white/70 font-light leading-relaxed mb-12">
-              From the misty mountains of Kathmandu to luxury resort ceremonies, we bring an
-              international eye and a deeply Nepali soul to every project we undertake.
+            <p className="font-poppins text-sm sm:text-base text-white/70 font-light leading-relaxed mb-10">
+              {paragraph2}
             </p>
 
             {/* 4 Animated Numerical Stats */}
-            <div className="grid grid-cols-2 gap-8 sm:gap-10">
-              <AnimatedStat end={500} suffix="+" label="Projects Completed" />
-              <AnimatedStat end={300} suffix="+" label="Happy Clients" />
-              <AnimatedStat end={20} suffix="M+" label="Social Media Reach" />
-              <AnimatedStat end={5} suffix="+" label="Years Experience" />
+            <div className="grid grid-cols-2 gap-8 sm:gap-10 mb-8">
+              <AnimatedStat end={stats.projectsCount || 500} suffix="+" label="Projects Completed" />
+              <AnimatedStat end={stats.clientsCount || 300} suffix="+" label="Happy Clients" />
+              <AnimatedStat end={parseInt(stats.socialReach || "20") || 20} suffix="M+" label="Social Media Reach" />
+              <AnimatedStat end={stats.yearsExperience || 5} suffix="+" label="Years Experience" />
             </div>
+
+            {isHomepagePreview && (
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-[#F5B301] hover:text-[#FFD04A] transition-colors"
+              >
+                <span>Read Full Studio Story</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            )}
           </div>
         </div>
       </div>

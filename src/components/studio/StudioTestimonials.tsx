@@ -2,54 +2,13 @@
 
 import React from "react";
 import { Star } from "lucide-react";
+import { defaultTestimonials, type FallbackTestimonialItem } from "@/utilities/studioDefaults";
 
-interface Testimonial {
-  name: string;
-  role: string;
-  text: string;
-  avatar: string;
+interface StudioTestimonialsProps {
+  items?: FallbackTestimonialItem[];
 }
 
-const testimonials: Testimonial[] = [
-  {
-    name: "Priya Maharjan",
-    role: "Bride · Kathmandu",
-    text: "The Golden Light Creations transformed our wedding into a cinematic masterpiece. Every frame was a painting. We still cry watching our wedding film — in the most beautiful way possible.",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80",
-  },
-  {
-    name: "Bikash Shrestha",
-    role: "Groom · Pokhara",
-    text: "From the very first consultation, we knew we were in extraordinary hands. The team's eye for detail and emotional intelligence is unmatched. Our photos are beyond anything we imagined.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
-  },
-  {
-    name: "Suman KC",
-    role: "Event Director · Lalitpur",
-    text: "We hired them for our annual corporate gala and the results were stunning. Professional, punctual, and incredibly talented. The aftermovie they produced became our brand's most-viewed content.",
-    avatar: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&q=80",
-  },
-  {
-    name: "Aarav Basnet",
-    role: "Brand Manager · Kathmandu",
-    text: "The commercial campaign they produced for us exceeded every expectation. The production quality rivals international studios — but with authentic Nepali heart. Truly world-class.",
-    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&q=80",
-  },
-  {
-    name: "Anisha Tamang",
-    role: "Bride · Bhaktapur",
-    text: "I wanted my wedding photos to look like they belonged in a luxury magazine. That is exactly what I got. Every single image is magazine-worthy. Absolute perfection.",
-    avatar: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=200&q=80",
-  },
-  {
-    name: "Dipesh Gurung",
-    role: "Music Artist · Kathmandu",
-    text: "My music video was produced with Hollywood-level care and creativity. The team understood my artistic vision completely and elevated it beyond what I thought was possible.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
-  },
-];
-
-export function StudioTestimonials() {
+export function StudioTestimonials({ items = defaultTestimonials }: StudioTestimonialsProps) {
   return (
     <section id="testimonials" className="bg-[#111111] py-24 sm:py-32 px-6 sm:px-8 border-b border-white/5">
       <div className="max-w-7xl mx-auto">
@@ -69,9 +28,9 @@ export function StudioTestimonials() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {testimonials.map((t, idx) => (
+          {items.map((t, idx) => (
             <div
-              key={idx}
+              key={t.id || idx}
               className="relative bg-white/[0.02] border border-white/[0.08] hover:border-[#F5B301]/30 p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 overflow-hidden"
             >
               {/* Background Quotation Accent */}
@@ -83,9 +42,9 @@ export function StudioTestimonials() {
               </span>
 
               <div>
-                {/* 5 Stars */}
-                <div className="flex items-center gap-1 mb-6" aria-label="5 out of 5 stars">
-                  {Array.from({ length: 5 }).map((_, i) => (
+                {/* Stars based on rating */}
+                <div className="flex items-center gap-1 mb-6" aria-label={`${t.rating || 5} out of 5 stars`}>
+                  {Array.from({ length: t.rating || 5 }).map((_, i) => (
                     <Star
                       key={i}
                       className="w-4 h-4 fill-[#F5B301] text-[#F5B301]"

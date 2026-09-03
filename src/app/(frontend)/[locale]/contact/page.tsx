@@ -1,136 +1,48 @@
-import type { Metadata } from 'next/types'
-import React from 'react'
-import Link from 'next/link'
-import { ChevronRight, MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-react'
-import ContactForm from '@/components/ContactForm'
-import ContactMapClient from '@/components/ContactMapClient'
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
+import type { Metadata } from "next";
+import { Link } from "@/i18n/routing";
+import { ChevronRight } from "lucide-react";
+import { StudioContact } from "@/components/studio/StudioContact";
+import { getStudioSettings } from "@/utilities/getStudioData";
 
-export const dynamic = 'force-static'
+export const metadata: Metadata = {
+  title: "Book a Shoot & Contact | The Golden Light Creations",
+  description:
+    "Contact The Golden Light Creations in Kathmandu, Nepal. Book wedding photography, cinematic films, drone coverage, and commercial branding.",
+};
 
 export default async function ContactPage() {
-  const payload = await getPayload({ config: configPromise })
-  const siteSettings = await payload.findGlobal({ slug: 'site-settings' })
-  
-  const { contactDetails, officeLocation } = siteSettings
+  const settings = await getStudioSettings();
 
   return (
-    <div className="bg-page-bg min-h-screen pb-20">
-      {/* Hero Section */}
-      <section className="relative bg-reliance-navy pt-12 pb-12 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-reliance-gold rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-reliance-red rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
+    <div className="bg-[#0A0A0A] text-white min-h-screen pt-28">
+      {/* Breadcrumb Header */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-8 pb-10 border-b border-white/5">
+        <div className="flex items-center gap-2 text-xs font-montserrat tracking-widest text-white/50 uppercase mb-6">
+          <Link href="/" className="hover:text-[#F5B301] transition-colors">
+            Home
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5 text-[#F5B301]" />
+          <span className="text-[#F5B301]">Contact</span>
         </div>
 
-        <div className="container relative z-10">
-          <div className="flex items-center gap-2 text-reliance-white/60 text-sm mb-6">
-            <Link href="/" className="hover:text-reliance-white transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-reliance-white">Contact Us</span>
-          </div>
-
-          <div className="max-w-2xl text-reliance-white">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              Get in Touch
-            </h1>
-            <p className="text-reliance-white/70 text-lg leading-relaxed max-w-xl">
-              Have a question or looking to partner with us? We&apos;d love to hear from you.
-            </p>
-          </div>
+        <div className="flex items-center gap-3 mb-3">
+          <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#F5B301] uppercase">
+            Let&apos;s Connect
+          </span>
+          <span className="w-10 h-[1px] bg-[#F5B301]/60" />
         </div>
-      </section>
 
-      {/* Main Content */}
-      <section className="container py-16 -mt-8 relative z-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          
-          {/* Contact Info Cards */}
-          <div className="lg:col-span-4 space-y-6">
-            
-            {/* HQ Info */}
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-start gap-4 hover:border-reliance-gold transition-colors">
-              <div className="w-12 h-12 bg-reliance-gold/10 rounded-2xl flex items-center justify-center text-reliance-gold">
-                <MapPin className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-bold text-reliance-navy text-xl mb-2">Corporate Office</h3>
-                <p className="text-gray-600 leading-relaxed whitespace-pre-line">
-                  {contactDetails?.address || 'Reliance Paints\nKathmandu, Nepal'}
-                </p>
-              </div>
-            </div>
+        <h1 className="font-bebas text-5xl sm:text-7xl md:text-8xl tracking-[0.02em] uppercase leading-none mb-4">
+          Contact &amp; <em className="text-[#F5B301] not-italic">Bookings</em>
+        </h1>
+        <p className="font-poppins text-sm sm:text-base text-white/70 max-w-2xl font-light leading-relaxed">
+          Ready to turn your vision into eternal cinema? Reach out directly via phone, WhatsApp, or
+          submit your inquiry below. Our team is available 7 days a week.
+        </p>
+      </div>
 
-            {/* Direct Contact */}
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-start gap-4 hover:border-reliance-gold transition-colors">
-              <div className="w-12 h-12 bg-reliance-gold/10 rounded-2xl flex items-center justify-center text-reliance-gold">
-                <Phone className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-bold text-reliance-navy text-xl mb-2">Direct Contact</h3>
-                <a href={`tel:${contactDetails?.phone?.replace(/\s+/g, '')}`} className="text-gray-600 hover:text-reliance-gold transition-colors block mb-1">
-                  {contactDetails?.phone}
-                </a>
-                <a href={`mailto:${contactDetails?.email}`} className="text-gray-600 hover:text-reliance-gold transition-colors flex items-center gap-2 mb-1">
-                  <Mail className="w-4 h-4" /> {contactDetails?.email}
-                </a>
-                <a href={`https://wa.me/${contactDetails?.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 transition-colors flex items-center gap-2 mt-2 font-medium">
-                  <MessageCircle className="w-4 h-4" /> WhatsApp Us
-                </a>
-              </div>
-            </div>
-
-            {/* Business Hours */}
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-start gap-4 hover:border-reliance-gold transition-colors">
-              <div className="w-12 h-12 bg-reliance-gold/10 rounded-2xl flex items-center justify-center text-reliance-gold">
-                <Clock className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-bold text-reliance-navy text-xl mb-2">Business Hours</h3>
-                <ul className="space-y-1 text-gray-600">
-                  {contactDetails?.businessHours?.map((bh, i) => (
-                    <li key={i} className="flex justify-between w-48 gap-4">
-                      <span>{bh.days}:</span>
-                      <span className="font-medium text-gray-900">{bh.hours}</span>
-                    </li>
-                  ))}
-                  {!contactDetails?.businessHours?.length && (
-                    <li className="flex justify-between w-48">
-                      <span>Sunday - Friday:</span>
-                      <span className="font-medium text-gray-900">10am - 6pm</span>
-                    </li>
-                  )}
-                </ul>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Form and Map */}
-          <div className="lg:col-span-8 flex flex-col gap-8">
-            <ContactForm />
-            
-            {/* Office Map */}
-            {officeLocation?.latitude && officeLocation?.longitude && (
-              <div>
-                <h3 className="text-2xl font-bold text-reliance-navy mb-4">Our Location</h3>
-                <ContactMapClient lat={officeLocation.latitude} lng={officeLocation.longitude} />
-              </div>
-            )}
-          </div>
-
-        </div>
-      </section>
+      {/* Luxury Contact & Booking Form */}
+      <StudioContact contact={settings.contact} />
     </div>
-  )
-}
-
-export function generateMetadata(): Metadata {
-  return {
-    title: 'Contact Us | Reliance Paints',
-    description: 'Get in touch with Reliance Paints for general inquiries, sales, and support.',
-  }
+  );
 }

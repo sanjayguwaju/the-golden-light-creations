@@ -1,122 +1,23 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
-import { Plus, X } from "lucide-react";
+import { Link } from "@/i18n/routing";
+import { Plus, X, ArrowUpRight } from "lucide-react";
+import { defaultPortfolio, type FallbackPortfolioItem } from "@/utilities/studioDefaults";
 
-interface PortfolioItem {
-  id: string;
-  src: string;
-  cat: "weddings" | "events" | "fashion" | "concerts";
-  categoryLabel: string;
-  title: string;
-  loc: string;
+interface StudioPortfolioProps {
+  items?: FallbackPortfolioItem[];
+  isHomepagePreview?: boolean;
 }
 
-const portfolioData: PortfolioItem[] = [
-  {
-    id: "1",
-    src: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1000&q=85",
-    cat: "weddings",
-    categoryLabel: "Weddings",
-    title: "Nepali Wedding Ceremony",
-    loc: "Kathmandu",
-  },
-  {
-    id: "2",
-    src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1000&q=85",
-    cat: "weddings",
-    categoryLabel: "Weddings",
-    title: "Bride Portrait",
-    loc: "Pokhara",
-  },
-  {
-    id: "3",
-    src: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1000&q=85",
-    cat: "weddings",
-    categoryLabel: "Weddings",
-    title: "Couple Session",
-    loc: "Nagarkot",
-  },
-  {
-    id: "4",
-    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&q=85",
-    cat: "events",
-    categoryLabel: "Events",
-    title: "Corporate Gala",
-    loc: "Kathmandu",
-  },
-  {
-    id: "5",
-    src: "https://images.unsplash.com/photo-1493863641943-9b68992a8d07?w=1000&q=85",
-    cat: "concerts",
-    categoryLabel: "Concerts",
-    title: "Live Concert Coverage",
-    loc: "Kathmandu",
-  },
-  {
-    id: "6",
-    src: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1000&q=85",
-    cat: "fashion",
-    categoryLabel: "Fashion",
-    title: "Luxury Fashion Editorial",
-    loc: "Studio",
-  },
-  {
-    id: "7",
-    src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1000&q=85",
-    cat: "weddings",
-    categoryLabel: "Weddings",
-    title: "Bridal Portrait",
-    loc: "Bhaktapur",
-  },
-  {
-    id: "8",
-    src: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1000&q=85",
-    cat: "events",
-    categoryLabel: "Events",
-    title: "Cultural Celebration",
-    loc: "Patan",
-  },
-  {
-    id: "9",
-    src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1000&q=85",
-    cat: "fashion",
-    categoryLabel: "Fashion",
-    title: "Fashion Portrait Series",
-    loc: "Studio",
-  },
-  {
-    id: "10",
-    src: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1000&q=85",
-    cat: "concerts",
-    categoryLabel: "Concerts",
-    title: "Music Festival",
-    loc: "Lalitpur",
-  },
-  {
-    id: "11",
-    src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1000&q=85",
-    cat: "weddings",
-    categoryLabel: "Weddings",
-    title: "Golden Hour Portraits",
-    loc: "Chitwan",
-  },
-  {
-    id: "12",
-    src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1000&q=85",
-    cat: "events",
-    categoryLabel: "Events",
-    title: "Wedding Reception",
-    loc: "Kathmandu",
-  },
-];
+type CategoryFilter = "all" | "weddings" | "events" | "fashion" | "concerts" | "commercial";
 
-type CategoryFilter = "all" | "weddings" | "events" | "fashion" | "concerts";
-
-export function StudioPortfolio() {
+export function StudioPortfolio({
+  items = defaultPortfolio,
+  isHomepagePreview = false,
+}: StudioPortfolioProps) {
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>("all");
-  const [activeLightbox, setActiveLightbox] = useState<PortfolioItem | null>(null);
+  const [activeLightbox, setActiveLightbox] = useState<FallbackPortfolioItem | null>(null);
 
   const filterTabs: { key: CategoryFilter; label: string }[] = [
     { key: "all", label: "All" },
@@ -126,9 +27,11 @@ export function StudioPortfolio() {
     { key: "concerts", label: "Concerts" },
   ];
 
-  const filteredItems = portfolioData.filter(
-    (item) => activeFilter === "all" || item.cat === activeFilter
+  const filteredItems = items.filter(
+    (item) => activeFilter === "all" || item.category === activeFilter
   );
+
+  const displayedItems = isHomepagePreview ? filteredItems.slice(0, 9) : filteredItems;
 
   return (
     <section id="portfolio" className="bg-[#111111] py-24 sm:py-32 px-6 sm:px-8 border-b border-white/5">
@@ -167,7 +70,7 @@ export function StudioPortfolio() {
 
         {/* Masonry Columns */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
-          {filteredItems.map((item) => (
+          {displayedItems.map((item) => (
             <div
               key={item.id}
               onClick={() => setActiveLightbox(item)}
@@ -197,12 +100,25 @@ export function StudioPortfolio() {
                   {item.title}
                 </h3>
                 <p className="font-poppins text-xs text-white/60 mt-0.5">
-                  {item.loc}, Nepal
+                  {item.location}, Nepal
                 </p>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Homepage Preview Action: Link to dedicated /portfolio page */}
+        {isHomepagePreview && (
+          <div className="mt-16 flex justify-center">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-3 border border-[#F5B301] text-[#F5B301] hover:bg-[#F5B301] hover:text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.25em] px-10 py-4 transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <span>Explore Complete Portfolio</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Lightbox Modal */}
@@ -236,7 +152,7 @@ export function StudioPortfolio() {
                 {activeLightbox.categoryLabel}
               </span>
               <h4 className="font-bebas text-2xl sm:text-3xl text-white tracking-[0.05em] uppercase mt-1">
-                {activeLightbox.title} — {activeLightbox.loc}
+                {activeLightbox.title} — {activeLightbox.location}
               </h4>
             </div>
           </div>

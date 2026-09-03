@@ -1,28 +1,28 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link, usePathname } from "@/i18n/routing";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 export function StudioNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Films", href: "#films" },
-    { label: "Services", href: "#services" },
-    { label: "About", href: "#about" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "Contact", href: "#contact" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Films", href: "/films" },
+    { label: "Services", href: "/services" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -31,13 +31,13 @@ export function StudioNavbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#0A0A0A]/92 backdrop-blur-xl py-3 border-b border-[#F5B301]/15 shadow-2xl"
-            : "bg-transparent py-6"
+            ? "bg-[#0A0A0A]/95 backdrop-blur-xl py-3.5 border-b border-[#F5B301]/15 shadow-2xl"
+            : "bg-[#0A0A0A]/60 backdrop-blur-md py-5 border-b border-white/5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
           {/* Brand Logo */}
-          <Link href="#hero" className="group flex flex-col leading-none">
+          <Link href="/" className="group flex flex-col leading-none">
             <span className="font-bebas text-2xl sm:text-3xl tracking-[0.15em] text-[#F5B301] group-hover:text-[#FFD04A] transition-colors">
               THE GOLDEN
             </span>
@@ -48,22 +48,31 @@ export function StudioNavbar() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="relative font-montserrat text-xs font-semibold uppercase tracking-[0.2em] text-white/80 hover:text-[#F5B301] transition-colors py-1 group"
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#F5B301] transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
+            {navLinks.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`relative font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-colors py-1 group ${
+                    isActive ? "text-[#F5B301]" : "text-white/80 hover:text-[#F5B301]"
+                  }`}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#F5B301] transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
           {/* CTA & Mobile Hamburger */}
           <div className="flex items-center gap-4">
             <Link
-              href="#contact"
+              href="/contact"
               className="hidden sm:inline-flex items-center gap-2 bg-[#F5B301] hover:bg-[#FFD04A] text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.2em] px-6 py-3 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-[#F5B301]/20"
             >
               <span>Book a Shoot</span>
@@ -89,50 +98,61 @@ export function StudioNavbar() {
         }`}
       >
         <div className="flex items-center justify-between">
-          <div className="flex flex-col leading-none">
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex flex-col leading-none"
+          >
             <span className="font-bebas text-2xl tracking-[0.15em] text-[#F5B301]">
               THE GOLDEN
             </span>
             <span className="font-montserrat text-[10px] font-bold tracking-[0.35em] text-white/80">
               LIGHT CREATIONS
             </span>
-          </div>
+          </Link>
           <button
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close Navigation Menu"
-            className="p-2 text-white/80 hover:text-[#F5B301] transition-colors"
+            className="p-2 text-white/80 hover:text-[#F5B301] transition-colors focus:outline-none"
           >
-            <X className="w-8 h-8" />
+            <X className="w-7 h-7" />
           </button>
         </div>
 
-        {/* Mobile Navigation Links */}
-        <nav className="flex flex-col gap-5 my-auto">
-          {navLinks.map((link) => (
+        {/* Mobile Links */}
+        <nav className="flex flex-col gap-6 py-8">
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="font-bebas text-4xl uppercase tracking-[0.05em] text-white hover:text-[#F5B301] transition-colors"
+          >
+            Home
+          </Link>
+          {navLinks.map((item) => (
             <Link
-              key={link.label}
-              href={link.href}
+              key={item.label}
+              href={item.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="font-bebas text-4xl sm:text-5xl tracking-[0.08em] text-white hover:text-[#F5B301] transition-colors"
+              className="font-bebas text-4xl uppercase tracking-[0.05em] text-white hover:text-[#F5B301] transition-colors"
             >
-              {link.label}
+              {item.label}
             </Link>
           ))}
         </nav>
 
-        {/* Mobile Drawer Bottom */}
-        <div className="pt-6 border-t border-white/10 flex flex-col gap-4">
+        {/* Mobile Footer CTA */}
+        <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
           <Link
-            href="#contact"
+            href="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full text-center bg-[#F5B301] text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.2em] py-4 hover:bg-[#FFD04A] transition-colors"
+            className="w-full bg-[#F5B301] text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.2em] py-4 text-center flex items-center justify-center gap-2 shadow-xl shadow-[#F5B301]/25"
           >
-            Book Your Shoot
+            <span>Book a Shoot</span>
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
-          <div className="flex justify-between items-center text-xs font-montserrat text-white/50">
-            <span>Kathmandu, Nepal</span>
-            <span>+977 9810175322</span>
-          </div>
+          <p className="font-poppins text-xs text-white/40 text-center">
+            Kathmandu, Nepal · +977 9810175322
+          </p>
         </div>
       </div>
     </>

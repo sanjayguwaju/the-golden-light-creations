@@ -1,13 +1,23 @@
 "use client";
 
 import React from "react";
+import { defaultStudioSettings } from "@/utilities/studioDefaults";
 
-export function StudioStats() {
-  const stats = [
-    { num: "500", suffix: "+", label: "Projects Completed" },
-    { num: "300", suffix: "+", label: "Happy Clients" },
-    { num: "20", suffix: "M+", label: "Social Media Reach" },
-    { num: "5", suffix: "+", label: "Years Experience" },
+interface StudioStatsProps {
+  stats?: {
+    projectsCount?: number;
+    clientsCount?: number;
+    socialReach?: string;
+    yearsExperience?: number;
+  };
+}
+
+export function StudioStats({ stats = defaultStudioSettings.stats }: StudioStatsProps) {
+  const statItems = [
+    { num: String(stats.projectsCount || 500), suffix: "+", label: "Projects Completed" },
+    { num: String(stats.clientsCount || 300), suffix: "+", label: "Happy Clients" },
+    { num: String(parseInt(stats.socialReach || "20") || 20), suffix: "M+", label: "Social Media Reach" },
+    { num: String(stats.yearsExperience || 5), suffix: "+", label: "Years Experience" },
   ];
 
   return (
@@ -26,7 +36,7 @@ export function StudioStats() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
-          {stats.map((s, idx) => (
+          {statItems.map((s, idx) => (
             <div
               key={idx}
               className="flex flex-col items-center justify-center p-6 sm:p-8 text-center"

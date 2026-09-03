@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ArrowDown } from "lucide-react";
 
 interface Particle {
@@ -129,13 +129,13 @@ export function StudioHero() {
         {/* Action Triggers */}
         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
           <Link
-            href="#portfolio"
+            href="/portfolio"
             className="group relative px-8 sm:px-10 py-4 bg-[#F5B301] text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.25em] overflow-hidden transition-all duration-300 hover:bg-[#FFD04A] hover:shadow-[0_0_25px_rgba(245,179,1,0.4)] hover:-translate-y-0.5 active:translate-y-0"
           >
             <span className="relative z-10">View Portfolio</span>
           </Link>
           <Link
-            href="#contact"
+            href="/contact"
             className="px-8 sm:px-10 py-4 border border-white/40 text-white font-montserrat font-bold text-xs uppercase tracking-[0.25em] transition-all duration-300 hover:border-[#F5B301] hover:text-[#F5B301] hover:bg-[#F5B301]/5 hover:-translate-y-0.5 active:translate-y-0"
           >
             Book Your Shoot

@@ -1,24 +1,24 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Instagram, Youtube, Facebook, ArrowUpRight } from "lucide-react";
 
 export function StudioFooter() {
   const servicesLinks = [
-    { label: "Wedding Photography", href: "#services" },
-    { label: "Cinematic Films", href: "#films" },
-    { label: "Drone Coverage", href: "#services" },
-    { label: "Fashion Shoots", href: "#services" },
-    { label: "Digital Marketing", href: "#services" },
+    { label: "Wedding Photography", href: "/services" },
+    { label: "Cinematic Films", href: "/films" },
+    { label: "Drone Coverage", href: "/services" },
+    { label: "Fashion Shoots", href: "/services" },
+    { label: "Digital Marketing", href: "/services" },
   ];
 
   const companyLinks = [
-    { label: "About Us", href: "#about" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Films", href: "#films" },
-    { label: "Reviews", href: "#testimonials" },
-    { label: "Contact", href: "#contact" },
+    { label: "About Us", href: "/about" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Films", href: "/films" },
+    { label: "Services", href: "/services" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -28,7 +28,7 @@ export function StudioFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
           {/* Brand Bio */}
           <div className="lg:col-span-4">
-            <Link href="#hero" className="flex flex-col leading-none mb-6">
+            <Link href="/" className="flex flex-col leading-none mb-6">
               <span className="font-bebas text-3xl tracking-[0.15em] text-[#F5B301]">
                 THE GOLDEN
               </span>

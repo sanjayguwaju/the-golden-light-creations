@@ -35,8 +35,13 @@ import { Staffs } from "./collections/Staffs";
 import { Albums } from "./collections/Albums";
 import { Files } from "./collections/Files";
 import { Colors } from "./collections/Colors";
+import { Portfolio } from "./collections/Portfolio";
+import { Films } from "./collections/Films";
+import { Services } from "./collections/Services";
+import { Testimonials } from "./collections/Testimonials";
 import { Inspiration } from "./collections/Inspiration";
 import { ColorTrends } from "./collections/ColorTrends";
+import { StudioSettings } from "./globals/StudioSettings/config";
 import config from "./config";
 
 const systemConfig = config();
@@ -116,30 +121,34 @@ export default buildConfig({
   collections: [
     Media,
     Users,
+    Portfolio,
+    Films,
+    Services,
+    Testimonials,
     Pages,
     Posts,
     Categories,
+    Albums,
+    Files,
+    ContactSubmissions,
+    Careers,
+    JobApplications,
+    Faqs,
     ProductCategories,
     ProductSubcategories,
     Products,
     List,
     Staffs,
     CommonFormSubmissions,
-    Albums,
-    Files,
     Colors,
     Inspiration,
     ColorTrends,
     Stores,
-    ContactSubmissions,
-    Careers,
-    JobApplications,
     Warranties,
-    Faqs,
     ContractorApplications,
   ],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [TopBar, Header, Navigation, Footer, SiteSettings],
+  globals: [StudioSettings, TopBar, Header, Navigation, Footer, SiteSettings],
   plugins,
   email: resendAdapter({
     defaultFromAddress: "onboarding@resend.dev",

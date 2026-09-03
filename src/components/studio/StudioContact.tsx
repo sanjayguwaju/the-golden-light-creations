@@ -2,8 +2,18 @@
 
 import React, { useState } from "react";
 import { Phone, MapPin, Mail, MessageCircle, Send, CheckCircle2 } from "lucide-react";
+import { defaultStudioSettings } from "@/utilities/studioDefaults";
 
-export function StudioContact() {
+interface StudioContactProps {
+  contact?: {
+    phone?: string;
+    email?: string;
+    address?: string;
+    whatsappNumber?: string;
+  };
+}
+
+export function StudioContact({ contact = defaultStudioSettings.contact }: StudioContactProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -14,12 +24,27 @@ export function StudioContact() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate booking inquiry submission
-    setTimeout(() => {
+    try {
+      await fetch("/api/contact-submissions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: `[Service Requested: ${formData.service}]\n${formData.message}`,
+          source: "Website Booking Form",
+        }),
+      });
+    } catch (err) {
+      console.warn("Contact submission endpoint notice:", err);
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({
@@ -30,10 +55,14 @@ export function StudioContact() {
         message: "",
       });
 
-      // Reset success message after 5 seconds
       setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1200);
+    }
   };
+
+  const cleanPhone = contact.phone || "+977 9810175322";
+  const whatsappNum = contact.whatsappNumber || "9779810175322";
+  const emailAddr = contact.email || "info@thegoldenlightcreations.com";
+  const addressText = contact.address || "Kathmandu, Nepal";
 
   return (
     <section id="contact" className="bg-[#F5F5F5] text-[#0A0A0A] py-24 sm:py-32 px-6 sm:px-8">
@@ -70,10 +99,10 @@ export function StudioContact() {
                     Call / WhatsApp
                   </span>
                   <a
-                    href="tel:+9779810175322"
+                    href={`tel:${cleanPhone}`}
                     className="font-poppins text-sm font-medium text-[#0A0A0A] hover:text-[#C8920A] transition-colors"
                   >
-                    +977 9810175322
+                    {cleanPhone}
                   </a>
                 </div>
               </div>
@@ -88,7 +117,7 @@ export function StudioContact() {
                     Location
                   </span>
                   <span className="font-poppins text-sm font-medium text-[#0A0A0A]">
-                    Kathmandu, Nepal
+                    {addressText}
                   </span>
                 </div>
               </div>
@@ -103,10 +132,10 @@ export function StudioContact() {
                     Email
                   </span>
                   <a
-                    href="mailto:info@thegoldenlightcreations.com"
+                    href={`mailto:${emailAddr}`}
                     className="font-poppins text-sm font-medium text-[#0A0A0A] hover:text-[#C8920A] transition-colors"
                   >
-                    info@thegoldenlightcreations.com
+                    {emailAddr}
                   </a>
                 </div>
               </div>
@@ -114,7 +143,7 @@ export function StudioContact() {
 
             {/* Direct WhatsApp Action Button */}
             <a
-              href="https://wa.me/9779810175322?text=Hello%20The%20Golden%20Light%20Creations,%20I%20would%20like%20to%20inquire%20about%20booking%20a%20shoot."
+              href={`https://wa.me/${whatsappNum}?text=Hello%20The%20Golden%20Light%20Creations,%20I%20would%20like%20to%20inquire%20about%20booking%20a%20shoot.`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1fa855] text-white px-8 py-4 font-montserrat text-xs font-bold uppercase tracking-[0.2em] transition-all duration-200 hover:-translate-y-0.5 shadow-xl shadow-[#25D366]/20"
