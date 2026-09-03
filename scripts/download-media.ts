@@ -183,8 +183,8 @@ async function main() {
     process.exit(1);
   }
 
-  // Build S3 Index
-  const s3Index = await buildS3Index(bucket, "reliancepaints-storage/media/");
+  const storagePrefix = process.env.S3_PREFIX || "the-golden-light-creations";
+  const s3Index = await buildS3Index(bucket, `${storagePrefix}/media/`);
 
   console.log("🚀 Initializing Payload CMS...");
   const payload = await getPayload({ config: configPromise });
@@ -216,7 +216,7 @@ async function main() {
     if (!doc.filename) continue;
 
     // Original file
-    const origKey = `reliancepaints-storage/media/${doc.filename}`;
+    const origKey = `${storagePrefix}/media/${doc.filename}`;
     const resolvedOrigKey = resolveKey(origKey, s3Index);
     const origDest = path.join(ORIGINALS_DIR, doc.filename);
 
@@ -249,7 +249,7 @@ async function main() {
     if (doc.sizes) {
       for (const [sizeName, sizeInfo] of Object.entries<any>(doc.sizes)) {
         if (sizeInfo && sizeInfo.filename) {
-          const sizeKey = `reliancepaints-storage/media/${sizeInfo.filename}`;
+          const sizeKey = `${storagePrefix}/media/${sizeInfo.filename}`;
           const resolvedSizeKey = resolveKey(sizeKey, s3Index);
           const sizeDest = path.join(SIZES_DIR, sizeInfo.filename);
 

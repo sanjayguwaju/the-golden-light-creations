@@ -6,7 +6,7 @@ import { S3Client, GetObjectCommand, ListObjectsV2Command, _Object } from "@aws-
 
 // Configuration
 const BASE_DEST_DIR = path.resolve(process.cwd(), "downloads/r2-storage");
-const S3_PREFIX = "reliancepaints-storage/"; // Download all reliance paints storage (media + files)
+const S3_PREFIX = `${process.env.S3_PREFIX || "the-golden-light-creations"}/`;
 
 const s3Client = new S3Client({
   endpoint: process.env.S3_ENDPOINT,

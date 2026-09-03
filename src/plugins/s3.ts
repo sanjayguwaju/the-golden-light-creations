@@ -3,13 +3,15 @@ import config from "../config";
 
 const systemConfig = config();
 
+const storagePrefix = systemConfig.S3_PREFIX || "the-golden-light-creations";
+
 export const s3StoragePlugin = s3Storage({
   collections: {
     // ─── files → Payload-proxied (access controlled) ───────────────
     // S3 path: files/{folder}/{filename}
     // URL:     /api/files/file/{filename}  (gated by Payload access rules)
     files: {
-      prefix: "reliancepaints-storage/files",
+      prefix: `${storagePrefix}/files`,
       generateFileURL: ({ filename }) => {
         // Route through Payload so isPrivate access rule is enforced
         if (!filename) return "";
@@ -17,11 +19,11 @@ export const s3StoragePlugin = s3Storage({
       },
     },
 
-    // ─── media → direct MinIO (fully public) ───────────────────────
+    // ─── media → direct storage (fully public) ───────────────────────
     // S3 path: media/{filename}
-    // URL:     https://minio.../bucket/media/{filename}
+    // URL:     /api/media/file/{filename}
     media: {
-      prefix: "reliancepaints-storage/media",
+      prefix: `${storagePrefix}/media`,
       generateFileURL: ({ filename }) => {
         if (!filename) return "";
         return `/api/media/file/${filename}`;

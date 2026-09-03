@@ -43,6 +43,8 @@ async function main() {
 
   console.log(`📦 Found ${allMediaDocs.length} media records in collection.`);
 
+  const storagePrefix = process.env.S3_PREFIX || "the-golden-light-creations";
+
   // Build sets of files to preserve
   const preservedFilenames = new Set<string>();
   const thumbnailFilenames = new Set<string>();
@@ -50,11 +52,11 @@ async function main() {
   for (const doc of allMediaDocs) {
     if (doc.filename) {
       preservedFilenames.add(doc.filename.toLowerCase());
-      preservedFilenames.add(`reliancepaints-storage/media/${doc.filename}`.toLowerCase());
+      preservedFilenames.add(`${storagePrefix}/media/${doc.filename}`.toLowerCase());
     }
     if (doc.sizes?.thumbnail?.filename) {
       thumbnailFilenames.add(doc.sizes.thumbnail.filename.toLowerCase());
-      thumbnailFilenames.add(`reliancepaints-storage/media/${doc.sizes.thumbnail.filename}`.toLowerCase());
+      thumbnailFilenames.add(`${storagePrefix}/media/${doc.sizes.thumbnail.filename}`.toLowerCase());
     }
   }
 
@@ -65,7 +67,7 @@ async function main() {
   do {
     const listCmd: ListObjectsV2Command = new ListObjectsV2Command({
       Bucket: bucket,
-      Prefix: "reliancepaints-storage/media/",
+      Prefix: `${storagePrefix}/media/`,
       ContinuationToken: continuationToken,
     });
 
