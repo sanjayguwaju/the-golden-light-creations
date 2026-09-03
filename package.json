@@ -2,6 +2,7 @@
   "name": "the-golden-light-creations",
   "version": "1.0.0",
   "description": "The Golden Light Creations - Luxury Photography, Cinematic Films & Digital Branding Services in Nepal",
+  "author": "sanjayguwaju <sanjayguwaju@gmail.com>",
   "license": "MIT",
   "type": "module",
   "scripts": {
