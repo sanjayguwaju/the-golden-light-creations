@@ -22,7 +22,7 @@ export function StudioFooter() {
   ];
 
   return (
-    <footer className="bg-[#0A0A0A] text-white pt-20 pb-10 px-6 sm:px-8 border-t border-white/10">
+    <footer className="bg-[#0A0A0A] text-white pt-16 sm:pt-20 pb-10 px-4 sm:px-8 border-t border-white/10">
       <div className="max-w-7xl mx-auto">
         {/* 4-Column Directory */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">

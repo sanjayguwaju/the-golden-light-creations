@@ -57,10 +57,10 @@ export function StudioServices({
   const displayedItems = isHomepagePreview ? items.slice(0, 6) : items;
 
   return (
-    <section id="services" className="bg-[#111111] py-24 sm:py-32 px-6 sm:px-8 border-b border-white/5">
+    <section id="services" className="bg-[#111111] py-20 sm:py-32 px-4 sm:px-8 border-b border-white/5">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-20">
           <div>
             <div className="flex items-center gap-3 mb-3">
               <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#F5B301] uppercase">
@@ -93,13 +93,13 @@ export function StudioServices({
           {displayedItems.map((srv) => (
             <div
               key={srv.id || srv.num}
-              className="group relative bg-white/[0.02] border border-white/[0.08] hover:border-[#F5B301]/40 p-8 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 hover:bg-[#F5B301]/[0.03] overflow-hidden"
+              className="group relative bg-white/[0.02] border border-white/[0.08] hover:border-[#F5B301]/40 p-6 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 hover:bg-[#F5B301]/[0.03] overflow-hidden"
             >
               {/* Bottom expanding gold indicator */}
               <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#F5B301] transition-all duration-500 ease-out group-hover:w-full" />
 
               {/* Icon Container */}
-              <div className="w-14 h-14 border border-[#F5B301]/30 group-hover:border-[#F5B301] group-hover:bg-[#F5B301]/10 flex items-center justify-center mb-6 transition-all duration-300">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 border border-[#F5B301]/30 group-hover:border-[#F5B301] group-hover:bg-[#F5B301]/10 flex items-center justify-center mb-5 sm:mb-6 transition-all duration-300">
                 {resolveServiceIcon(srv.icon)}
               </div>
 
@@ -109,7 +109,7 @@ export function StudioServices({
               </div>
 
               {/* Name */}
-              <h3 className="font-montserrat text-base sm:text-lg font-bold uppercase tracking-wider text-white mb-3 group-hover:text-[#F5B301] transition-colors">
+              <h3 className="font-montserrat text-base sm:text-lg font-bold uppercase tracking-wider text-white mb-2 sm:mb-3 group-hover:text-[#F5B301] transition-colors">
                 {srv.name}
               </h3>
 
@@ -123,10 +123,10 @@ export function StudioServices({
 
         {/* Homepage Preview Action */}
         {isHomepagePreview && (
-          <div className="mt-16 flex justify-center">
+          <div className="mt-12 sm:mt-16 flex justify-center">
             <Link
               href="/services"
-              className="inline-flex items-center gap-3 border border-[#F5B301] text-[#F5B301] hover:bg-[#F5B301] hover:text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.25em] px-10 py-4 transition-all duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto border border-[#F5B301] text-[#F5B301] hover:bg-[#F5B301] hover:text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.25em] px-8 sm:px-10 py-4 transition-all duration-300 hover:-translate-y-0.5 text-center"
             >
               <span>Explore All Production Services</span>
               <ArrowUpRight className="w-4 h-4" />

@@ -48,7 +48,7 @@ export function StudioHero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16"
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-24 pb-16 px-4"
     >
       {/* Background Image with slow cinematic zoom */}
       <div
@@ -102,18 +102,18 @@ export function StudioHero() {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 text-center flex flex-col items-center">
         {/* Eyebrow */}
-        <div className="flex items-center justify-center gap-3 sm:gap-5 mb-6 sm:mb-8">
-          <span className="w-8 sm:w-12 h-[1px] bg-[#F5B301]/70" />
-          <span className="font-montserrat text-[10px] sm:text-xs font-semibold tracking-[0.45em] text-[#F5B301] uppercase">
+        <div className="flex items-center justify-center gap-2 sm:gap-5 mb-5 sm:mb-8">
+          <span className="w-6 sm:w-12 h-[1px] bg-[#F5B301]/70" />
+          <span className="font-montserrat text-[9px] sm:text-xs font-semibold tracking-[0.35em] sm:tracking-[0.45em] text-[#F5B301] uppercase">
             Nepal&apos;s Finest Creative Studio
           </span>
-          <span className="w-8 sm:w-12 h-[1px] bg-[#F5B301]/70" />
+          <span className="w-6 sm:w-12 h-[1px] bg-[#F5B301]/70" />
         </div>
 
         {/* Master Headline */}
-        <h1 className="font-bebas text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.02em] leading-[0.92] text-white uppercase mb-6">
+        <h1 className="font-bebas text-4xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.02em] leading-[0.95] sm:leading-[0.92] text-white uppercase mb-5 sm:mb-6">
           We Don&apos;t Just Shoot —
           <em className="text-[#F5B301] not-italic block mt-1 drop-shadow-[0_0_45px_rgba(245,179,1,0.35)]">
             We Create Emotions.
@@ -121,22 +121,22 @@ export function StudioHero() {
         </h1>
 
         {/* Subtitle */}
-        <p className="font-poppins font-light text-sm sm:text-base md:text-lg text-white/80 max-w-2xl leading-relaxed tracking-wide mb-10">
+        <p className="font-poppins font-light text-xs sm:text-base md:text-lg text-white/80 max-w-2xl leading-relaxed tracking-wide mb-8 sm:mb-10 px-2">
           Luxury Photography, Cinematic Films &amp; Digital Branding Services in Nepal. Crafting
           timeless visual stories since 2019.
         </p>
 
         {/* Action Triggers */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 w-full max-w-xs sm:max-w-none">
           <Link
             href="/portfolio"
-            className="group relative px-8 sm:px-10 py-4 bg-[#F5B301] text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.25em] overflow-hidden transition-all duration-300 hover:bg-[#FFD04A] hover:shadow-[0_0_25px_rgba(245,179,1,0.4)] hover:-translate-y-0.5 active:translate-y-0"
+            className="w-full sm:w-auto text-center group relative px-8 sm:px-10 py-3.5 sm:py-4 bg-[#F5B301] text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.25em] overflow-hidden transition-all duration-300 hover:bg-[#FFD04A] hover:shadow-[0_0_25px_rgba(245,179,1,0.4)] hover:-translate-y-0.5 active:translate-y-0"
           >
             <span className="relative z-10">View Portfolio</span>
           </Link>
           <Link
             href="/contact"
-            className="px-8 sm:px-10 py-4 border border-white/40 text-white font-montserrat font-bold text-xs uppercase tracking-[0.25em] transition-all duration-300 hover:border-[#F5B301] hover:text-[#F5B301] hover:bg-[#F5B301]/5 hover:-translate-y-0.5 active:translate-y-0"
+            className="w-full sm:w-auto text-center px-8 sm:px-10 py-3.5 sm:py-4 border border-white/40 text-white font-montserrat font-bold text-xs uppercase tracking-[0.25em] transition-all duration-300 hover:border-[#F5B301] hover:text-[#F5B301] hover:bg-[#F5B301]/5 hover:-translate-y-0.5 active:translate-y-0"
           >
             Book Your Shoot
           </Link>

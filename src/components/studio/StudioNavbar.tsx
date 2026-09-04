@@ -17,6 +17,17 @@ export function StudioNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { label: "Portfolio", href: "/portfolio" },
     { label: "Films", href: "/films" },
@@ -93,7 +104,7 @@ export function StudioNavbar() {
 
       {/* Full-Screen Mobile Drawer */}
       <div
-        className={`fixed inset-0 z-[100] bg-[#0A0A0A]/98 backdrop-blur-2xl flex flex-col justify-between p-8 transition-transform duration-500 ease-out lg:hidden ${
+        className={`fixed inset-0 z-[100] bg-[#0A0A0A]/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 h-[100dvh] w-full overflow-y-auto transition-transform duration-500 ease-out lg:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -120,24 +131,32 @@ export function StudioNavbar() {
         </div>
 
         {/* Mobile Links */}
-        <nav className="flex flex-col gap-6 py-8">
+        <nav className="flex flex-col gap-5 py-6">
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="font-bebas text-4xl uppercase tracking-[0.05em] text-white hover:text-[#F5B301] transition-colors"
+            className={`font-bebas text-3xl sm:text-4xl uppercase tracking-[0.05em] transition-colors ${
+              pathname === "/" ? "text-[#F5B301]" : "text-white hover:text-[#F5B301]"
+            }`}
           >
             Home
           </Link>
-          {navLinks.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="font-bebas text-4xl uppercase tracking-[0.05em] text-white hover:text-[#F5B301] transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navLinks.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`font-bebas text-3xl sm:text-4xl uppercase tracking-[0.05em] transition-colors flex items-center justify-between ${
+                  isActive ? "text-[#F5B301]" : "text-white hover:text-[#F5B301]"
+                }`}
+              >
+                <span>{item.label}</span>
+                {isActive && <span className="text-[#F5B301] text-lg">●</span>}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Mobile Footer CTA */}
@@ -150,7 +169,7 @@ export function StudioNavbar() {
             <span>Book a Shoot</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
-          <p className="font-poppins text-xs text-white/40 text-center">
+          <p className="font-poppins text-xs text-white/50 text-center">
             Kathmandu, Nepal · +977 9810175322
           </p>
         </div>

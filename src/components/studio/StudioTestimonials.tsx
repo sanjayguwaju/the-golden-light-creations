@@ -10,28 +10,28 @@ interface StudioTestimonialsProps {
 
 export function StudioTestimonials({ items = defaultTestimonials }: StudioTestimonialsProps) {
   return (
-    <section id="testimonials" className="bg-[#111111] py-24 sm:py-32 px-6 sm:px-8 border-b border-white/5">
+    <section id="testimonials" className="bg-[#111111] py-20 sm:py-32 px-4 sm:px-8 border-b border-white/5">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <span className="w-10 h-[1px] bg-[#F5B301]/60" />
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-20">
+          <div className="flex items-center justify-center gap-3 mb-2 sm:mb-3">
+            <span className="w-8 sm:w-10 h-[1px] bg-[#F5B301]/60" />
             <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#F5B301] uppercase">
               Client Love
             </span>
-            <span className="w-10 h-[1px] bg-[#F5B301]/60" />
+            <span className="w-8 sm:w-10 h-[1px] bg-[#F5B301]/60" />
           </div>
-          <h2 className="font-bebas text-4xl sm:text-6xl md:text-7xl tracking-[0.02em] text-white uppercase leading-none">
+          <h2 className="font-bebas text-3xl sm:text-6xl md:text-7xl tracking-[0.02em] text-white uppercase leading-none">
             What Our <em className="text-[#F5B301] not-italic">Clients</em> Say
           </h2>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {items.map((t, idx) => (
             <div
               key={t.id || idx}
-              className="relative bg-white/[0.02] border border-white/[0.08] hover:border-[#F5B301]/30 p-8 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 overflow-hidden"
+              className="relative bg-white/[0.02] border border-white/[0.08] hover:border-[#F5B301]/30 p-6 sm:p-10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 overflow-hidden"
             >
               {/* Background Quotation Accent */}
               <span

@@ -82,6 +82,17 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default async function RootLayout({ children, params }: Args) {
@@ -104,8 +115,12 @@ export default async function RootLayout({ children, params }: Args) {
       suppressHydrationWarning
     >
       <head suppressHydrationWarning>
-        <link href="/favicon.ico" rel="icon" sizes="32x32" />
+        <link href="/favicon.ico" rel="icon" sizes="any" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+        <link href="/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
+        <link href="/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16" />
+        <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+        <link href="/manifest.json" rel="manifest" />
         <InitTheme />
       </head>
       <body className={cn(locale === "ne" ? "font-nepali" : "font-sans", "bg-[#0A0A0A] text-white antialiased selection:bg-[#F5B301] selection:text-[#0A0A0A]")} suppressHydrationWarning>

@@ -23,7 +23,7 @@ export function StudioStats({ stats = defaultStudioSettings.stats }: StudioStats
   return (
     <section
       id="stats"
-      className="relative bg-gradient-to-r from-[#0c0c0c] via-[#111111] to-[#0c0c0c] py-20 px-6 sm:px-8 border-b border-white/5 overflow-hidden"
+      className="relative bg-gradient-to-r from-[#0c0c0c] via-[#111111] to-[#0c0c0c] py-16 sm:py-20 px-4 sm:px-8 border-b border-white/5 overflow-hidden"
     >
       {/* Central Ambient Glow */}
       <div
@@ -35,17 +35,17 @@ export function StudioStats({ stats = defaultStudioSettings.stats }: StudioStats
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {statItems.map((s, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center justify-center p-6 sm:p-8 text-center"
+              className="flex flex-col items-center justify-center p-4 sm:p-8 text-center bg-white/[0.01] border border-white/5 sm:border-none"
             >
-              <div className="font-bebas text-5xl sm:text-7xl lg:text-8xl text-[#F5B301] tracking-tight leading-none drop-shadow-[0_0_35px_rgba(245,179,1,0.25)]">
+              <div className="font-bebas text-4xl sm:text-6xl lg:text-8xl text-[#F5B301] tracking-tight leading-none drop-shadow-[0_0_35px_rgba(245,179,1,0.25)]">
                 {s.num}
                 <span className="text-[#F5B301]/70 text-[0.65em] ml-0.5">{s.suffix}</span>
               </div>
-              <div className="font-montserrat text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-white/50 mt-3">
+              <div className="font-montserrat text-[9px] sm:text-xs font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white/60 mt-2 sm:mt-3">
                 {s.label}
               </div>
             </div>

@@ -65,9 +65,9 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
   const addressText = contact.address || "Kathmandu, Nepal";
 
   return (
-    <section id="contact" className="bg-[#F5F5F5] text-[#0A0A0A] py-24 sm:py-32 px-6 sm:px-8">
+    <section id="contact" className="bg-[#F5F5F5] text-[#0A0A0A] py-20 sm:py-32 px-4 sm:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           {/* Left Column: Contact Coordinates */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-3">
@@ -146,7 +146,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
               href={`https://wa.me/${whatsappNum}?text=Hello%20The%20Golden%20Light%20Creations,%20I%20would%20like%20to%20inquire%20about%20booking%20a%20shoot.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1fa855] text-white px-8 py-4 font-montserrat text-xs font-bold uppercase tracking-[0.2em] transition-all duration-200 hover:-translate-y-0.5 shadow-xl shadow-[#25D366]/20"
+              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] hover:bg-[#1fa855] text-white px-8 py-4 font-montserrat text-xs font-bold uppercase tracking-[0.2em] transition-all duration-200 hover:-translate-y-0.5 shadow-xl shadow-[#25D366]/20"
             >
               <MessageCircle className="w-5 h-5 fill-current" />
               <span>Chat on WhatsApp</span>
@@ -154,7 +154,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
           </div>
 
           {/* Right Column: Interactive Booking Form */}
-          <div className="lg:col-span-7 bg-white p-8 sm:p-12 border border-black/10 shadow-xl">
+          <div className="lg:col-span-7 bg-white p-5 sm:p-10 lg:p-12 border border-black/10 shadow-xl">
             {isSubmitted ? (
               <div className="py-12 flex flex-col items-center justify-center text-center animate-fadeIn">
                 <CheckCircle2 className="w-16 h-16 text-[#25D366] mb-4" />
@@ -167,8 +167,8 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5 sm:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                   {/* Full Name */}
                   <div className="flex flex-col gap-2">
                     <label className="font-montserrat text-[11px] font-bold uppercase tracking-wider text-[#0A0A0A]/70">
@@ -180,7 +180,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                       placeholder="e.g. Anika Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-sm text-[#0A0A0A] outline-none transition-colors"
+                      className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors"
                     />
                   </div>
 
@@ -195,7 +195,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                       placeholder="+977 98XXXXXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-sm text-[#0A0A0A] outline-none transition-colors"
+                      className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -211,7 +211,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                     placeholder="your@email.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-sm text-[#0A0A0A] outline-none transition-colors"
+                    className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors"
                   />
                 </div>
 
@@ -223,7 +223,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-sm text-[#0A0A0A] outline-none transition-colors cursor-pointer"
+                    className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors cursor-pointer"
                   >
                     <option value="Wedding Photography & Film">Wedding Photography & Film</option>
                     <option value="Cinematic Videography">Cinematic Videography</option>
@@ -248,7 +248,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                     placeholder="Tell us about your vision, wedding/event date, venue..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] p-4 font-poppins text-sm text-[#0A0A0A] outline-none transition-colors resize-y"
+                    className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] p-4 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors resize-y"
                   />
                 </div>
 
@@ -256,7 +256,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="self-start inline-flex items-center gap-3 bg-[#F5B301] hover:bg-[#C8920A] text-[#0A0A0A] hover:text-white px-10 py-4 font-montserrat font-bold text-xs uppercase tracking-[0.25em] transition-all duration-300 disabled:opacity-50 hover:-translate-y-0.5 active:translate-y-0 shadow-lg cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#F5B301] hover:bg-[#C8920A] text-[#0A0A0A] hover:text-white px-10 py-4 font-montserrat font-bold text-xs uppercase tracking-[0.25em] transition-all duration-300 disabled:opacity-50 hover:-translate-y-0.5 active:translate-y-0 shadow-lg cursor-pointer"
                 >
                   <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
                   <Send className="w-4 h-4" />
