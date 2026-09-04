@@ -52,7 +52,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import localization from "@/i18n/localization";
-import { StudioCursor } from "@/components/studio/StudioCursor";
 import { StudioNavbar } from "@/components/studio/StudioNavbar";
 import { StudioFooter } from "@/components/studio/StudioFooter";
 import { InitTheme } from "@/providers/Theme/InitTheme";
@@ -136,7 +135,6 @@ export default async function RootLayout({ children, params }: Args) {
         <Toaster position="top-right" />
         <Providers>
           <NextIntlClientProvider messages={messages}>
-            <StudioCursor />
             <NuqsAdapter>
               <StudioNavbar />
               <main className="overflow-x-clip min-h-screen bg-[#0A0A0A]">{children}</main>
