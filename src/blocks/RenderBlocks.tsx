@@ -14,8 +14,26 @@ import { AboutUsBlock } from "@/blocks/AboutUs/Component";
 import { CarouselBlockComponent } from "@/blocks/Carousel/Component";
 import { TestimonialsBlock } from "./Testimonials/Component";
 import { ContactBlock } from "./Contact/Component";
+import { StudioPortfolioBlockComponent } from "@/blocks/StudioPortfolio/Component";
+import { StudioFilmsBlockComponent } from "@/blocks/StudioFilms/Component";
+import { StudioServicesBlockComponent } from "@/blocks/StudioServices/Component";
+import { StudioStoryBlockComponent } from "@/blocks/StudioStory/Component";
+import { StudioStatsBlockComponent } from "@/blocks/StudioStats/Component";
+import { StudioSocialBlockComponent } from "@/blocks/StudioSocial/Component";
+import { StudioMarqueeBlockComponent } from "@/blocks/StudioMarquee/Component";
+import { StudioHeroBlockComponent } from "@/blocks/StudioHero/Component";
+import { StudioContactBlockComponent } from "@/blocks/StudioContact/Component";
 
 const blockComponents = {
+  studioHero: StudioHeroBlockComponent,
+  studioMarquee: StudioMarqueeBlockComponent,
+  studioPortfolio: StudioPortfolioBlockComponent,
+  studioFilms: StudioFilmsBlockComponent,
+  studioServices: StudioServicesBlockComponent,
+  studioStory: StudioStoryBlockComponent,
+  studioStats: StudioStatsBlockComponent,
+  studioSocial: StudioSocialBlockComponent,
+  studioContact: StudioContactBlockComponent,
   archive: ArchiveBlock,
   brandMarquee: BrandMarqueeBlock,
   content: ContentBlock,
@@ -30,7 +48,7 @@ const blockComponents = {
 };
 
 export const RenderBlocks: React.FC<{
-  blocks: Page["layout"][0][];
+  blocks: NonNullable<Page["layout"]>;
 }> = ({ blocks }) => {
   const hasBlocks = Array.isArray(blocks) && blocks.length > 0;
 

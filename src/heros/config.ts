@@ -20,6 +20,7 @@ export const hero: Field = {
       label: "Type",
       options: [
         { label: "None", value: "none" },
+        { label: "Studio Hero (Golden Light)", value: "studioHero" },
         { label: "High Impact", value: "highImpact" },
         { label: "Medium Impact", value: "mediumImpact" },
         { label: "Low Impact", value: "lowImpact" },

@@ -11,8 +11,10 @@ import { SplitHero } from "./SplitHero";
 import { VideoHero } from "./VideoHero";
 import { StoryHero } from "./StoryHero";
 import { MinimalHero } from "./MinimalHero";
+import { StudioHero } from "@/components/studio/StudioHero";
 
 const heroes = {
+  studioHero: StudioHero,
   highImpact: HighImpactHero,
   lowImpact: LowImpactHero,
   mediumImpact: MediumImpactHero,

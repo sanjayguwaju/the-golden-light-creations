@@ -525,6 +525,7 @@ export interface Page {
   hero: {
     type:
       | 'none'
+      | 'studioHero'
       | 'highImpact'
       | 'mediumImpact'
       | 'lowImpact'
@@ -586,19 +587,30 @@ export interface Page {
     storyAuthorTitle?: string | null;
     storyAuthorImage?: (string | null) | Media;
   };
-  layout: (
-    | CallToActionBlock
-    | ContentBlock
-    | MediaBlock
-    | ArchiveBlock
-    | FormBlock
-    | GalleryBlock
-    | BrandMarqueeBlock
-    | CarouselBlock
-    | TestimonialsBlock
-    | ContactBlock
-    | AboutUsBlock
-  )[];
+  layout?:
+    | (
+        | StudioHeroBlock
+        | StudioMarqueeBlock
+        | StudioPortfolioBlock
+        | StudioFilmsBlock
+        | StudioServicesBlock
+        | StudioStoryBlock
+        | StudioStatsBlock
+        | StudioSocialBlock
+        | StudioContactBlock
+        | CallToActionBlock
+        | ContentBlock
+        | MediaBlock
+        | ArchiveBlock
+        | FormBlock
+        | GalleryBlock
+        | BrandMarqueeBlock
+        | CarouselBlock
+        | TestimonialsBlock
+        | ContactBlock
+        | AboutUsBlock
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     /**
@@ -688,6 +700,134 @@ export interface Category {
   slug: string;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioHeroBlock".
+ */
+export interface StudioHeroBlock {
+  eyebrow?: string | null;
+  headlinePart1?: string | null;
+  headlinePart2?: string | null;
+  subheadline?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioMarqueeBlock".
+ */
+export interface StudioMarqueeBlock {
+  overrideItems?: boolean | null;
+  items?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioMarquee';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioPortfolioBlock".
+ */
+export interface StudioPortfolioBlock {
+  /**
+   * When checked, shows the top 9 items with category filters and a 'View Full Portfolio' CTA button.
+   */
+  isHomepagePreview?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioPortfolio';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioFilmsBlock".
+ */
+export interface StudioFilmsBlock {
+  /**
+   * Enables slider carousel mode with preview badges.
+   */
+  isHomepagePreview?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioFilms';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioServicesBlock".
+ */
+export interface StudioServicesBlock {
+  /**
+   * Shows the top 6 core disciplines with luxury glow cards and direct booking links.
+   */
+  isHomepagePreview?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioServices';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioStoryBlock".
+ */
+export interface StudioStoryBlock {
+  /**
+   * Leave empty to use default from Studio Settings.
+   */
+  headline?: string | null;
+  /**
+   * Leave empty to use default from Studio Settings.
+   */
+  quote?: string | null;
+  /**
+   * Leave empty to use default from Studio Settings.
+   */
+  paragraph1?: string | null;
+  /**
+   * Leave empty to use default from Studio Settings.
+   */
+  paragraph2?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioStory';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioStatsBlock".
+ */
+export interface StudioStatsBlock {
+  overrideStats?: boolean | null;
+  projectsCount?: number | null;
+  clientsCount?: number | null;
+  socialReach?: string | null;
+  yearsExperience?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioStats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioSocialBlock".
+ */
+export interface StudioSocialBlock {
+  instagramHandle?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioSocial';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioContactBlock".
+ */
+export interface StudioContactBlock {
+  heading?: string | null;
+  subheading?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioContact';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1952,6 +2092,15 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        studioHero?: T | StudioHeroBlockSelect<T>;
+        studioMarquee?: T | StudioMarqueeBlockSelect<T>;
+        studioPortfolio?: T | StudioPortfolioBlockSelect<T>;
+        studioFilms?: T | StudioFilmsBlockSelect<T>;
+        studioServices?: T | StudioServicesBlockSelect<T>;
+        studioStory?: T | StudioStoryBlockSelect<T>;
+        studioStats?: T | StudioStatsBlockSelect<T>;
+        studioSocial?: T | StudioSocialBlockSelect<T>;
+        studioContact?: T | StudioContactBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
@@ -1977,6 +2126,104 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioHeroBlock_select".
+ */
+export interface StudioHeroBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  headlinePart1?: T;
+  headlinePart2?: T;
+  subheadline?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioMarqueeBlock_select".
+ */
+export interface StudioMarqueeBlockSelect<T extends boolean = true> {
+  overrideItems?: T;
+  items?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioPortfolioBlock_select".
+ */
+export interface StudioPortfolioBlockSelect<T extends boolean = true> {
+  isHomepagePreview?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioFilmsBlock_select".
+ */
+export interface StudioFilmsBlockSelect<T extends boolean = true> {
+  isHomepagePreview?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioServicesBlock_select".
+ */
+export interface StudioServicesBlockSelect<T extends boolean = true> {
+  isHomepagePreview?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioStoryBlock_select".
+ */
+export interface StudioStoryBlockSelect<T extends boolean = true> {
+  headline?: T;
+  quote?: T;
+  paragraph1?: T;
+  paragraph2?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioStatsBlock_select".
+ */
+export interface StudioStatsBlockSelect<T extends boolean = true> {
+  overrideStats?: T;
+  projectsCount?: T;
+  clientsCount?: T;
+  socialReach?: T;
+  yearsExperience?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioSocialBlock_select".
+ */
+export interface StudioSocialBlockSelect<T extends boolean = true> {
+  instagramHandle?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioContactBlock_select".
+ */
+export interface StudioContactBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

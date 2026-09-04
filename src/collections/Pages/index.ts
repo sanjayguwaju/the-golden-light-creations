@@ -13,6 +13,15 @@ import { AboutUs } from "@/blocks/AboutUs/config";
 import { CarouselBlock } from "@/blocks/Carousel/config";
 import { Testimonials } from "@/blocks/Testimonials/config";
 import { Contact } from "@/blocks/Contact/config";
+import { StudioPortfolioBlock } from "@/blocks/StudioPortfolio/config";
+import { StudioFilmsBlock } from "@/blocks/StudioFilms/config";
+import { StudioServicesBlock } from "@/blocks/StudioServices/config";
+import { StudioStoryBlock } from "@/blocks/StudioStory/config";
+import { StudioStatsBlock } from "@/blocks/StudioStats/config";
+import { StudioSocialBlock } from "@/blocks/StudioSocial/config";
+import { StudioMarqueeBlock } from "@/blocks/StudioMarquee/config";
+import { StudioHeroBlock } from "@/blocks/StudioHero/config";
+import { StudioContactBlock } from "@/blocks/StudioContact/config";
 import { slugField } from "payload";
 import { populatePublishedAt } from "../../hooks/populatePublishedAt";
 import { generatePreviewPath } from "../../utilities/generatePreviewPath";
@@ -76,6 +85,15 @@ export const Pages: CollectionConfig<"pages"> = {
               name: "layout",
               type: "blocks",
               blocks: [
+                StudioHeroBlock,
+                StudioMarqueeBlock,
+                StudioPortfolioBlock,
+                StudioFilmsBlock,
+                StudioServicesBlock,
+                StudioStoryBlock,
+                StudioStatsBlock,
+                StudioSocialBlock,
+                StudioContactBlock,
                 CallToAction,
                 Content,
                 MediaBlock,
@@ -88,7 +106,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 Contact,
                 AboutUs,
               ],
-              required: true,
+              required: false,
               localized: true,
               admin: {
                 initCollapsed: true,

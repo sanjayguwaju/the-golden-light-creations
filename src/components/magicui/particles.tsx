@@ -63,14 +63,13 @@ export const Particles: React.FC<ParticlesProps> = ({
   const circles = useRef<Circle[]>([]);
   const mouse = useRef<{ x: number; y: number }>({ x: -1000, y: -1000 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
-  const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
   const rafID = useRef<number | null>(null);
-
-  const rgb = hexToRgb(color);
 
   useEffect(() => {
     if (!canvasRef.current) return;
     context.current = canvasRef.current.getContext("2d");
+    const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+    const rgb = hexToRgb(color);
 
     const circleParams = (): Circle => {
       const w = canvasSize.current.w || 800;
