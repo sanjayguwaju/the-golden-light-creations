@@ -118,6 +118,7 @@ export default async function RootLayout({ children, params }: Args) {
       className={cn(bebas.variable, montserrat.variable, poppins.variable, outfit.variable, inter.variable, mukta.variable)}
       lang={locale}
       dir={direction}
+      data-theme="dark"
       suppressHydrationWarning
     >
       <head suppressHydrationWarning>
