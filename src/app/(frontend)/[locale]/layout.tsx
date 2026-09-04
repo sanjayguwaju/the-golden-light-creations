@@ -44,7 +44,7 @@ const inter = Inter({
 import { TypedLocale } from "payload";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { OrganizationJsonLd } from "next-seo";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 
 import { Providers } from "@/providers";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -95,6 +95,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#0A0A0A",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default async function RootLayout({ children, params }: Args) {
   const { locale } = await params;
   const currentLocale = localization.locales.find((loc) => loc.code === locale);
@@ -115,6 +122,8 @@ export default async function RootLayout({ children, params }: Args) {
       suppressHydrationWarning
     >
       <head suppressHydrationWarning>
+        <meta name="theme-color" content="#0A0A0A" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link href="/favicon.ico" rel="icon" sizes="any" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
         <link href="/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
