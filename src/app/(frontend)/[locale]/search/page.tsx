@@ -113,7 +113,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
           {!hasQuery && (
             <div className="mt-8 text-center">
               <span className="text-white/50 text-sm mr-3">Popular:</span>
-              {["Health", "News", "Services", "Events"].map((term) => (
+              {["Weddings", "Films", "Drone", "Fashion", "Editorial"].map((term) => (
                 <Link
                   key={term}
                   href={`/search?q=${term}`}
@@ -158,7 +158,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
               </p>
               <div className="flex flex-wrap justify-center gap-2">
                 <span className="text-sm text-muted-foreground">Try:</span>
-                {["Products", "Company News", "Services"].map((suggestion) => (
+                {["Portfolios", "Films", "Services", "Weddings"].map((suggestion) => (
                   <Link
                     key={suggestion}
                     href={`/search?q=${suggestion}`}
@@ -302,7 +302,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Reliance Paints | Search`,
-    description: `Search results for Reliance Paints`,
+    title: `The Golden Light Creations | Search`,
+    description: `Search results from The Golden Light Creations`,
   };
 }

@@ -45,8 +45,8 @@ export async function generateMetadata({
   if (!album) return { title: "Album Not Found" };
 
   return {
-    title: `${album.title} | Photo Gallery | Reliance Paints`,
-    description: `Photos from ${album.title} at Relaiance Paints.`,
+    title: `${album.title} | Photo Gallery | The Golden Light Creations`,
+    description: `Photos from ${album.title} by The Golden Light Creations.`,
   };
 }
 

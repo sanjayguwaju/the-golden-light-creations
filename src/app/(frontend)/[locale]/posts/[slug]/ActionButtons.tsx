@@ -47,32 +47,32 @@ export function ActionButtons() {
 
   return (
     <div className="flex flex-col items-start gap-2">
-      <p className="text-sm font-semibold text-reliance-navy">Share this article</p>
+      <p className="text-sm font-semibold text-white/80">Share this story</p>
 
       <div className="flex flex-wrap items-center gap-4 sm:gap-5">
         {shareItems.map(({ key, label, icon: Icon, hoverClassName, onClick }) => (
           <button
             key={key}
             onClick={() => onClick(url)}
-            className="group inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-reliance-navy transition-all duration-300 hover:-translate-y-0.5"
+            className="group inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-white/70 transition-all duration-300 hover:-translate-y-0.5"
             aria-label={`Share on ${label}`}
           >
-            <Icon className={`h-4 w-4 text-reliance-grey transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 ${hoverClassName}`} />
+            <Icon className={`h-4 w-4 text-white/40 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 ${hoverClassName}`} />
             <span className={`transition-all duration-300 ${hoverClassName}`}>{label}</span>
           </button>
         ))}
 
         <button
           onClick={handleCopyLink}
-          className="group inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-reliance-navy transition-all duration-300 hover:-translate-y-0.5"
+          className="group inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-white/70 transition-all duration-300 hover:-translate-y-0.5"
           aria-label="Copy article link"
         >
           {copied ? (
-            <Check className="h-4 w-4 text-reliance-grey transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:text-reliance-gold" />
+            <Check className="h-4 w-4 text-white/40 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:text-[#F5B301]" />
           ) : (
-            <LinkIcon className="h-4 w-4 text-reliance-grey transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:text-reliance-gold" />
+            <LinkIcon className="h-4 w-4 text-white/40 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:text-[#F5B301]" />
           )}
-          <span className="transition-all duration-300 group-hover:text-reliance-gold">{copied ? "Copied!" : "Copy Link"}</span>
+          <span className="transition-all duration-300 group-hover:text-[#F5B301]">{copied ? "Copied!" : "Copy Link"}</span>
         </button>
       </div>
     </div>

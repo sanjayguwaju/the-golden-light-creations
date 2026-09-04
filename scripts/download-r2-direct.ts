@@ -45,7 +45,7 @@ async function listAllR2Objects(bucket: string, prefix: string): Promise<Downloa
         if (!item.Key || item.Key.endsWith("/")) continue;
 
         // Strip the base prefix for cleaner local folder structure
-        // e.g. reliancepaints-storage/media/xyz.png -> media/xyz.png
+        // e.g. the-golden-light-creations/media/xyz.png -> media/xyz.png
         const relativeKey = item.Key.startsWith(prefix)
           ? item.Key.slice(prefix.length)
           : item.Key;

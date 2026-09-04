@@ -3,14 +3,14 @@ import { getServerSideURL } from "./getURL";
 
 const defaultOpenGraph: Metadata["openGraph"] = {
   type: "website",
-  description: "Reliance Paints Nepal offers a wide range of decorative and industrial paints. Enhance and protect your surfaces with our premium quality paints.",
+  description: "Nepal's Finest Creative Studio — Luxury Photography, Cinematic Films & Digital Branding Services in Nepal. Crafting timeless visual stories since 2019.",
   images: [
     {
       url: `${getServerSideURL()}/og-image.png`,
     },
   ],
-  siteName: "Reliance Paints",
-  title: "Reliance Paints | Official Website",
+  siteName: "The Golden Light Creations",
+  title: "The Golden Light Creations | Luxury Photography & Cinematic Films · Nepal",
 };
 
 export const mergeOpenGraph = (og?: Metadata["openGraph"]): Metadata["openGraph"] => {

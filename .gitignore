@@ -25,3 +25,5 @@ node_modules/
 downloads/media/
 downloads/r2-storage/
 *.pdf
+*.tsbuildinfo
+

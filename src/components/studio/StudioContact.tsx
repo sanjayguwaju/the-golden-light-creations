@@ -38,7 +38,8 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          message: `[Service Requested: ${formData.service}]\n${formData.message}`,
+          service: formData.service,
+          message: formData.message,
           source: "Website Booking Form",
         }),
       });

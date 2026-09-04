@@ -59,7 +59,7 @@ export default async function AlbumsPage({ params }: { params: Promise<{ locale:
               <Separator className="w-24 h-1.5 bg-primary rounded-full" />
             </div>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Capturing moments of care, healing, and community at Reliance Paints.
+              Capturing timeless moments, cinematic production stills, and creative milestones at The Golden Light Creations.
             </p>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default async function AlbumsPage({ params }: { params: Promise<{ locale:
 
 export function generateMetadata(): Metadata {
   return {
-    title: "Photo Albums | Reliance Paints",
-    description: "Explore our photo albums and gallery from Reliance Paints.",
+    title: "Photo Albums | The Golden Light Creations",
+    description: "Explore our photo albums and visual gallery from The Golden Light Creations.",
   };
 }

@@ -5,43 +5,35 @@ import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 
-import { Media } from "./collections/Media";
-import { Users } from "./collections/Users";
-import { Pages } from "./collections/Pages";
-import { Posts } from "./collections/Posts";
-import { Categories } from "./collections/Categories";
-import { ProductCategories } from "./collections/ProductCategories";
-import { ProductSubcategories } from "./collections/ProductSubcategories";
-import { Products } from "./collections/Products";
-import { List } from "./collections/List";
-import { CommonFormSubmissions } from "./collections/CommonFormSubmissions";
-import { ContactSubmissions } from "./collections/ContactSubmissions";
-import { Stores } from "./collections/Stores";
-import { Careers } from "./collections/Careers";
-import { JobApplications } from "./collections/JobApplications";
-import { Warranties } from "./collections/Warranties";
-import { Faqs } from "./collections/Faqs";
-import { ContractorApplications } from "./collections/ContractorApplications";
-import { plugins } from "./plugins";
-import localization from "./i18n/localization";
-import { TopBar } from "./globals/TopBar/config";
-import { Header } from "./globals/Header/config";
-import { Navigation } from "./globals/Navigation/config";
-import { Footer } from "./globals/Footer/config";
-import { SiteSettings } from "./globals/SiteSettings/config";
-import { defaultLexical } from "./fields/defaultLexical";
-import { getServerSideURL } from "./utilities/getURL";
-import { Staffs } from "./collections/Staffs";
-import { Albums } from "./collections/Albums";
-import { Files } from "./collections/Files";
-import { Colors } from "./collections/Colors";
+// Core Studio Collections
 import { Portfolio } from "./collections/Portfolio";
 import { Films } from "./collections/Films";
 import { Services } from "./collections/Services";
 import { Testimonials } from "./collections/Testimonials";
-import { Inspiration } from "./collections/Inspiration";
-import { ColorTrends } from "./collections/ColorTrends";
+import { Albums } from "./collections/Albums";
+import { ContactSubmissions } from "./collections/ContactSubmissions";
+
+// Media & Files
+import { Media } from "./collections/Media";
+import { Files } from "./collections/Files";
+
+// Editorial & General CMS
+import { Pages } from "./collections/Pages";
+import { Posts } from "./collections/Posts";
+import { Categories } from "./collections/Categories";
+
+// Users & Auth
+import { Users } from "./collections/Users";
+
+// Globals
 import { StudioSettings } from "./globals/StudioSettings/config";
+import { SiteSettings } from "./globals/SiteSettings/config";
+
+// Configuration & Helpers
+import { plugins } from "./plugins";
+import localization from "./i18n/localization";
+import { defaultLexical } from "./fields/defaultLexical";
+import { getServerSideURL } from "./utilities/getURL";
 import config from "./config";
 
 const systemConfig = config();
@@ -53,12 +45,12 @@ export default buildConfig({
   admin: {
     meta: {
       titleSuffix: "- The Golden Light Creations",
-      description: "The Golden Light Creations - Luxury Photography & Cinematic Films",
+      description: "The Golden Light Creations - Luxury Photography & Cinematic Films Admin",
       icons: [
         {
           rel: "icon",
-          type: "image/png",
-          url: "/favicon.png",
+          type: "image/svg+xml",
+          url: "/favicon.svg",
         },
       ],
     },
@@ -119,36 +111,30 @@ export default buildConfig({
     },
   }),
   collections: [
-    Media,
-    Users,
+    // Studio Showcase
     Portfolio,
     Films,
     Services,
+    Albums,
+
+    // Client Inquiries & Social Proof
+    ContactSubmissions,
     Testimonials,
+
+    // Media Library
+    Media,
+    Files,
+
+    // Editorial & Content
     Pages,
     Posts,
     Categories,
-    Albums,
-    Files,
-    ContactSubmissions,
-    Careers,
-    JobApplications,
-    Faqs,
-    ProductCategories,
-    ProductSubcategories,
-    Products,
-    List,
-    Staffs,
-    CommonFormSubmissions,
-    Colors,
-    Inspiration,
-    ColorTrends,
-    Stores,
-    Warranties,
-    ContractorApplications,
+
+    // Administration
+    Users,
   ],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [StudioSettings, TopBar, Header, Navigation, Footer, SiteSettings],
+  globals: [StudioSettings, SiteSettings],
   plugins,
   email: resendAdapter({
     defaultFromAddress: "onboarding@resend.dev",

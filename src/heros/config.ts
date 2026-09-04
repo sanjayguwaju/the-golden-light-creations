@@ -23,59 +23,18 @@ export const hero: Field = {
         { label: "High Impact", value: "highImpact" },
         { label: "Medium Impact", value: "mediumImpact" },
         { label: "Low Impact", value: "lowImpact" },
-        { label: "Hero Carousel", value: "heroCarousel" },
         { label: "Mission Hero", value: "missionHero" },
         { label: "Stats Hero", value: "statsHero" },
         { label: "Split Hero", value: "splitHero" },
         { label: "Video Hero", value: "videoHero" },
-        { label: "Donate Hero", value: "donateHero" },
         { label: "Story Hero", value: "storyHero" },
         { label: "Minimal Hero", value: "minimalHero" },
-        { label: "Modern Paints Carousel", value: "modernPaintsCarousel" },
       ],
       required: true,
     },
     {
-      name: "slides",
-      type: "array",
-      admin: {
-        condition: (_, { type } = {}) =>
-          type === "heroCarousel" || type === "modernPaintsCarousel",
-      },
-      fields: [
-        {
-          name: "image",
-          type: "upload",
-          relationTo: "media",
-          required: true,
-        },
-        {
-          name: "title",
-          type: "text",
-          localized: true,
-        },
-        {
-          name: "description",
-          type: "textarea",
-          localized: true,
-          admin: {
-            description: "Optional description text displayed below the title",
-          },
-        },
-        linkGroup({
-          overrides: {
-            maxRows: 1,
-          },
-        }),
-      ],
-    },
-    {
       name: "richText",
       type: "richText",
-      admin: {
-        condition: (_, { type } = {}) =>
-          type !== "heroCarousel" && type !== "modernPaintsCarousel",
-      },
       localized: true,
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
@@ -91,10 +50,6 @@ export const hero: Field = {
     },
     linkGroup({
       overrides: {
-        admin: {
-          condition: (_, { type } = {}) =>
-            type !== "heroCarousel" && type !== "modernPaintsCarousel",
-        },
         maxRows: 2,
       },
     }),
@@ -109,7 +64,6 @@ export const hero: Field = {
             "missionHero",
             "statsHero",
             "splitHero",
-            "donateHero",
             "storyHero",
           ].includes(type),
       },

@@ -38,10 +38,10 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {/* The paint wipe overlay (acts as the transition curtain) */}
+      {/* The transition curtain */}
       <div 
         ref={wipeRef} 
-        className="fixed inset-0 bg-reliance-gold z-[100] pointer-events-none"
+        className="fixed inset-0 bg-[#F5B301] z-[100] pointer-events-none"
       />
       
       {/* The actual page content */}

@@ -18,7 +18,7 @@ export const Albums: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    group: "Media",
+    group: "Studio",
     useAsTitle: "title",
     defaultColumns: ["title", "slug", "updatedAt"],
     listSearchableFields: ["title", "slug"],

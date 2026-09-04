@@ -16,11 +16,9 @@ export const plugins: Plugin[] = [
     // Sort order for navigation groups (lower = higher priority)
     groupOrder: {
       Studio: 1,
-      Content: 2,
-      Catalog: 3,
+      "Client Inquiries": 2,
+      Content: 3,
       Media: 4,
-      "Form Submissions": 5,
-      Operations: 6,
       Settings: 10,
       Tools: 15,
       Resources: 99,
@@ -32,58 +30,29 @@ export const plugins: Plugin[] = [
       films: "clapperboard",
       services: "sparkles",
       testimonials: "message-square-quote",
+      albums: "library",
+      "contact-submissions": "mail",
       "studio-settings": "sliders-horizontal",
+      "site-settings": "settings",
       users: "user-cog",
       media: "image",
+      files: "file",
       pages: "file-text",
       posts: "newspaper",
       categories: "tag",
-      "product-categories": "tags",
-      "product-subcategories": "list-tree",
-      products: "package",
-      list: "list",
-      staffs: "users",
-      "common-form-submissions": "inbox",
-      albums: "library",
-      files: "file",
-      colors: "palette",
-      inspiration: "sparkles",
-      stores: "store",
-      "contact-submissions": "mail",
-      careers: "briefcase",
-      "job-applications": "file-signature",
-      warranties: "shield-check",
       forms: "clipboard-list",
       "form-submissions": "inbox",
       search: "search",
       "search-results": "search",
       redirects: "arrow-right-left",
-      "top-bar": "panel-top",
-      header: "layout-template",
-      navigation: "navigation",
-      footer: "panel-bottom",
-      "about-page": "info",
-      "site-settings": "settings",
     },
-
-    // Custom navigation links
-    // customLinks: [
-    //   {
-    //     label: "Dashboard",
-    //     href: "/admin/dashboard",
-    //     group: "Tools",
-    //     icon: "layout-dashboard",
-    //     order: 1,
-    //   },
-    // ],
 
     // Custom navigation groups
     customGroups: [
-      { label: "Content", order: 1, defaultOpen: true },
-      { label: "Catalog", order: 2, defaultOpen: true },
-      { label: "Media", order: 3, defaultOpen: true },
-      { label: "Form Submissions", order: 4, defaultOpen: true },
-      { label: "Operations", order: 5, defaultOpen: true },
+      { label: "Studio", order: 1, defaultOpen: true },
+      { label: "Client Inquiries", order: 2, defaultOpen: true },
+      { label: "Content", order: 3, defaultOpen: true },
+      { label: "Media", order: 4, defaultOpen: true },
       { label: "Settings", order: 10, defaultOpen: true },
       { label: "Tools", order: 15, defaultOpen: true },
     ],
@@ -105,17 +74,17 @@ export const plugins: Plugin[] = [
   formBuilderPlugin({
     formOverrides: {
       admin: {
-        group: 'Form Submissions',
+        group: 'Client Inquiries',
       },
     },
     formSubmissionOverrides: {
       admin: {
-        group: 'Form Submissions',
+        group: 'Client Inquiries',
       },
     },
   }),
   searchPlugin({
-    collections: ["posts", "pages", "products"],
+    collections: ["posts", "pages", "portfolio", "services"],
     beforeSync: beforeSyncWithSearch,
     searchOverrides: {
       admin: {
@@ -129,7 +98,7 @@ export const plugins: Plugin[] = [
       `${getServerSideURL()}/${typeof doc?.slug === "string" ? doc.slug : ""}`,
   }),
   redirectsPlugin({
-    collections: ["pages", "posts", "products"],
+    collections: ["pages", "posts"],
     overrides: {
       admin: {
         group: 'Tools',
@@ -138,16 +107,18 @@ export const plugins: Plugin[] = [
   }),
   mcpPlugin({
     collections: {
+      portfolio: { enabled: true },
+      films: { enabled: true },
+      services: { enabled: true },
+      testimonials: { enabled: true },
+      media: { enabled: true },
       pages: { enabled: true },
       posts: { enabled: true },
-      products: { enabled: true },
-      stores: { enabled: true },
-      colors: { enabled: true },
       categories: { enabled: true },
-      media: { enabled: true },
       users: { enabled: true },
     },
     globals: {
+      'studio-settings': { enabled: true },
       'site-settings': { enabled: true },
     },
   }),

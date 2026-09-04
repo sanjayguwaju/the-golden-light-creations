@@ -22,7 +22,7 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
       key: "author",
       content: (
         <span className="flex items-center gap-2">
-          <User className="w-4 h-4 shrink-0 text-reliance-gold" />
+          <User className="w-4 h-4 shrink-0 text-[#F5B301]" />
           <span>{authorName}</span>
         </span>
       ),
@@ -33,7 +33,7 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
             key: "date",
             content: (
               <span className="flex items-center gap-2">
-                <CalendarDays className="w-4 h-4 shrink-0 text-reliance-gold" />
+                <CalendarDays className="w-4 h-4 shrink-0 text-[#F5B301]" />
                 <time dateTime={publishedAt}>{formatDateTime(publishedAt)}</time>
               </span>
             ),
@@ -44,7 +44,7 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
       key: "readTime",
       content: (
         <span className="flex items-center gap-2">
-          <Clock3 className="w-4 h-4 shrink-0 text-reliance-gold" />
+          <Clock3 className="w-4 h-4 shrink-0 text-[#F5B301]" />
           <span>5 min read</span>
         </span>
       ),

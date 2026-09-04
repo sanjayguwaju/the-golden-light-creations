@@ -166,8 +166,8 @@ export default async function RootLayout({ children, params }: Args) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: process.env.NEXT_PUBLIC_COMPANY_NAME || "Reliance Paints Nepal",
-              url: process.env.NEXT_PUBLIC_SITE_URL || "https://reliancepaintsnepal.com",
+              name: process.env.NEXT_PUBLIC_COMPANY_NAME || "The Golden Light Creations",
+              url: process.env.NEXT_PUBLIC_SITE_URL || "https://the-golden-light-creations.vercel.app",
             }),
           }}
         />

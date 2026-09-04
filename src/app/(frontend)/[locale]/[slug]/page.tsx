@@ -61,9 +61,6 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   const { hero, layout } = page;
 
-  const highlightsBlocks = layout?.filter((block) => block.blockType === "highlights") || [];
-  const otherBlocks = layout?.filter((block) => block.blockType !== "highlights") || [];
-
   return (
     <article>
       <PageClient />
@@ -72,10 +69,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {draft && <LivePreviewListener />}
 
-      {/* Render highlights ticker specifically below navbar but above everything else */}
-       <RenderBlocks blocks={highlightsBlocks} />
       <RenderHero {...hero} />
-      <RenderBlocks blocks={otherBlocks} />
+      <RenderBlocks blocks={layout || []} />
     </article>
   );
 }

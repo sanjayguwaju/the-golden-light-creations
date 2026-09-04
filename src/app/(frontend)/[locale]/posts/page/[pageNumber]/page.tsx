@@ -67,8 +67,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { pageNumber } = await paramsPromise;
   return {
-    title: `Reliance Paints Nepal | Posts Page ${pageNumber || ""}`,
-    description: `Explore the latest posts from Reliance Paints Nepal.`,
+    title: `The Golden Light Creations | Stories Page ${pageNumber || ""}`,
+    description: `Explore stories, insights, and behind-the-scenes from The Golden Light Creations.`,
   };
 }
 

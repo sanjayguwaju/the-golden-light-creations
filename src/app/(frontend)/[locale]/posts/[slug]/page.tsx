@@ -57,7 +57,7 @@ export default async function Post({ params: paramsPromise }: Args) {
     headline: post.title,
     image: post.meta?.image && typeof post.meta.image !== 'string' ? post.meta.image.url : undefined,
     datePublished: post.publishedAt,
-    author: { '@type': 'Organization', name: 'Reliance Paints' }
+    author: { '@type': 'Organization', name: 'The Golden Light Creations' }
   };
 
   return (
@@ -76,11 +76,11 @@ export default async function Post({ params: paramsPromise }: Args) {
         <div className="pt-12 pb-8 flex flex-wrap items-center justify-between gap-4">
           <Link
             href="/posts"
-            className="group inline-flex items-center gap-2 py-2 text-base font-medium text-reliance-navy transition-all duration-300 hover:text-reliance-gold"
+            className="group inline-flex items-center gap-2 py-2 text-base font-medium text-white/70 transition-all duration-300 hover:text-[#F5B301]"
           >
-            <ChevronLeft className="w-4 h-4 text-reliance-navy transition-all duration-300 group-hover:text-reliance-gold group-hover:-translate-x-1" />
-            <span className="transition-all duration-300 group-hover:text-reliance-gold">
-              Back to Articles
+            <ChevronLeft className="w-4 h-4 text-white/50 transition-all duration-300 group-hover:text-[#F5B301] group-hover:-translate-x-1" />
+            <span className="transition-all duration-300 group-hover:text-[#F5B301]">
+              Back to Stories
             </span>
           </Link>
 
@@ -112,17 +112,17 @@ export default async function Post({ params: paramsPromise }: Args) {
         <div className="py-12 border-0 mt-12">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <span className="text-sm font-normal text-reliance-grey">Published on</span>
+              <span className="text-sm font-normal text-white/50">Published on</span>
               <div className="flex items-center gap-2">
-                <CalendarDays className="w-4 h-4 text-reliance-gold" />
+                <CalendarDays className="w-4 h-4 text-[#F5B301]" />
                 {post.publishedAt && (
                   <time
                     dateTime={post.publishedAt}
-                    className="text-sm font-medium text-reliance-navy"
+                    className="text-sm font-medium text-white/80"
                   >
                     {new Date(post.publishedAt).toLocaleDateString("en-US", {
                       year: "numeric",
-                      month: "short",
+                      month: "long",
                       day: "numeric",
                     })}
                   </time>
@@ -137,7 +137,7 @@ export default async function Post({ params: paramsPromise }: Args) {
                   {(post.categories as { title?: string }[]).map((cat, i) =>
                     typeof cat === "object" && cat.title ? (
                         <Badge key={i} variant="outline" className="text-xs">
-                        <Hash className="w-3 h-3 mr-1 text-reliance-gold" />
+                        <Hash className="w-3 h-3 mr-1 text-[#F5B301]" />
                         {cat.title}
                       </Badge>
                     ) : null
@@ -152,8 +152,8 @@ export default async function Post({ params: paramsPromise }: Args) {
         {hasRelated && (
           <section className="py-12 border-0">
             <div className="flex items-center gap-3 mb-8">
-              <BookOpen className="w-5 h-5 text-reliance-gold" />
-              <h2 className="text-lg font-semibold text-foreground">Related Articles</h2>
+              <BookOpen className="w-5 h-5 text-[#F5B301]" />
+              <h2 className="text-lg font-semibold text-foreground">Related Stories</h2>
               <Separator className="flex-1" />
             </div>
 
@@ -172,7 +172,6 @@ export default async function Post({ params: paramsPromise }: Args) {
                     >
                       {meta?.image && typeof meta.image !== "string" && (
                         <div className="relative aspect-16/10 w-full bg-muted overflow-hidden">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={(meta.image as { url?: string }).url ?? ""}
                             alt={title ?? ""}
@@ -199,7 +198,7 @@ export default async function Post({ params: paramsPromise }: Args) {
                       <div className="flex flex-col flex-1 p-5">
                         {publishedAt && (
                             <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
-                            <Clock className="w-3.5 h-3.5 text-reliance-gold" />
+                            <Clock className="w-3.5 h-3.5 text-[#F5B301]" />
                             <time dateTime={publishedAt}>
                               {new Date(publishedAt).toLocaleDateString("en-US", {
                                 month: "short",

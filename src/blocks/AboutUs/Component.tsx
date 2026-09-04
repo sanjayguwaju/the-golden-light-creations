@@ -38,8 +38,8 @@ export const AboutUsBlock: React.FC<AboutUsBlockProps> = ({
               <div className="w-full flex flex-col h-full overflow-hidden rounded-none shadow-md bg-card border border-border p-6 md:p-8 lg:p-10">
                 <div className="flex-1 overflow-hidden pr-2 relative">
                   <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-6 flex items-center gap-3">
-                    <span className="w-1.5 h-10 bg-accent rounded-none shrink-0 shadow-[0_4px_12px_rgba(225,29,72,0.2)]" />
-                    {title || "About Reliance Paints"}
+                    <span className="w-1.5 h-10 bg-[#F5B301] rounded-none shrink-0 shadow-[0_4px_12px_rgba(245,179,1,0.2)]" />
+                    {title || "About The Golden Light Creations"}
                   </h2>
 
                   {content && (
@@ -55,7 +55,7 @@ export const AboutUsBlock: React.FC<AboutUsBlockProps> = ({
                 <div className="pt-8 border-t border-border mt-auto">
                   <Link
                     href="/about"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white rounded-none font-bold text-base hover:opacity-90 shadow-md hover:shadow-lg transition-all group"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#F5B301] text-black font-bold text-base hover:opacity-90 shadow-md hover:shadow-lg transition-all group"
                   >
                     Read More About Us
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -78,7 +78,7 @@ export const AboutUsBlock: React.FC<AboutUsBlockProps> = ({
                     src={`https://www.facebook.com/plugins/page.php?href=${
                       facebookPageUrl
                         ? encodeURIComponent(facebookPageUrl)
-                        : "https%3A%2F%2Fwww.facebook.com%2Freliancepaints"
+                        : "https%3A%2F%2Fwww.facebook.com%2Fthegoldenlightcreations"
                     }&tabs=timeline&width=500&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`}
                     width="100%"
                     height="100%"

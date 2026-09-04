@@ -3,14 +3,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { 
-  Package, 
-  FileText, 
-  Users, 
-  Palette, 
-  Store, 
-  Inbox, 
+  Camera, 
+  Film, 
+  Sparkles, 
+  MessageSquareQuote, 
+  Mail, 
+  Image as ImageIcon, 
   RefreshCw, 
-  ArrowUpRight
+  ArrowUpRight,
+  SlidersHorizontal,
+  Settings,
+  Users as UsersIcon
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -27,38 +30,40 @@ import {
 } from "recharts";
 import "./styles/dashboard-custom.css";
 
-// Vivid Color Palettes for Charts
+// Luxury Studio Gold Palette for Charts
 const PIE_COLORS = [
-  "#6366F1", // Indigo
-  "#EC4899", // Pink
-  "#06B6D4", // Cyan
+  "#F5B301", // Gold primary
+  "#FFD04A", // Bright gold
+  "#C8920A", // Deep amber gold
   "#10B981", // Emerald
-  "#F59E0B", // Amber
+  "#6366F1", // Indigo
+  "#EC4899", // Rose
+  "#06B6D4", // Cyan
   "#8B5CF6", // Purple
-  "#EF4444", // Red
-  "#3B82F6", // Blue
 ];
 
 const BAR_COLORS = [
-  "#3B82F6", // Blue
+  "#F5B301", // Gold
   "#10B981", // Emerald
-  "#F59E0B", // Amber
+  "#6366F1", // Indigo
   "#EC4899", // Pink
-  "#8B5CF6", // Purple
   "#06B6D4", // Cyan
+  "#8B5CF6", // Purple
 ];
 
-type DashboardStats = {
-  totalProducts: number;
-  totalPosts: number;
-  totalUsers: number;
-  totalColors: number;
-  totalStores: number;
-  totalPages: number;
-  totalMedia: number;
+type StudioDashboardStats = {
+  totalPortfolio: number;
+  totalFilms: number;
+  totalServices: number;
+  totalTestimonials: number;
   totalSubmissions: number;
-  productsByCategory: Array<{ name: string; value: number }>;
-  postsByCategory: Array<{ name: string; count: number }>;
+  totalAlbums: number;
+  totalMedia: number;
+  totalUsers: number;
+  totalPosts: number;
+  totalPages: number;
+  portfolioByCategory: Array<{ name: string; value: number }>;
+  filmsByCategory: Array<{ name: string; count: number }>;
   contentOverview: Array<{ name: string; count: number; fill: string }>;
   submissionsBreakdown: Array<{ name: string; count: number; fill: string }>;
 };
@@ -69,7 +74,7 @@ const CustomChartTooltip = ({ active, payload, label }: any) => {
     const data = payload[0];
     return (
       <div className="rp-chart-tooltip-box">
-        <p style={{ margin: "0 0 4px 0", fontWeight: 700, color: "#f59e0b" }}>{label || data.name}</p>
+        <p style={{ margin: "0 0 4px 0", fontWeight: 700, color: "#F5B301" }}>{label || data.name}</p>
         <p style={{ margin: 0 }}>
           Count: <span style={{ fontWeight: 800, color: "#ffffff", fontFamily: "monospace" }}>{data.value}</span>
         </p>
@@ -82,7 +87,7 @@ const CustomChartTooltip = ({ active, payload, label }: any) => {
 export function AdminDashboard() {
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [stats, setStats] = useState<StudioDashboardStats | null>(null);
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
 
   const fetchStats = useCallback(async () => {
@@ -95,7 +100,7 @@ export function AdminDashboard() {
         setLastRefreshed(new Date());
       }
     } catch (err) {
-      console.error("Failed to load dashboard statistics:", err);
+      console.error("Failed to load studio dashboard statistics:", err);
     } finally {
       setLoading(false);
     }
@@ -117,7 +122,7 @@ export function AdminDashboard() {
         <div>
           <div className="rp-header-meta">
             <span className="rp-live-badge">
-              Live Analytics
+              Studio Portal
             </span>
             <div className="rp-live-status">
               <span className="rp-live-dot" />
@@ -125,10 +130,10 @@ export function AdminDashboard() {
             </div>
           </div>
           <h1 className="rp-header-title">
-            Reliance Paints Overview & Analytics
+            The Golden Light Creations — Studio Overview &amp; Analytics
           </h1>
           <p className="rp-header-desc">
-            Real-time counts across products, articles, paint shades, store network, and customer inquiries.
+            Real-time counts across visual portfolio, cinematic films, production services, client bookings, and reviews.
           </p>
         </div>
 
@@ -146,294 +151,274 @@ export function AdminDashboard() {
 
       {/* 6 Top Stat Metric KPI Cards in Responsive Grid */}
       <div className="rp-kpi-grid">
-        {/* Card 1: Total Products */}
+        {/* Card 1: Portfolio Shoots */}
         <Link
-          href="/admin/collections/products"
+          href="/admin/collections/portfolio"
           className="rp-kpi-card"
         >
-          <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #6366f1, #a855f7)" }} />
+          <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #F5B301, #FFD04A)" }} />
           <div>
             <div className="rp-kpi-card-header">
-              <div className="rp-kpi-icon-box" style={{ background: "#eef2ff", color: "#4f46e5" }}>
-                <Package size={18} />
+              <div className="rp-kpi-icon-box" style={{ background: "#fef9c3", color: "#a16207" }}>
+                <Camera size={18} />
               </div>
               <ArrowUpRight size={16} className="rp-kpi-arrow" />
             </div>
-            <p className="rp-kpi-label">Total Products</p>
-            <p className="rp-kpi-value">{stats ? stats.totalProducts : "..."}</p>
+            <p className="rp-kpi-label">Visual Portfolio</p>
+            <p className="rp-kpi-value">{stats ? stats.totalPortfolio : "..."}</p>
           </div>
-          <p className="rp-kpi-footer" style={{ color: "#4f46e5" }}>
-            <span>In Catalog</span> &rarr;
+          <p className="rp-kpi-footer" style={{ color: "#a16207" }}>
+            <span>Manage Shoots</span> &rarr;
           </p>
         </Link>
 
-        {/* Card 2: Total Blogs / Posts */}
+        {/* Card 2: Cinematic Films */}
         <Link
-          href="/admin/collections/posts"
+          href="/admin/collections/films"
+          className="rp-kpi-card"
+        >
+          <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #F59E0B, #ea580c)" }} />
+          <div>
+            <div className="rp-kpi-card-header">
+              <div className="rp-kpi-icon-box" style={{ background: "#fff7ed", color: "#c2410c" }}>
+                <Film size={18} />
+              </div>
+              <ArrowUpRight size={16} className="rp-kpi-arrow" />
+            </div>
+            <p className="rp-kpi-label">Cinematic Films</p>
+            <p className="rp-kpi-value">{stats ? stats.totalFilms : "..."}</p>
+          </div>
+          <p className="rp-kpi-footer" style={{ color: "#c2410c" }}>
+            <span>Manage Films</span> &rarr;
+          </p>
+        </Link>
+
+        {/* Card 3: Production Services */}
+        <Link
+          href="/admin/collections/services"
           className="rp-kpi-card"
         >
           <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #10b981, #14b8a6)" }} />
           <div>
             <div className="rp-kpi-card-header">
               <div className="rp-kpi-icon-box" style={{ background: "#ecfdf5", color: "#059669" }}>
-                <FileText size={18} />
+                <Sparkles size={18} />
               </div>
               <ArrowUpRight size={16} className="rp-kpi-arrow" />
             </div>
-            <p className="rp-kpi-label">Total Articles</p>
-            <p className="rp-kpi-value">{stats ? stats.totalPosts : "..."}</p>
+            <p className="rp-kpi-label">Production Services</p>
+            <p className="rp-kpi-value">{stats ? stats.totalServices : "..."}</p>
           </div>
           <p className="rp-kpi-footer" style={{ color: "#059669" }}>
-            <span>Published Blogs</span> &rarr;
+            <span>Manage Offerings</span> &rarr;
           </p>
         </Link>
 
-        {/* Card 3: Total Users */}
+        {/* Card 4: Client Reviews */}
         <Link
-          href="/admin/collections/users"
+          href="/admin/collections/testimonials"
           className="rp-kpi-card"
         >
-          <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #3b82f6, #06b6d4)" }} />
+          <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #6366f1, #a855f7)" }} />
           <div>
             <div className="rp-kpi-card-header">
-              <div className="rp-kpi-icon-box" style={{ background: "#eff6ff", color: "#2563eb" }}>
-                <Users size={18} />
+              <div className="rp-kpi-icon-box" style={{ background: "#eef2ff", color: "#4f46e5" }}>
+                <MessageSquareQuote size={18} />
               </div>
               <ArrowUpRight size={16} className="rp-kpi-arrow" />
             </div>
-            <p className="rp-kpi-label">Total Users</p>
-            <p className="rp-kpi-value">{stats ? stats.totalUsers : "..."}</p>
+            <p className="rp-kpi-label">Client Reviews</p>
+            <p className="rp-kpi-value">{stats ? stats.totalTestimonials : "..."}</p>
           </div>
-          <p className="rp-kpi-footer" style={{ color: "#2563eb" }}>
-            <span>Admins & Editors</span> &rarr;
+          <p className="rp-kpi-footer" style={{ color: "#4f46e5" }}>
+            <span>View Testimonials</span> &rarr;
           </p>
         </Link>
 
-        {/* Card 4: Paint Shades */}
+        {/* Card 5: Booking Inquiries */}
         <Link
-          href="/admin/collections/colors"
-          className="rp-kpi-card"
-        >
-          <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #f59e0b, #ea580c)" }} />
-          <div>
-            <div className="rp-kpi-card-header">
-              <div className="rp-kpi-icon-box" style={{ background: "#fffbeb", color: "#d97706" }}>
-                <Palette size={18} />
-              </div>
-              <ArrowUpRight size={16} className="rp-kpi-arrow" />
-            </div>
-            <p className="rp-kpi-label">Paint Shades</p>
-            <p className="rp-kpi-value">{stats ? stats.totalColors : "..."}</p>
-          </div>
-          <p className="rp-kpi-footer" style={{ color: "#d97706" }}>
-            <span>Color Palette</span> &rarr;
-          </p>
-        </Link>
-
-        {/* Card 5: Store Network */}
-        <Link
-          href="/admin/collections/stores"
+          href="/admin/collections/contact-submissions"
           className="rp-kpi-card"
         >
           <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #ec4899, #e11d48)" }} />
           <div>
             <div className="rp-kpi-card-header">
               <div className="rp-kpi-icon-box" style={{ background: "#fdf2f8", color: "#db2777" }}>
-                <Store size={18} />
+                <Mail size={18} />
               </div>
               <ArrowUpRight size={16} className="rp-kpi-arrow" />
             </div>
-            <p className="rp-kpi-label">Store Network</p>
-            <p className="rp-kpi-value">{stats ? stats.totalStores : "..."}</p>
+            <p className="rp-kpi-label">Booking Inquiries</p>
+            <p className="rp-kpi-value">{stats ? stats.totalSubmissions : "..."}</p>
           </div>
           <p className="rp-kpi-footer" style={{ color: "#db2777" }}>
-            <span>Dealers & Outlets</span> &rarr;
+            <span>Client Inquiries</span> &rarr;
           </p>
         </Link>
 
-        {/* Card 6: Inquiries & Submissions */}
+        {/* Card 6: Media Assets */}
         <Link
-          href="/admin/collections/contact-submissions"
+          href="/admin/collections/media"
           className="rp-kpi-card"
         >
-          <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #8b5cf6, #7c3aed)" }} />
+          <div className="rp-kpi-bar" style={{ background: "linear-gradient(90deg, #06b6d4, #3b82f6)" }} />
           <div>
             <div className="rp-kpi-card-header">
-              <div className="rp-kpi-icon-box" style={{ background: "#f5f3ff", color: "#7c3aed" }}>
-                <Inbox size={18} />
+              <div className="rp-kpi-icon-box" style={{ background: "#ecfeff", color: "#0891b2" }}>
+                <ImageIcon size={18} />
               </div>
               <ArrowUpRight size={16} className="rp-kpi-arrow" />
             </div>
-            <p className="rp-kpi-label">Inquiries & Forms</p>
-            <p className="rp-kpi-value">{stats ? stats.totalSubmissions : "..."}</p>
+            <p className="rp-kpi-label">Media Library</p>
+            <p className="rp-kpi-value">{stats ? stats.totalMedia : "..."}</p>
           </div>
-          <p className="rp-kpi-footer" style={{ color: "#7c3aed" }}>
-            <span>Submissions</span> &rarr;
+          <p className="rp-kpi-footer" style={{ color: "#0891b2" }}>
+            <span>Asset Storage</span> &rarr;
           </p>
         </Link>
       </div>
 
-      {/* Row 1 Charts: Products by Category + Articles by Category */}
+      {/* Row 1 Charts: Portfolio by Category + Films by Category */}
       <div className="rp-charts-grid-2">
-        {/* Donut Chart: Products by Category */}
+        {/* Donut Chart: Portfolio by Category */}
         <div className="rp-chart-card">
           <div className="rp-chart-header">
             <div>
-              <h2 className="rp-chart-title">Products by Category</h2>
+              <h2 className="rp-chart-title">Portfolio by Category</h2>
               <p className="rp-chart-subtitle">
-                Distribution of the {stats?.totalProducts || 0} paints across categories
+                Distribution of the {stats?.totalPortfolio || 0} visual photography captures
               </p>
             </div>
-            <span className="rp-chart-tag" style={{ background: "#eef2ff", color: "#4338ca" }}>
-              {stats?.productsByCategory?.length || 0} Categories
+            <span className="rp-chart-tag" style={{ background: "#fef9c3", color: "#854d0e" }}>
+              {stats?.portfolioByCategory?.length || 0} Categories
             </span>
           </div>
 
           <div className="rp-chart-body">
-            {stats?.productsByCategory && stats.productsByCategory.length > 0 ? (
+            {stats?.portfolioByCategory && stats.portfolioByCategory.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={stats.productsByCategory}
+                    data={stats.portfolioByCategory}
                     cx="50%"
                     cy="50%"
                     innerRadius={55}
                     outerRadius={85}
-                    paddingAngle={3}
+                    paddingAngle={4}
                     dataKey="value"
                   >
-                    {stats.productsByCategory.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={PIE_COLORS[index % PIE_COLORS.length]}
-                        stroke="#fff"
-                        strokeWidth={2}
-                      />
+                    {stats.portfolioByCategory.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
                     ))}
                   </Pie>
                   <Tooltip content={<CustomChartTooltip />} />
                   <Legend
                     verticalAlign="bottom"
-                    height={36}
-                    formatter={(value) => <span style={{ fontSize: "11px", fontWeight: 600, color: "#334155" }}>{value}</span>}
+                    iconType="circle"
+                    formatter={(value) => (
+                      <span style={{ fontSize: 11, color: "#d1d5db", fontWeight: 600 }}>{value}</span>
+                    )}
                   />
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <div className="rp-chart-loading">Loading products distribution...</div>
+              <div className="rp-empty-state">No portfolio categories available yet</div>
             )}
           </div>
         </div>
 
-        {/* Bar Chart: Articles by Category */}
+        {/* Bar Chart: Films by Category */}
         <div className="rp-chart-card">
           <div className="rp-chart-header">
             <div>
-              <h2 className="rp-chart-title">Blog Posts by Category</h2>
+              <h2 className="rp-chart-title">Films by Genre</h2>
               <p className="rp-chart-subtitle">
-                Article breakdown across blog categories ({stats?.totalPosts || 0} total posts)
+                Total {stats?.totalFilms || 0} cinematic videos and trailers
               </p>
             </div>
-            <span className="rp-chart-tag" style={{ background: "#ecfdf5", color: "#047857" }}>
-              Content Hub
+            <span className="rp-chart-tag" style={{ background: "#fff7ed", color: "#c2410c" }}>
+              Cinematic Films
             </span>
           </div>
 
           <div className="rp-chart-body">
-            {stats?.postsByCategory && stats.postsByCategory.length > 0 ? (
+            {stats?.filmsByCategory && stats.filmsByCategory.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={stats.postsByCategory} margin={{ top: 20, right: 10, left: -20, bottom: 20 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                  <XAxis dataKey="name" tick={{ fontSize: 10, fill: "#64748b" }} interval={0} />
-                  <YAxis allowDecimals={false} tick={{ fontSize: 10, fill: "#64748b" }} />
+                <BarChart data={stats.filmsByCategory} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#27272a" />
+                  <XAxis
+                    dataKey="name"
+                    tick={{ fill: "#9ca3af", fontSize: 10 }}
+                    angle={-15}
+                    textAnchor="end"
+                  />
+                  <YAxis tick={{ fill: "#9ca3af", fontSize: 11 }} allowDecimals={false} />
                   <Tooltip content={<CustomChartTooltip />} />
-                  <Bar dataKey="count" radius={[3, 3, 0, 0]}>
-                    {stats.postsByCategory.map((entry, index) => (
+                  <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                    {stats.filmsByCategory.map((entry, index) => (
                       <Cell key={`bar-${index}`} fill={BAR_COLORS[index % BAR_COLORS.length]} />
                     ))}
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="rp-chart-loading">Loading blog categories...</div>
+              <div className="rp-empty-state">No film genres available yet</div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Row 2 Charts: Content Ecosystem + Inquiries Breakdown */}
-      <div className="rp-charts-grid-split">
-        {/* Bar Chart: Content Overview */}
-        <div className="rp-chart-card">
-          <div className="rp-chart-header">
-            <div>
-              <h2 className="rp-chart-title">Platform Content Ecosystem</h2>
-              <p className="rp-chart-subtitle">
-                Total item count comparison across collections
-              </p>
-            </div>
-            <span className="rp-chart-tag" style={{ background: "#eff6ff", color: "#1d4ed8" }}>
-              Collections
-            </span>
+      {/* Row 2: Content Overview Full Bar Chart */}
+      <div className="rp-chart-card" style={{ marginBottom: 24 }}>
+        <div className="rp-chart-header">
+          <div>
+            <h2 className="rp-chart-title">Studio Content Ecosystem</h2>
+            <p className="rp-chart-subtitle">
+              Comprehensive volume across photos, films, production offerings, testimonials, and media assets
+            </p>
           </div>
-
-          <div className="rp-chart-body">
-            {stats?.contentOverview && stats.contentOverview.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  layout="vertical"
-                  data={stats.contentOverview}
-                  margin={{ top: 10, right: 20, left: 10, bottom: 10 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                  <XAxis type="number" tick={{ fontSize: 10, fill: "#64748b" }} />
-                  <YAxis dataKey="name" type="category" tick={{ fontSize: 10, fill: "#334155", fontWeight: 600 }} width={75} />
-                  <Tooltip content={<CustomChartTooltip />} />
-                  <Bar dataKey="count" radius={[0, 3, 3, 0]}>
-                    {stats.contentOverview.map((entry, index) => (
-                      <Cell key={`content-bar-${index}`} fill={entry.fill} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            ) : (
-              <div className="rp-chart-loading">Loading overview...</div>
-            )}
-          </div>
+          <span className="rp-chart-tag" style={{ background: "#fef9c3", color: "#854d0e" }}>
+            The Golden Light Creations
+          </span>
         </div>
 
-        {/* Submissions & Interactions Breakdown */}
-        <div className="rp-chart-card">
-          <div>
-            <div className="rp-chart-header">
-              <div>
-                <h2 className="rp-chart-title">Inquiries & Applications</h2>
-                <p className="rp-chart-subtitle">
-                  Breakdown of customer & contractor submissions
-                </p>
-              </div>
-              <span className="rp-chart-tag" style={{ background: "#f5f3ff", color: "#6d28d9" }}>
-                {stats?.totalSubmissions || 0} Total
-              </span>
-            </div>
+        <div className="rp-chart-body" style={{ height: 260 }}>
+          {stats?.contentOverview && stats.contentOverview.length > 0 ? (
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={stats.contentOverview} margin={{ top: 10, right: 10, left: -20, bottom: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#27272a" />
+                <XAxis dataKey="name" tick={{ fill: "#9ca3af", fontSize: 11 }} />
+                <YAxis tick={{ fill: "#9ca3af", fontSize: 11 }} allowDecimals={false} />
+                <Tooltip content={<CustomChartTooltip />} />
+                <Bar dataKey="count" radius={[6, 6, 0, 0]}>
+                  {stats.contentOverview.map((entry, index) => (
+                    <Cell key={`content-cell-${index}`} fill={entry.fill || PIE_COLORS[index % PIE_COLORS.length]} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="rp-empty-state">Loading content ecosystem...</div>
+          )}
+        </div>
+      </div>
 
-            <div className="rp-submissions-list">
-              {stats?.submissionsBreakdown?.map((item, idx) => (
-                <div key={idx} className="rp-submission-item">
-                  <div className="rp-submission-info">
-                    <div className="rp-submission-dot" style={{ backgroundColor: item.fill }} />
-                    <span className="rp-submission-name">{item.name}</span>
-                  </div>
-                  <span className="rp-submission-count">{item.count}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rp-submissions-footer">
-            <span>Last refreshed</span>
-            <span className="rp-refresh-time">{lastRefreshed.toLocaleTimeString()}</span>
-          </div>
+      {/* Quick Access Studio Links Footer */}
+      <div className="rp-quick-links-card">
+        <h3 className="rp-quick-links-title">Quick Settings &amp; Studio Configurations</h3>
+        <div className="rp-quick-links-grid">
+          <Link href="/admin/globals/studio-settings" className="rp-quick-link-btn">
+            <SlidersHorizontal size={14} className="text-[#F5B301]" />
+            <span>Studio Settings (Hero, Story, Stats)</span>
+          </Link>
+          <Link href="/admin/globals/site-settings" className="rp-quick-link-btn">
+            <Settings size={14} className="text-[#F5B301]" />
+            <span>Contact Info &amp; WhatsApp Details</span>
+          </Link>
+          <Link href="/admin/collections/users" className="rp-quick-link-btn">
+            <UsersIcon size={14} className="text-[#F5B301]" />
+            <span>Admin Users &amp; Roles</span>
+          </Link>
         </div>
       </div>
     </div>

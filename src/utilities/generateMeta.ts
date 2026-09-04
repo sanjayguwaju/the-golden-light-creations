@@ -25,10 +25,12 @@ export const generateMeta = async (args: {
   const ogImage = getImageURL(doc?.meta?.image);
 
   const title = doc?.meta?.title
-    ? doc?.meta?.title + " | Reliance Paints"
-    : "Reliance Paints | Official Website";
+    ? doc?.meta?.title + " | The Golden Light Creations"
+    : "The Golden Light Creations | Luxury Photography & Cinematic Films";
 
-  const description = doc?.meta?.description || "Reliance Paints Nepal offers a wide range of decorative and industrial paints. Enhance and protect your surfaces with our premium quality paints.";
+  const description =
+    doc?.meta?.description ||
+    "Nepal's Finest Creative Studio — Luxury Photography, Cinematic Films & Digital Branding Services in Nepal. Crafting timeless visual stories since 2019.";
 
   return {
     description: description,

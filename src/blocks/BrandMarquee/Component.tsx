@@ -18,7 +18,7 @@ export const BrandMarqueeBlock: React.FC<BrandMarqueeBlockProps> = ({
     <section className="py-16 bg-white border-t border-zinc-100 overflow-hidden w-full">
       {title && (
         <div className="max-w-[1440px] mx-auto px-6 lg:px-16 mb-10 text-center">
-          <p className="text-sm font-bold uppercase tracking-widest text-reliance-grey">
+          <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">
             {title}
           </p>
         </div>
@@ -29,9 +29,9 @@ export const BrandMarqueeBlock: React.FC<BrandMarqueeBlockProps> = ({
         {logos.map((logo, i) => (
           <div
             key={i}
-            className="flex shrink-0 items-center gap-3 px-6 py-3 grayscale hover:grayscale-0 hover:opacity-100 opacity-40 hover:text-reliance-navy transition-all duration-300 cursor-pointer"
+            className="flex shrink-0 items-center gap-3 px-6 py-3 grayscale hover:grayscale-0 hover:opacity-100 opacity-40 hover:text-[#F5B301] transition-all duration-300 cursor-pointer"
           >
-            <span className="text-xl font-black tracking-widest text-zinc-400 hover:text-reliance-navy transition-colors">
+            <span className="text-xl font-black tracking-widest text-zinc-400 hover:text-[#F5B301] transition-colors">
               {logo.text}
             </span>
           </div>
