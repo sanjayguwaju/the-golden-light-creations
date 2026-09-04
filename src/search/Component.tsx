@@ -46,7 +46,7 @@ export const Search: React.FC = () => {
             type="button"
             variant="ghost"
             size="icon"
-            className="absolute right-2 top-1/2 -translate-y-1/2 h-9 w-9 text-black/60 hover:text-black hover:bg-black/10 rounded-none"
+            className="absolute right-2 top-1/2 -translate-y-1/2 h-9 w-9 text-black/60 hover:text-[#C0171E] hover:bg-[#C0171E]/10 rounded-full"
             onClick={() => setValue("")}
             aria-label="Clear search"
           >

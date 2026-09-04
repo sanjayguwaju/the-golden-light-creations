@@ -259,7 +259,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#F5B301] hover:bg-[#C8920A] text-[#0A0A0A] hover:text-white px-10 py-4 font-montserrat font-bold text-xs uppercase tracking-[0.25em] transition-all duration-300 disabled:opacity-50 hover:-translate-y-0.5 active:translate-y-0 shadow-lg cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#C0171E] hover:bg-[#A01018] text-white px-10 py-4 font-montserrat font-bold text-xs uppercase tracking-[0.25em] transition-all duration-300 disabled:opacity-50 hover:-translate-y-0.5 active:translate-y-0 shadow-xl cursor-pointer"
                 >
                   <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
                   <Send className="w-4 h-4" />

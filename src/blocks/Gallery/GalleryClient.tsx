@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useEffect } from "react";
 import { Media } from "@/components/Media";
-import { Search, ArrowRight, ChevronLeft, ChevronRight, Images } from "lucide-react";
+import { Search, ArrowRight, ChevronLeft, ChevronRight, Images, X } from "lucide-react";
 import type { GalleryBlock as GalleryBlockProps } from "@/payload-types";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
@@ -92,7 +92,7 @@ export const GalleryClient: React.FC<Omit<GalleryBlockProps, "blockType">> = ({
             <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Badge
                 variant="secondary"
-                className="text-xs font-bold bg-black/60 text-white border-0 backdrop-blur-sm"
+                className="text-xs font-bold bg-[#C0171E]/90 text-white border-0 backdrop-blur-sm shadow-sm"
               >
                 {index + 1}/{images.length}
               </Badge>
@@ -132,7 +132,7 @@ export const GalleryClient: React.FC<Omit<GalleryBlockProps, "blockType">> = ({
                 <span className="text-white/30 mx-1">/</span> {images.length}
               </span>
               <div className="flex items-center gap-4">
-                <div className="flex items-center bg-black/40 backdrop-blur-md rounded-full p-1 border border-white/10">
+                <div className="flex items-center bg-[#7a0d13]/60 backdrop-blur-md rounded-full p-1 border border-white/15">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -153,20 +153,26 @@ export const GalleryClient: React.FC<Omit<GalleryBlockProps, "blockType">> = ({
                     <ChevronRight className="w-6 h-6" />
                   </Button>
                 </div>
-                {/* Custom spacing to avoid overlapping with default close button */}
-                <div className="w-10" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setSelectedIndex(null)}
+                  className="text-white hover:bg-white/10 rounded-full w-10 h-10 transition-all active:scale-95"
+                  aria-label="Close dialog"
+                >
+                  <X className="w-6 h-6" />
+                </Button>
               </div>
             </div>
 
-            {/* Image Area */}
-            <div className="relative w-full aspect-video md:aspect-21/9 flex items-center justify-center overflow-hidden">
-              {currentImage && (
-                <div className="relative w-full h-full">
+            {/* Main Stage Image */}
+            <div className="relative w-full aspect-4/3 md:aspect-16/10 max-h-[70vh] flex items-center justify-center">
+              {currentImage?.image && (
+                <div className="relative w-full h-full animate-in zoom-in-95 duration-300 flex items-center justify-center">
                   <Media
                     resource={currentImage.image}
-                    fill
-                    imgClassName="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-                    className="w-full h-full"
+                    imgClassName="object-contain w-full h-full max-h-[70vh] drop-shadow-2xl select-none"
+                    priority
                   />
                 </div>
               )}
@@ -174,14 +180,14 @@ export const GalleryClient: React.FC<Omit<GalleryBlockProps, "blockType">> = ({
               {/* Side Navigation Arrows */}
               <button
                 onClick={handlePrev}
-                className="absolute left-6 top-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full bg-black/20 hover:bg-black/80 text-white flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300 hover:scale-110 backdrop-blur-md opacity-0 md:opacity-100"
+                className="absolute left-6 top-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full bg-[#7a0d13]/40 hover:bg-[#C0171E] text-white flex items-center justify-center border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-110 backdrop-blur-md opacity-0 md:opacity-100"
                 aria-label="Previous image"
               >
                 <ChevronLeft className="w-8 h-8" />
               </button>
               <button
                 onClick={handleNext}
-                className="absolute right-6 top-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full bg-black/20 hover:bg-black/80 text-white flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300 hover:scale-110 backdrop-blur-md opacity-0 md:opacity-100"
+                className="absolute right-6 top-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full bg-[#7a0d13]/40 hover:bg-[#C0171E] text-white flex items-center justify-center border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-110 backdrop-blur-md opacity-0 md:opacity-100"
                 aria-label="Next image"
               >
                 <ChevronRight className="w-8 h-8" />
@@ -192,14 +198,14 @@ export const GalleryClient: React.FC<Omit<GalleryBlockProps, "blockType">> = ({
             <div className="w-full flex flex-col gap-4 mt-4">
               {/* Caption */}
               {currentImage?.caption && (
-                <div className="px-8 py-4 text-center text-lg font-medium text-white/90 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl max-w-3xl mx-auto">
+                <div className="px-8 py-4 text-center text-lg font-medium text-white/90 bg-[#7a0d13]/60 backdrop-blur-xl border border-white/15 rounded-2xl shadow-xl max-w-3xl mx-auto">
                   {currentImage.caption}
                 </div>
               )}
 
               {/* Thumbnail strip */}
               {images.length > 1 && (
-                <div className="flex justify-center gap-3 overflow-x-auto px-6 py-4 bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl scrollbar-none max-w-4xl mx-auto mb-4">
+                <div className="flex justify-center gap-3 overflow-x-auto px-6 py-4 bg-[#7a0d13]/50 backdrop-blur-xl border border-white/15 rounded-2xl scrollbar-none max-w-4xl mx-auto mb-4">
                   {images.map((item, i) => (
                     <button
                       key={i}

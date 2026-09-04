@@ -22,7 +22,7 @@ export const SplitHero: React.FC<Page["hero"] & { layout?: "left" | "right" }> =
 
   const contentSide = layout === "left" ? "order-1" : "order-2";
   const imageSide = layout === "left" ? "order-2" : "order-1";
-  const bgClass = layout === "left" ? "bg-background" : "bg-slate-900";
+  const bgClass = layout === "left" ? "bg-background" : "bg-[#C0171E]";
   const textClass = layout === "left" ? "text-foreground" : "text-white";
 
   return (

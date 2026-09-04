@@ -109,7 +109,7 @@ export default function Gallery({ images }: { images: GalleryImage[] }) {
       {/* Lightbox / Dialog */}
       <Dialog open={currentIndex !== null} onOpenChange={(open) => !open && closeLightbox()}>
         <DialogPortal>
-          <DialogOverlay className="bg-zinc-900/85 backdrop-blur-xl transition-all duration-300 z-100" />
+          <DialogOverlay className="bg-[#7a0d13]/95 backdrop-blur-xl transition-all duration-300 z-100" />
           <DialogPrimitive.Content className="fixed left-[50%] top-[50%] z-101 w-full max-w-[100vw] h-full border-none bg-transparent p-0 translate-x-[-50%] translate-y-[-50%] shadow-none focus-visible:outline-none flex items-center justify-center overflow-hidden">
             <DialogTitle className="sr-only">Photo Gallery Lightbox</DialogTitle>
             <DialogDescription className="sr-only">

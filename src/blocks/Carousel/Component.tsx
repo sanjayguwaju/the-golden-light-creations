@@ -89,21 +89,21 @@ export const CarouselBlockComponent: React.FC<CarouselBlockProps> = (props) => {
                 {/* Text overlay box */}
                 {showOverlay && (slide.title || slide.subtitle || ctaEnabled) && (
                   <div className="absolute inset-x-0 bottom-12 flex justify-center px-6 z-20">
-                    <div className="bg-black/45 backdrop-blur-[2px] px-10 py-5 rounded-sm border border-white/10 text-center max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="bg-[#C0171E]/85 backdrop-blur-md px-10 py-6 rounded-2xl border border-white/20 text-center max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-700 shadow-2xl">
                       {slide.title && (
                         <h2 className="text-white text-lg md:text-2xl font-semibold tracking-wide mb-2 drop-shadow-md uppercase">
                           {slide.title}
                         </h2>
                       )}
                       {slide.subtitle && (
-                        <p className="text-white/80 text-sm md:text-base mb-3">
+                        <p className="text-white/90 text-sm md:text-base mb-3">
                           {slide.subtitle}
                         </p>
                       )}
                       {ctaEnabled && (
                         <a
                           href={slide.link!.url!}
-                          className="inline-block mt-1 px-6 py-2 text-sm font-semibold text-white border border-white/60 rounded hover:bg-white hover:text-black transition-colors duration-200"
+                          className="inline-block mt-1 px-6 py-2.5 text-sm font-semibold text-[#C0171E] bg-white rounded-full hover:bg-[#FFD04A] hover:text-[#0A0A0A] transition-colors duration-200 shadow-md"
                         >
                           {slide.link!.label}
                         </a>

@@ -95,7 +95,7 @@ export default async function AlbumsPage({ params }: { params: Promise<{ locale:
                           )}
 
                           {/* Overlay on hover */}
-                          <div className="absolute inset-0 bg-zinc-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                          <div className="absolute inset-0 bg-[#C0171E]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                             <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-full border border-white/30 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                               <span className="text-white font-bold tracking-wider uppercase text-sm">
                                 Open Album

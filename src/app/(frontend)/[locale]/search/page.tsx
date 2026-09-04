@@ -57,36 +57,34 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
   const hasQuery = Boolean(query);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white text-[#0A0A0A]">
       <PageClient />
 
       {/* ── Hero Search Section ── */}
-      <section className="relative bg-[#0D1B3E] pt-12 pb-12 overflow-hidden">
+      <section className="relative bg-[#C0171E] pt-28 pb-16 overflow-hidden border-b border-[#C0171E]/20 text-white">
         {/* Decorative Elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_50%)]" />
-        <div className="absolute top-10 left-10 w-32 h-32 border-0 rounded-none" />
-        <div className="absolute bottom-10 right-20 w-48 h-48 border-0 rounded-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,208,74,0.15),transparent_60%)]" />
 
-        <div className="container max-w-3xl mx-auto px-4 relative">
+        <div className="container max-w-3xl mx-auto px-4 relative z-10">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-white/60 text-sm mb-8">
-            <Link href="/" className="hover:text-white transition-colors">
+          <div className="flex items-center gap-2 text-white/70 text-xs tracking-wider uppercase mb-6">
+            <Link href="/" className="hover:text-[#FFD04A] transition-colors">
               Home
             </Link>
-            <ArrowRight className="w-4 h-4" />
-            <span className="text-white">Search</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+            <span className="text-[#FFD04A]">Search</span>
           </div>
 
           {/* Title */}
           <div className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-3">
-              What are you looking for?
+            <h1 className="text-4xl md:text-5xl font-light tracking-tight text-white mb-3">
+              What are you <span className="font-serif italic text-[#FFD04A]">looking for?</span>
             </h1>
-            <p className="text-white/70 text-lg">Search through posts, news, and articles</p>
+            <p className="text-white/80 text-base sm:text-lg font-light">Search through stories, wedding films, and creative journals</p>
           </div>
 
           {/* Search Input */}
-          <Card className="bg-[#FFFFFF] backdrop-blur-md border-0 rounded-none shadow-2xl">
+          <Card className="bg-white backdrop-blur-md border-0 rounded-xl shadow-2xl overflow-hidden">
             <CardContent className="p-2">
               <Search />
             </CardContent>
@@ -94,16 +92,16 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
           {/* Query pill */}
           {hasQuery && (
-            <div className="mt-6 flex items-center justify-center gap-3 text-white/80">
+            <div className="mt-6 flex items-center justify-center gap-3 text-white/90">
               <span className="text-sm">Results for</span>
               <Badge
                 variant="secondary"
-                className="bg-white/20 text-white border-0 hover:bg-white/30 text-sm px-3 py-1 rounded-none"
+                className="bg-white/20 text-white border-0 hover:bg-white/30 text-sm px-3 py-1 rounded-full"
               >
-                <Hash className="w-3 h-3 mr-1" />
+                <Hash className="w-3 h-3 mr-1 text-[#FFD04A]" />
                 {query}
               </Badge>
-              <span className="text-white/60 text-sm">
+              <span className="text-white/70 text-sm">
                 {hasResults ? `${results.length} found` : "No matches"}
               </span>
             </div>
@@ -112,14 +110,14 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
           {/* Popular Searches */}
           {!hasQuery && (
             <div className="mt-8 text-center">
-              <span className="text-white/50 text-sm mr-3">Popular:</span>
+              <span className="text-white/70 text-sm mr-3 font-light">Popular:</span>
               {["Weddings", "Films", "Drone", "Fashion", "Editorial"].map((term) => (
                 <Link
                   key={term}
                   href={`/search?q=${term}`}
-                  className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white bg-white/10 hover:bg-white/20 px-3 py-1 rounded-none mr-2 transition-all"
+                  className="inline-flex items-center gap-1 text-xs text-white/90 hover:text-white bg-white/10 hover:bg-white/20 border border-white/20 px-3.5 py-1.5 rounded-full mr-2 transition-all"
                 >
-                  <Star className="w-3 h-3" />
+                  <Star className="w-3 h-3 text-[#FFD04A]" />
                   {term}
                 </Link>
               ))}

@@ -49,10 +49,10 @@ export function StudioNavbar() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="group flex flex-col leading-none">
-            <span className={`font-bebas text-2xl sm:text-3xl tracking-[0.15em] transition-colors ${isScrolled ? "text-[#C0171E] group-hover:text-[#A01018]" : "text-[#F5B301] group-hover:text-[#FFD04A]"}`}>
+            <span className={`font-bebas text-2xl sm:text-3xl tracking-[0.15em] transition-colors ${isScrolled ? "text-[#C0171E] group-hover:text-[#A01018]" : "text-white group-hover:text-[#FFD04A]"}`}>
               THE GOLDEN
             </span>
-            <span className={`font-montserrat text-[10px] sm:text-[11px] font-bold tracking-[0.35em] transition-colors ${isScrolled ? "text-[#0A0A0A]/80" : "text-white/90"}`}>
+            <span className={`font-montserrat text-[10px] sm:text-[11px] font-bold tracking-[0.35em] transition-colors ${isScrolled ? "text-[#0A0A0A]/80" : "text-[#FFD04A]"}`}>
               LIGHT CREATIONS
             </span>
           </Link>
@@ -67,13 +67,13 @@ export function StudioNavbar() {
                   href={item.href}
                   className={`relative font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-colors py-1 group ${
                     isActive
-                      ? isScrolled ? "text-[#C0171E]" : "text-[#F5B301]"
-                      : isScrolled ? "text-[#0A0A0A]/70 hover:text-[#C0171E]" : "text-white/80 hover:text-white"
+                      ? isScrolled ? "text-[#C0171E]" : "text-[#FFD04A]"
+                      : isScrolled ? "text-[#0A0A0A]/70 hover:text-[#C0171E]" : "text-white/90 hover:text-white"
                   }`}
                 >
                   {item.label}
                   <span
-                    className={`absolute bottom-0 left-0 h-[1.5px] transition-all duration-300 ${isScrolled ? "bg-[#C0171E]" : "bg-[#F5B301]"} ${
+                    className={`absolute bottom-0 left-0 h-[1.5px] transition-all duration-300 ${isScrolled ? "bg-[#C0171E]" : "bg-[#FFD04A]"} ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
@@ -89,7 +89,7 @@ export function StudioNavbar() {
               className={`hidden sm:inline-flex items-center gap-2 font-montserrat font-bold text-xs uppercase tracking-[0.2em] px-6 py-3 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg ${
                 isScrolled
                   ? "bg-[#C0171E] hover:bg-[#A01018] text-white shadow-[#C0171E]/20"
-                  : "bg-[#C0171E] hover:bg-[#A01018] text-white shadow-[#C0171E]/20"
+                  : "bg-white hover:bg-[#FFF5F5] text-[#C0171E] shadow-xl"
               }`}
             >
               <span>Book a Shoot</span>
@@ -100,7 +100,7 @@ export function StudioNavbar() {
             <button
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open Navigation Menu"
-              className={`lg:hidden p-2 transition-colors focus:outline-none ${isScrolled ? "text-[#0A0A0A] hover:text-[#C0171E]" : "text-white hover:text-[#F5B301]"}`}
+              className={`lg:hidden p-2 transition-colors focus:outline-none ${isScrolled ? "text-[#0A0A0A] hover:text-[#C0171E]" : "text-white hover:text-[#FFD04A]"}`}
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -108,9 +108,9 @@ export function StudioNavbar() {
         </div>
       </header>
 
-      {/* Full-Screen Mobile Drawer */}
+      {/* Full-Screen Mobile Drawer: Crimson Red with White Text */}
       <div
-        className={`fixed inset-0 z-[100] bg-[#0A0A0A]/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 h-[100dvh] w-full overflow-y-auto transition-transform duration-500 ease-out lg:hidden ${
+        className={`fixed inset-0 z-[100] bg-[#C0171E] text-white flex flex-col justify-between p-6 sm:p-8 h-[100dvh] w-full overflow-y-auto transition-transform duration-500 ease-out lg:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -120,17 +120,17 @@ export function StudioNavbar() {
             onClick={() => setMobileMenuOpen(false)}
             className="flex flex-col leading-none"
           >
-            <span className="font-bebas text-2xl tracking-[0.15em] text-[#F5B301]">
+            <span className="font-bebas text-2xl tracking-[0.15em] text-white">
               THE GOLDEN
             </span>
-            <span className="font-montserrat text-[10px] font-bold tracking-[0.35em] text-white/80">
+            <span className="font-montserrat text-[10px] font-bold tracking-[0.35em] text-[#FFD04A]">
               LIGHT CREATIONS
             </span>
           </Link>
           <button
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close Navigation Menu"
-            className="p-2 text-white/80 hover:text-[#F5B301] transition-colors focus:outline-none"
+            className="p-2 text-white/90 hover:text-white transition-colors focus:outline-none"
           >
             <X className="w-7 h-7" />
           </button>
@@ -142,7 +142,7 @@ export function StudioNavbar() {
             href="/"
             onClick={() => setMobileMenuOpen(false)}
             className={`font-bebas text-3xl sm:text-4xl uppercase tracking-[0.05em] transition-colors ${
-              pathname === "/" ? "text-[#F5B301]" : "text-white hover:text-[#F5B301]"
+              pathname === "/" ? "text-[#FFD04A]" : "text-white hover:text-[#FFD04A]"
             }`}
           >
             Home
@@ -155,27 +155,27 @@ export function StudioNavbar() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`font-bebas text-3xl sm:text-4xl uppercase tracking-[0.05em] transition-colors flex items-center justify-between ${
-                  isActive ? "text-[#F5B301]" : "text-white hover:text-[#F5B301]"
+                  isActive ? "text-[#FFD04A]" : "text-white hover:text-[#FFD04A]"
                 }`}
               >
                 <span>{item.label}</span>
-                {isActive && <span className="text-[#F5B301] text-lg">●</span>}
+                {isActive && <span className="text-[#FFD04A] text-lg">●</span>}
               </Link>
             );
           })}
         </nav>
 
         {/* Mobile Footer CTA */}
-        <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
+        <div className="flex flex-col gap-4 pt-6 border-t border-white/20">
           <Link
             href="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full bg-[#C0171E] hover:bg-[#A01018] text-white font-montserrat font-bold text-xs uppercase tracking-[0.2em] py-4 text-center flex items-center justify-center gap-2 shadow-xl shadow-[#C0171E]/25 transition-colors"
+            className="w-full bg-white hover:bg-[#FFF5F5] text-[#C0171E] font-montserrat font-bold text-xs uppercase tracking-[0.2em] py-4 text-center flex items-center justify-center gap-2 shadow-2xl transition-colors"
           >
             <span>Book a Shoot</span>
             <ArrowUpRight className="w-4 h-4" />
           </Link>
-          <p className="font-poppins text-xs text-white/50 text-center">
+          <p className="font-poppins text-xs text-white/80 text-center">
             Kathmandu, Nepal · +977 9810175322
           </p>
         </div>

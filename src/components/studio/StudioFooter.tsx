@@ -22,21 +22,21 @@ export function StudioFooter() {
   ];
 
   return (
-    <footer className="bg-[#0A0A0A] text-white pt-16 sm:pt-20 pb-10 px-4 sm:px-8 border-t border-white/10">
+    <footer className="bg-[#C0171E] text-white pt-16 sm:pt-20 pb-10 px-4 sm:px-8 border-t border-[#A01018]">
       <div className="max-w-7xl mx-auto">
         {/* 4-Column Directory */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-white/15">
           {/* Brand Bio */}
           <div className="lg:col-span-4">
             <Link href="/" className="flex flex-col leading-none mb-6">
-              <span className="font-bebas text-3xl tracking-[0.15em] text-[#C0171E]">
+              <span className="font-bebas text-3xl tracking-[0.15em] text-white">
                 THE GOLDEN
               </span>
-              <span className="font-montserrat text-xs font-bold tracking-[0.35em] text-white">
+              <span className="font-montserrat text-xs font-bold tracking-[0.35em] text-[#FFD04A]">
                 LIGHT CREATIONS
               </span>
             </Link>
-            <p className="font-poppins text-xs sm:text-sm text-white/60 font-light leading-relaxed max-w-sm mb-8">
+            <p className="font-poppins text-xs sm:text-sm text-white/80 font-light leading-relaxed max-w-sm mb-8">
               Nepal&apos;s premier luxury photography and cinematic production studio. Every moment,
               immortalised with international excellence and authentic soul.
             </p>
@@ -48,7 +48,7 @@ export function StudioFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-10 h-10 border border-white/15 hover:border-[#C0171E] text-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/5"
+                className="w-10 h-10 border border-white/30 hover:border-white text-white hover:bg-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/10"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -57,7 +57,7 @@ export function StudioFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="w-10 h-10 border border-white/15 hover:border-[#C0171E] text-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/5"
+                className="w-10 h-10 border border-white/30 hover:border-white text-white hover:bg-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/10"
               >
                 <Youtube className="w-4 h-4" />
               </a>
@@ -66,7 +66,7 @@ export function StudioFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
-                className="w-10 h-10 border border-white/15 hover:border-[#C0171E] text-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/5 font-bebas text-sm"
+                className="w-10 h-10 border border-white/30 hover:border-white text-white hover:bg-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/10 font-bebas text-sm"
               >
                 🎵
               </a>
@@ -75,7 +75,7 @@ export function StudioFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="w-10 h-10 border border-white/15 hover:border-[#C0171E] text-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/5"
+                className="w-10 h-10 border border-white/30 hover:border-white text-white hover:bg-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/10"
               >
                 <Facebook className="w-4 h-4" />
               </a>
@@ -84,7 +84,7 @@ export function StudioFooter() {
 
           {/* Column 2: Services Links */}
           <div className="lg:col-span-3">
-            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#C0171E] mb-6">
+            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#FFD04A] mb-6">
               Services
             </h4>
             <ul className="flex flex-col gap-3">
@@ -92,9 +92,9 @@ export function StudioFooter() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="font-poppins text-xs sm:text-sm text-white/60 hover:text-[#C0171E] transition-colors flex items-center gap-2 group"
+                    className="font-poppins text-xs sm:text-sm text-white/80 hover:text-white transition-colors flex items-center gap-2 group"
                   >
-                    <span className="text-[#C0171E]/40 group-hover:text-[#C0171E] transition-colors">
+                    <span className="text-[#FFD04A]/60 group-hover:text-white transition-colors">
                       —
                     </span>
                     <span>{item.label}</span>
@@ -106,7 +106,7 @@ export function StudioFooter() {
 
           {/* Column 3: Company Links */}
           <div className="lg:col-span-2">
-            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#C0171E] mb-6">
+            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#FFD04A] mb-6">
               Company
             </h4>
             <ul className="flex flex-col gap-3">
@@ -114,9 +114,9 @@ export function StudioFooter() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="font-poppins text-xs sm:text-sm text-white/60 hover:text-[#C0171E] transition-colors flex items-center gap-2 group"
+                    className="font-poppins text-xs sm:text-sm text-white/80 hover:text-white transition-colors flex items-center gap-2 group"
                   >
-                    <span className="text-[#C0171E]/40 group-hover:text-[#C0171E] transition-colors">
+                    <span className="text-[#FFD04A]/60 group-hover:text-white transition-colors">
                       —
                     </span>
                     <span>{item.label}</span>
@@ -128,14 +128,14 @@ export function StudioFooter() {
 
           {/* Column 4: Contact Links */}
           <div className="lg:col-span-3">
-            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#C0171E] mb-6">
+            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#FFD04A] mb-6">
               Contact
             </h4>
             <ul className="flex flex-col gap-3.5">
               <li>
                 <a
                   href="tel:+9779810175322"
-                  className="font-poppins text-xs sm:text-sm text-white/80 hover:text-[#C0171E] transition-colors"
+                  className="font-poppins text-xs sm:text-sm text-white/90 hover:text-white transition-colors"
                 >
                   +977 9810175322
                 </a>
@@ -143,7 +143,7 @@ export function StudioFooter() {
               <li>
                 <a
                   href="mailto:info@thegoldenlightcreations.com"
-                  className="font-poppins text-xs sm:text-sm text-white/80 hover:text-[#C0171E] transition-colors"
+                  className="font-poppins text-xs sm:text-sm text-white/90 hover:text-white transition-colors"
                 >
                   info@thegoldenlightcreations.com
                 </a>
@@ -153,13 +153,13 @@ export function StudioFooter() {
                   href="https://wa.me/9779810175322"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-poppins text-xs sm:text-sm text-white/80 hover:text-[#25D366] transition-colors inline-flex items-center gap-1.5"
+                  className="font-poppins text-xs sm:text-sm text-white/90 hover:text-white transition-colors inline-flex items-center gap-1.5"
                 >
                   <span>Chat on WhatsApp</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </li>
-              <li className="font-poppins text-xs sm:text-sm text-white/50">
+              <li className="font-poppins text-xs sm:text-sm text-white/70">
                 Kathmandu, Nepal
               </li>
             </ul>
@@ -167,13 +167,13 @@ export function StudioFooter() {
         </div>
 
         {/* Bottom Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-poppins text-white/40">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-poppins text-white/70">
           <p>
             &copy; {new Date().getFullYear()}{" "}
-            <span className="text-[#C0171E]">The Golden Light Creations</span>. All rights reserved.
+            <span className="text-white font-medium">The Golden Light Creations</span>. All rights reserved.
           </p>
           <p>
-            Crafted with ♥ in <span className="text-[#C0171E]">Nepal</span>
+            Crafted with ♥ in <span className="text-[#FFD04A]">Nepal</span>
           </p>
         </div>
       </div>

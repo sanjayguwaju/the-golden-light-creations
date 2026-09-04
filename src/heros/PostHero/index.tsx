@@ -57,7 +57,7 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
       <div
         className={cn(
           "relative overflow-hidden",
-          hasHeroImage ? "min-h-[70vh]" : "bg-[#0D1B3E] pt-24 pb-16"
+          hasHeroImage ? "min-h-[70vh]" : "bg-[#C0171E] pt-28 pb-16 text-white"
         )}
       >
         {hasHeroImage ? (
@@ -65,8 +65,8 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
             {/* Full-bleed hero image */}
             <div className="absolute inset-0">
               <Media fill priority imgClassName="object-cover" resource={heroImage} />
-              {/* Gradient overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+              {/* Gradient overlay for text readability with crimson tint */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#C0171E]/80 via-black/40 to-black/20" />
             </div>
 
             {/* Content over image */}

@@ -158,19 +158,19 @@ export function StudioPortfolio({
               </div>
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#C0171E]/95 via-[#0A0A0A]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 sm:p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#C0171E]/95 via-[#C0171E]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 sm:p-6">
                 {/* Zoom Icon Button */}
-                <div className="absolute top-4 right-4 w-9 h-9 border border-[#C0171E]/80 rounded-full flex items-center justify-center text-[#C0171E] bg-[#0A0A0A]/40 backdrop-blur-sm group-hover:rotate-90 transition-transform duration-300">
+                <div className="absolute top-4 right-4 w-9 h-9 border border-white/60 rounded-full flex items-center justify-center text-[#C0171E] bg-white/90 backdrop-blur-sm group-hover:rotate-90 transition-transform duration-300 shadow-md">
                   <Plus className="w-4 h-4" />
                 </div>
 
-                <span className="font-montserrat text-[10px] font-bold tracking-[0.3em] uppercase text-[#C0171E] mb-1">
+                <span className="font-montserrat text-[10px] font-bold tracking-[0.3em] uppercase text-[#FFD04A] mb-1">
                   {item.categoryLabel}
                 </span>
                 <h3 className="font-bebas text-xl sm:text-2xl tracking-[0.05em] text-white uppercase leading-tight">
                   {item.title}
                 </h3>
-                <p className="font-poppins text-xs text-white/60 mt-0.5">
+                <p className="font-poppins text-xs text-white/80 mt-0.5">
                   {item.location}, Nepal
                 </p>
               </div>
@@ -197,7 +197,7 @@ export function StudioPortfolio({
         activeLightbox &&
         createPortal(
           <div
-            className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 h-[100dvh] w-full overflow-hidden select-none animate-modal-backdrop"
+            className="fixed inset-0 z-[99999] bg-[#7a0d13]/95 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 h-[100dvh] w-full overflow-hidden select-none animate-modal-backdrop"
             onClick={() => setActiveLightboxIndex(null)}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
@@ -207,12 +207,12 @@ export function StudioPortfolio({
               className="w-full max-w-5xl flex items-center justify-between px-3 py-2 mb-2 sm:mb-4 z-20 animate-modal-content"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center gap-2 text-xs font-montserrat text-white/70">
-                <span className="text-[#C0171E] font-bold uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-xs font-montserrat text-white/90">
+                <span className="text-[#FFD04A] font-bold uppercase tracking-wider">
                   {activeLightbox.categoryLabel}
                 </span>
                 <span>•</span>
-                <span className="text-white/50">
+                <span className="text-white/70">
                   {(activeLightboxIndex ?? 0) + 1} / {displayedItems.length}
                 </span>
               </div>
@@ -220,7 +220,7 @@ export function StudioPortfolio({
               <button
                 onClick={() => setActiveLightboxIndex(null)}
                 aria-label="Close Lightbox"
-                className="flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-[#C0171E] text-white hover:text-white transition-all duration-200 rounded-full font-montserrat text-xs font-bold uppercase tracking-wider focus:outline-none hover:scale-105 active:scale-95 cursor-pointer"
+                className="flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-white hover:text-[#C0171E] text-white transition-all duration-200 rounded-full font-montserrat text-xs font-bold uppercase tracking-wider focus:outline-none hover:scale-105 active:scale-95 cursor-pointer border border-white/20"
               >
                 <X className="w-4 h-4" />
                 <span className="hidden sm:inline">Close</span>
@@ -236,7 +236,7 @@ export function StudioPortfolio({
               <button
                 onClick={handlePrev}
                 aria-label="Previous Photo"
-                className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/70 hover:bg-[#C0171E] text-white hover:text-white border border-white/20 hover:border-[#C0171E] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
+                className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 hover:bg-white text-white hover:text-[#C0171E] border border-white/30 rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
@@ -247,7 +247,7 @@ export function StudioPortfolio({
                   key={activeLightbox.id}
                   src={activeLightbox.src}
                   alt={activeLightbox.title}
-                  className="max-w-[92vw] sm:max-w-4xl max-h-[60dvh] sm:max-h-[72dvh] w-auto h-auto object-contain border border-[#C0171E]/30 shadow-2xl rounded-sm transition-all duration-200"
+                  className="max-w-[92vw] sm:max-w-4xl max-h-[60dvh] sm:max-h-[72dvh] w-auto h-auto object-contain border border-white/20 shadow-2xl rounded-sm transition-all duration-200"
                 />
               </div>
 
@@ -255,7 +255,7 @@ export function StudioPortfolio({
               <button
                 onClick={handleNext}
                 aria-label="Next Photo"
-                className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/70 hover:bg-[#C0171E] text-white hover:text-white border border-white/20 hover:border-[#C0171E] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
+                className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 hover:bg-white text-white hover:text-[#C0171E] border border-white/30 rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -265,7 +265,7 @@ export function StudioPortfolio({
                 <h4 className="font-bebas text-xl sm:text-3xl text-white tracking-[0.05em] uppercase line-clamp-1">
                   {activeLightbox.title}
                 </h4>
-                <p className="font-poppins text-xs text-[#C0171E] mt-0.5">
+                <p className="font-poppins text-xs text-[#FFD04A] mt-0.5">
                   {activeLightbox.location}, Nepal
                 </p>
               </div>

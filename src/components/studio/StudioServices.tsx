@@ -154,7 +154,7 @@ export function StudioServices({
           <div className="mt-12 sm:mt-16 flex justify-center">
             <Link
               href="/services"
-              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto border border-[#F5B301] text-[#F5B301] hover:bg-[#F5B301] hover:text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.25em] px-8 sm:px-10 py-4 transition-all duration-300 hover:-translate-y-0.5 text-center"
+              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-white text-[#C0171E] hover:bg-[#FFD04A] hover:text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.25em] px-8 sm:px-10 py-4 transition-all duration-300 hover:-translate-y-0.5 text-center shadow-xl"
             >
               <span>Explore All Production Services</span>
               <ArrowUpRight className="w-4 h-4" />

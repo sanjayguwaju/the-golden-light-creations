@@ -95,8 +95,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0A",
-  colorScheme: "dark",
+  themeColor: "#C0171E",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
@@ -122,8 +122,8 @@ export default async function RootLayout({ children, params }: Args) {
       suppressHydrationWarning
     >
       <head suppressHydrationWarning>
-        <meta name="theme-color" content="#0A0A0A" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="theme-color" content="#C0171E" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link href="/favicon.ico" rel="icon" sizes="any" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
         <link href="/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
@@ -132,13 +132,13 @@ export default async function RootLayout({ children, params }: Args) {
         <link href="/manifest.json" rel="manifest" />
         <InitTheme />
       </head>
-      <body className={cn(locale === "ne" ? "font-nepali" : "font-sans", "bg-[#0A0A0A] text-white antialiased selection:bg-[#F5B301] selection:text-[#0A0A0A]")} suppressHydrationWarning>
+      <body className={cn(locale === "ne" ? "font-nepali" : "font-sans", "bg-white text-[#0A0A0A] antialiased selection:bg-[#C0171E] selection:text-white")} suppressHydrationWarning>
         <Toaster position="top-right" />
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <NuqsAdapter>
               <StudioNavbar />
-              <main className="overflow-x-clip min-h-screen bg-[#0A0A0A]">{children}</main>
+              <main className="overflow-x-clip min-h-screen bg-white text-[#0A0A0A]">{children}</main>
               <StudioFooter />
             </NuqsAdapter>
           </NextIntlClientProvider>

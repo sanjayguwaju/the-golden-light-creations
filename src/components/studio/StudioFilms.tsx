@@ -128,7 +128,7 @@ export function StudioFilms({
 
               {/* Play Button Overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-[#C0171E]/80 bg-[#0A0A0A]/60 backdrop-blur-sm flex items-center justify-center text-[#C0171E] group-hover:bg-[#C0171E] group-hover:text-white transition-all duration-300 group-hover:scale-110 shadow-xl">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-[#C0171E] bg-white/90 backdrop-blur-sm flex items-center justify-center text-[#C0171E] group-hover:bg-[#C0171E] group-hover:text-white transition-all duration-300 group-hover:scale-110 shadow-xl">
                   <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-1" />
                 </div>
               </div>
@@ -157,7 +157,7 @@ export function StudioFilms({
         activeVideo &&
         createPortal(
           <div
-            className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 h-[100dvh] w-full overflow-hidden select-none animate-modal-backdrop"
+            className="fixed inset-0 z-[99999] bg-[#7a0d13]/95 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 h-[100dvh] w-full overflow-hidden select-none animate-modal-backdrop"
             onClick={() => setActiveVideo(null)}
           >
             {/* Top Bar with Title and Accessible Close Button */}
@@ -165,18 +165,18 @@ export function StudioFilms({
               className="w-full max-w-4xl flex items-center justify-between px-2 py-2 mb-2 sm:mb-3 z-20 animate-modal-content"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center gap-2 text-xs font-montserrat text-white/80 truncate pr-2">
-                <span className="text-[#C0171E] font-bold uppercase tracking-wider shrink-0">
+              <div className="flex items-center gap-2 text-xs font-montserrat text-white/90 truncate pr-2">
+                <span className="text-[#FFD04A] font-bold uppercase tracking-wider shrink-0">
                   {activeVideo.category}
                 </span>
-                <span>•</span>
-                <span className="truncate text-white/90">{activeVideo.title}</span>
+                <span>/</span>
+                <span className="font-light truncate text-white">{activeVideo.title}</span>
               </div>
 
               <button
                 onClick={() => setActiveVideo(null)}
-                aria-label="Close Film Viewer"
-                className="flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-[#C0171E] text-white hover:text-white transition-all duration-200 rounded-full font-montserrat text-xs font-bold uppercase tracking-wider shrink-0 focus:outline-none hover:scale-105 active:scale-95 cursor-pointer"
+                aria-label="Close Video Modal"
+                className="flex items-center gap-2 text-xs font-montserrat font-bold uppercase tracking-wider text-white hover:text-[#FFD04A] bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors border border-white/20"
               >
                 <X className="w-4 h-4" />
                 <span>Close</span>
@@ -185,7 +185,7 @@ export function StudioFilms({
 
             {/* Interactive Player Frame */}
             <div
-              className="relative w-full max-w-4xl aspect-video bg-black border border-[#C0171E]/40 shadow-2xl overflow-hidden rounded-sm animate-modal-content"
+              className="relative w-full max-w-4xl aspect-video bg-[#7a0d13] border border-white/20 shadow-2xl overflow-hidden rounded-sm animate-modal-content"
               onClick={(e) => e.stopPropagation()}
             >
               <iframe
