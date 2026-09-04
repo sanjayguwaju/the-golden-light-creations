@@ -2,6 +2,7 @@
 
 import React from "react";
 import { defaultStudioSettings } from "@/utilities/studioDefaults";
+import { NumberTicker } from "@/components/magicui";
 
 interface StudioStatsProps {
   stats?: {
@@ -14,10 +15,10 @@ interface StudioStatsProps {
 
 export function StudioStats({ stats = defaultStudioSettings.stats }: StudioStatsProps) {
   const statItems = [
-    { num: String(stats.projectsCount || 500), suffix: "+", label: "Projects Completed" },
-    { num: String(stats.clientsCount || 300), suffix: "+", label: "Happy Clients" },
-    { num: String(parseInt(stats.socialReach || "20") || 20), suffix: "M+", label: "Social Media Reach" },
-    { num: String(stats.yearsExperience || 5), suffix: "+", label: "Years Experience" },
+    { value: stats.projectsCount || 500, suffix: "+", label: "Projects Completed" },
+    { value: stats.clientsCount || 300, suffix: "+", label: "Happy Clients" },
+    { value: parseInt(stats.socialReach || "20") || 20, suffix: "M+", label: "Social Media Reach" },
+    { value: stats.yearsExperience || 5, suffix: "+", label: "Years Experience" },
   ];
 
   return (
@@ -41,8 +42,8 @@ export function StudioStats({ stats = defaultStudioSettings.stats }: StudioStats
               key={idx}
               className="flex flex-col items-center justify-center p-4 sm:p-8 text-center bg-white/[0.01] border border-white/5 sm:border-none"
             >
-              <div className="font-bebas text-4xl sm:text-6xl lg:text-8xl text-[#F5B301] tracking-tight leading-none drop-shadow-[0_0_35px_rgba(245,179,1,0.25)]">
-                {s.num}
+              <div className="font-bebas text-4xl sm:text-6xl lg:text-8xl text-[#F5B301] tracking-tight leading-none drop-shadow-[0_0_35px_rgba(245,179,1,0.25)] flex items-center justify-center">
+                <NumberTicker value={s.value} delay={idx * 0.15} className="text-[#F5B301]" />
                 <span className="text-[#F5B301]/70 text-[0.65em] ml-0.5">{s.suffix}</span>
               </div>
               <div className="font-montserrat text-[9px] sm:text-xs font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white/60 mt-2 sm:mt-3">

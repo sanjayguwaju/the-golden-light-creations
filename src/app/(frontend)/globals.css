@@ -314,12 +314,42 @@
     }
   }
 
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0% 0%;
+    }
+  }
+
+  @keyframes gradient {
+    to {
+      background-position: var(--bg-size, 300%) 0;
+    }
+  }
+
   --animate-float: float 6s ease-in-out infinite;
   --animate-spin-slow: spin-slow 20s linear infinite;
   --animate-shimmer: shimmer 2.5s ease-in-out infinite;
   --animate-scale-slow: scaleSlow 25s ease-in-out infinite;
   --animate-modal-backdrop: modalBackdropIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-modal-content: modalContentIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-marquee-vertical: marquee-vertical var(--duration, 40s) linear infinite;
+  --animate-shine: shine var(--duration, 14s) infinite linear;
+  --animate-gradient: gradient 8s linear infinite;
   --color-page-bg: #F5F2ED;
 }
 
@@ -329,6 +359,15 @@
   }
   .animate-modal-content {
     animation: modalContentIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration, 40s) linear infinite;
+  }
+  .animate-shine {
+    animation: shine var(--duration, 14s) infinite linear;
+  }
+  .animate-gradient {
+    animation: gradient 8s linear infinite;
   }
 }
 

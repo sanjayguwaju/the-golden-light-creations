@@ -2,15 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
-import { ArrowDown } from "lucide-react";
-
-interface Particle {
-  id: number;
-  size: number;
-  left: number;
-  duration: number;
-  delay: number;
-}
+import { Particles, AnimatedGradientText } from "@/components/magicui";
 
 interface Streak {
   id: number;
@@ -21,20 +13,9 @@ interface Streak {
 }
 
 export function StudioHero() {
-  const [particles, setParticles] = useState<Particle[]>([]);
   const [streaks, setStreaks] = useState<Streak[]>([]);
 
   useEffect(() => {
-    // Generate ambient golden dust particles & falling light streaks on mount
-    const p: Particle[] = Array.from({ length: 22 }, (_, i) => ({
-      id: i,
-      size: 1.5 + Math.random() * 3,
-      left: Math.random() * 100,
-      duration: 7 + Math.random() * 9,
-      delay: Math.random() * 5,
-    }));
-    setParticles(p);
-
     const s: Streak[] = Array.from({ length: 8 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
@@ -68,8 +49,18 @@ export function StudioHero() {
         }}
       />
 
+      {/* Magic UI Interactive Golden Light Particles */}
+      <Particles
+        className="absolute inset-0 z-[2] pointer-events-none"
+        quantity={65}
+        ease={80}
+        color="#F5B301"
+        size={0.6}
+        staticity={40}
+      />
+
       {/* Falling Gold Streaks */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]" aria-hidden="true">
         {streaks.map((streak) => (
           <div
             key={streak.id}
@@ -85,31 +76,19 @@ export function StudioHero() {
         ))}
       </div>
 
-      {/* Floating Ambient Gold Particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute rounded-full bg-[#F5B301]"
-            style={{
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              left: `${particle.left}%`,
-              animation: `particleFloat ${particle.duration}s linear ${particle.delay}s infinite`,
-            }}
-          />
-        ))}
-      </div>
-
       {/* Hero Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center flex flex-col items-center">
-        {/* Eyebrow */}
-        <div className="flex items-center justify-center gap-2 sm:gap-5 mb-5 sm:mb-8">
-          <span className="w-6 sm:w-12 h-[1px] bg-[#F5B301]/70" />
-          <span className="font-montserrat text-[9px] sm:text-xs font-semibold tracking-[0.35em] sm:tracking-[0.45em] text-[#F5B301] uppercase">
+        {/* Magic UI Shimmering Eyebrow Badge */}
+        <div className="flex items-center justify-center gap-2 sm:gap-4 mb-5 sm:mb-8 px-4 py-1.5 border border-[#F5B301]/25 bg-[#0A0A0A]/60 backdrop-blur-md rounded-full shadow-lg shadow-[#F5B301]/5">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#F5B301] animate-pulse" />
+          <AnimatedGradientText
+            colorFrom="#F5B301"
+            colorTo="#FFD04A"
+            className="font-montserrat text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase"
+          >
             Nepal&apos;s Finest Creative Studio
-          </span>
-          <span className="w-6 sm:w-12 h-[1px] bg-[#F5B301]/70" />
+          </AnimatedGradientText>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#F5B301] animate-pulse" />
         </div>
 
         {/* Master Headline */}
@@ -174,22 +153,6 @@ export function StudioHero() {
           }
           100% {
             transform: translateY(100vh);
-            opacity: 0;
-          }
-        }
-        @keyframes particleFloat {
-          0% {
-            transform: translateY(100vh) scale(0);
-            opacity: 0;
-          }
-          20% {
-            opacity: 0.7;
-          }
-          80% {
-            opacity: 0.3;
-          }
-          100% {
-            transform: translateY(-50px) scale(1);
             opacity: 0;
           }
         }

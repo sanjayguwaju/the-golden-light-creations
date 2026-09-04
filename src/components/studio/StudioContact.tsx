@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Phone, MapPin, Mail, MessageCircle, Send, CheckCircle2 } from "lucide-react";
 import { defaultStudioSettings } from "@/utilities/studioDefaults";
+import { ShineBorder } from "@/components/magicui";
 
 interface StudioContactProps {
   contact?: {
@@ -154,8 +155,9 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
             </a>
           </div>
 
-          {/* Right Column: Interactive Booking Form */}
-          <div className="lg:col-span-7 bg-white p-5 sm:p-10 lg:p-12 border border-black/10 shadow-xl">
+          {/* Right Column: Interactive Booking Form with Magic UI ShineBorder */}
+          <div className="lg:col-span-7 bg-white p-5 sm:p-10 lg:p-12 border border-black/10 shadow-xl relative overflow-hidden">
+            <ShineBorder borderWidth={1.5} duration={14} shineColor={["#F5B301", "#FFD04A", "#C8920A"]} />
             {isSubmitted ? (
               <div className="py-12 flex flex-col items-center justify-center text-center animate-fadeIn">
                 <CheckCircle2 className="w-16 h-16 text-[#25D366] mb-4" />

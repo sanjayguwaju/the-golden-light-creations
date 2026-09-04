@@ -16,6 +16,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { defaultServices, type FallbackServiceItem } from "@/utilities/studioDefaults";
+import { MagicCard, BorderBeam } from "@/components/magicui";
 
 interface StudioServicesProps {
   items?: FallbackServiceItem[];
@@ -88,37 +89,64 @@ export function StudioServices({
           </div>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid with MagicCard Spotlight & BorderBeam on Flagship */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedItems.map((srv) => (
-            <div
-              key={srv.id || srv.num}
-              className="group relative bg-white/[0.02] border border-white/[0.08] hover:border-[#F5B301]/40 p-6 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 hover:bg-[#F5B301]/[0.03] overflow-hidden"
-            >
-              {/* Bottom expanding gold indicator */}
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#F5B301] transition-all duration-500 ease-out group-hover:w-full" />
+          {displayedItems.map((srv, index) => {
+            const isFeatured = index === 0;
+            return (
+              <MagicCard
+                key={srv.id || srv.num}
+                gradientColor="rgba(245, 179, 1, 0.14)"
+                gradientSize={280}
+                className={`group relative bg-white/[0.02] p-6 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 ${
+                  isFeatured
+                    ? "border-[#F5B301]/50 shadow-[0_0_30px_rgba(245,179,1,0.12)]"
+                    : "border-white/[0.08] hover:border-[#F5B301]/40"
+                }`}
+              >
+                {/* BorderBeam for Flagship Signature Service */}
+                {isFeatured && (
+                  <BorderBeam
+                    size={100}
+                    duration={8}
+                    colorFrom="#F5B301"
+                    colorTo="#FFD04A"
+                    borderWidth={1.5}
+                  />
+                )}
 
-              {/* Icon Container */}
-              <div className="w-12 h-12 sm:w-14 sm:h-14 border border-[#F5B301]/30 group-hover:border-[#F5B301] group-hover:bg-[#F5B301]/10 flex items-center justify-center mb-5 sm:mb-6 transition-all duration-300">
-                {resolveServiceIcon(srv.icon)}
-              </div>
+                {/* Bottom expanding gold indicator */}
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#F5B301] transition-all duration-500 ease-out group-hover:w-full" />
 
-              {/* Number */}
-              <div className="font-bebas text-sm tracking-[0.25em] text-[#F5B301]/60 mb-2">
-                {srv.num}
-              </div>
+                {/* Featured Badge */}
+                {isFeatured && (
+                  <span className="inline-block font-montserrat text-[9px] font-bold tracking-[0.25em] uppercase text-[#0A0A0A] bg-[#F5B301] px-2.5 py-0.5 mb-4 shadow-sm">
+                    Signature
+                  </span>
+                )}
 
-              {/* Name */}
-              <h3 className="font-montserrat text-base sm:text-lg font-bold uppercase tracking-wider text-white mb-2 sm:mb-3 group-hover:text-[#F5B301] transition-colors">
-                {srv.name}
-              </h3>
+                {/* Icon Container */}
+                <div className="w-12 h-12 sm:w-14 sm:h-14 border border-[#F5B301]/30 group-hover:border-[#F5B301] group-hover:bg-[#F5B301]/10 flex items-center justify-center mb-5 sm:mb-6 transition-all duration-300">
+                  {resolveServiceIcon(srv.icon)}
+                </div>
 
-              {/* Description */}
-              <p className="font-poppins text-xs sm:text-sm text-white/60 leading-relaxed font-light">
-                {srv.desc}
-              </p>
-            </div>
-          ))}
+                {/* Number */}
+                <div className="font-bebas text-sm tracking-[0.25em] text-[#F5B301]/60 mb-2">
+                  {srv.num}
+                </div>
+
+                {/* Name */}
+                <h3 className="font-montserrat text-base sm:text-lg font-bold uppercase tracking-wider text-white mb-2 sm:mb-3 group-hover:text-[#F5B301] transition-colors">
+                  {srv.name}
+                </h3>
+
+                {/* Description */}
+                <p className="font-poppins text-xs sm:text-sm text-white/60 leading-relaxed font-light">
+                  {srv.desc}
+                </p>
+              </MagicCard>
+            );
+          })}
         </div>
 
         {/* Homepage Preview Action */}
