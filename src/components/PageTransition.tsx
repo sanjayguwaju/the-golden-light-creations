@@ -6,48 +6,29 @@ import gsap from "gsap";
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const wipeRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // We do an entrance animation when this mounts (which happens on every route change in template.tsx)
-    const tl = gsap.timeline();
+    if (!containerRef.current) return;
 
-    // 1. Set initial states
-    gsap.set(containerRef.current, { autoAlpha: 0, y: 40 });
-    gsap.set(wipeRef.current, { scaleY: 1, transformOrigin: "top" });
-
-    // 2. Animate the "paint wipe" lifting up
-    tl.to(wipeRef.current, {
-      scaleY: 0,
-      duration: 0.8,
-      ease: "power4.inOut",
-    });
-
-    // 3. Fade and slide in the actual page content
-    tl.to(
+    // Smooth entrance fade & subtle slide; clearProps: "all" completely removes
+    // any lingering CSS transforms so descendant fixed elements are never trapped
+    gsap.fromTo(
       containerRef.current,
+      { autoAlpha: 0, y: 16 },
       {
         autoAlpha: 1,
         y: 0,
-        duration: 0.8,
-        ease: "power3.out",
-      },
-      "-=0.4" // overlap slightly with the wipe
+        duration: 0.35,
+        ease: "power2.out",
+        clearProps: "all",
+      }
     );
   }, []);
 
   return (
-    <>
-      {/* The transition curtain */}
-      <div 
-        ref={wipeRef} 
-        className="fixed inset-0 bg-[#F5B301] z-[100] pointer-events-none"
-      />
-      
-      {/* The actual page content */}
-      <div ref={containerRef} className="invisible">
-        {children}
-      </div>
-    </>
+    <div ref={containerRef} className="invisible">
+      {children}
+    </div>
   );
 }
+

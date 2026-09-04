@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "@/i18n/routing";
 import { Plus, X, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { defaultPortfolio, type FallbackPortfolioItem } from "@/utilities/studioDefaults";
@@ -16,8 +17,13 @@ export function StudioPortfolio({
   items = defaultPortfolio,
   isHomepagePreview = false,
 }: StudioPortfolioProps) {
+  const [mounted, setMounted] = useState(false);
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>("all");
   const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const filterTabs: { key: CategoryFilter; label: string }[] = [
     { key: "all", label: "All" },
@@ -50,10 +56,17 @@ export function StudioPortfolio({
     );
   }, [activeLightboxIndex, displayedItems.length]);
 
-  // Lock background scroll & handle keyboard navigation when lightbox is open
+  // Lock background scroll without layout shift & handle keyboard navigation when lightbox is open
   useEffect(() => {
     if (activeLightboxIndex !== null) {
+      const originalOverflow = document.body.style.overflow;
+      const originalPaddingRight = document.body.style.paddingRight;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
       document.body.style.overflow = "hidden";
+
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === "Escape") setActiveLightboxIndex(null);
         if (e.key === "ArrowLeft") handlePrev();
@@ -61,11 +74,10 @@ export function StudioPortfolio({
       };
       window.addEventListener("keydown", handleKeyDown);
       return () => {
-        document.body.style.overflow = "";
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
         window.removeEventListener("keydown", handleKeyDown);
       };
-    } else {
-      document.body.style.overflow = "";
     }
   }, [activeLightboxIndex, handlePrev, handleNext]);
 
@@ -180,83 +192,87 @@ export function StudioPortfolio({
         )}
       </div>
 
-      {/* Mobile-Optimized Lightbox Modal (Centered with 100dvh) */}
-      {activeLightbox && (
-        <div
-          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 h-[100dvh] w-full overflow-hidden select-none animate-fadeIn"
-          onClick={() => setActiveLightboxIndex(null)}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          {/* Top Bar: Title / Counter & Close Button */}
+      {/* Mobile-Optimized Lightbox Modal (Centered with 100dvh & Portaled to Body) */}
+      {mounted &&
+        activeLightbox &&
+        createPortal(
           <div
-            className="w-full max-w-5xl flex items-center justify-between px-3 py-2 mb-2 sm:mb-4 z-20"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 h-[100dvh] w-full overflow-hidden select-none animate-modal-backdrop"
+            onClick={() => setActiveLightboxIndex(null)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
-            <div className="flex items-center gap-2 text-xs font-montserrat text-white/70">
-              <span className="text-[#F5B301] font-bold uppercase tracking-wider">
-                {activeLightbox.categoryLabel}
-              </span>
-              <span>•</span>
-              <span className="text-white/50">
-                {(activeLightboxIndex ?? 0) + 1} / {displayedItems.length}
-              </span>
+            {/* Top Bar: Title / Counter & Close Button */}
+            <div
+              className="w-full max-w-5xl flex items-center justify-between px-3 py-2 mb-2 sm:mb-4 z-20 animate-modal-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center gap-2 text-xs font-montserrat text-white/70">
+                <span className="text-[#F5B301] font-bold uppercase tracking-wider">
+                  {activeLightbox.categoryLabel}
+                </span>
+                <span>•</span>
+                <span className="text-white/50">
+                  {(activeLightboxIndex ?? 0) + 1} / {displayedItems.length}
+                </span>
+              </div>
+
+              <button
+                onClick={() => setActiveLightboxIndex(null)}
+                aria-label="Close Lightbox"
+                className="flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-[#F5B301] text-white hover:text-black transition-all duration-200 rounded-full font-montserrat text-xs font-bold uppercase tracking-wider focus:outline-none hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+                <span className="hidden sm:inline">Close</span>
+              </button>
             </div>
 
-            <button
-              onClick={() => setActiveLightboxIndex(null)}
-              aria-label="Close Lightbox"
-              className="flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-[#F5B301] text-white hover:text-black transition-colors rounded-full font-montserrat text-xs font-bold uppercase tracking-wider focus:outline-none"
+            {/* Centered Image Container with Safe dvh bounds */}
+            <div
+              className="relative max-w-5xl w-full flex flex-col items-center justify-center flex-1 min-h-0 animate-modal-content"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-4 h-4" />
-              <span className="hidden sm:inline">Close</span>
-            </button>
-          </div>
+              {/* Prev Button */}
+              <button
+                onClick={handlePrev}
+                aria-label="Previous Photo"
+                className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/70 hover:bg-[#F5B301] text-white hover:text-black border border-white/20 hover:border-[#F5B301] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
 
-          {/* Centered Image Container with Safe dvh bounds */}
-          <div
-            className="relative max-w-5xl w-full flex flex-col items-center justify-center flex-1 min-h-0"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Prev Button */}
-            <button
-              onClick={handlePrev}
-              aria-label="Previous Photo"
-              className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/60 hover:bg-[#F5B301] text-white hover:text-black border border-white/20 hover:border-[#F5B301] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
+              {/* Photo */}
+              <div className="relative flex items-center justify-center w-full h-full max-h-[62dvh] sm:max-h-[72dvh]">
+                <img
+                  key={activeLightbox.id}
+                  src={activeLightbox.src}
+                  alt={activeLightbox.title}
+                  className="max-w-[92vw] sm:max-w-4xl max-h-[60dvh] sm:max-h-[72dvh] w-auto h-auto object-contain border border-[#F5B301]/30 shadow-2xl rounded-sm transition-all duration-200"
+                />
+              </div>
 
-            {/* Photo */}
-            <div className="relative flex items-center justify-center w-full h-full max-h-[62dvh] sm:max-h-[72dvh]">
-              <img
-                src={activeLightbox.src}
-                alt={activeLightbox.title}
-                className="max-w-[92vw] sm:max-w-4xl max-h-[60dvh] sm:max-h-[72dvh] w-auto h-auto object-contain border border-[#F5B301]/30 shadow-2xl rounded-sm"
-              />
+              {/* Next Button */}
+              <button
+                onClick={handleNext}
+                aria-label="Next Photo"
+                className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/70 hover:bg-[#F5B301] text-white hover:text-black border border-white/20 hover:border-[#F5B301] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+
+              {/* Photo Caption (Never pushed off screen) */}
+              <div className="text-center mt-3 sm:mt-4 px-4 max-w-lg shrink-0">
+                <h4 className="font-bebas text-xl sm:text-3xl text-white tracking-[0.05em] uppercase line-clamp-1">
+                  {activeLightbox.title}
+                </h4>
+                <p className="font-poppins text-xs text-[#F5B301] mt-0.5">
+                  {activeLightbox.location}, Nepal
+                </p>
+              </div>
             </div>
-
-            {/* Next Button */}
-            <button
-              onClick={handleNext}
-              aria-label="Next Photo"
-              className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/60 hover:bg-[#F5B301] text-white hover:text-black border border-white/20 hover:border-[#F5B301] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-
-            {/* Photo Caption (Never pushed off screen) */}
-            <div className="text-center mt-3 sm:mt-4 px-4 max-w-lg shrink-0">
-              <h4 className="font-bebas text-xl sm:text-3xl text-white tracking-[0.05em] uppercase line-clamp-1">
-                {activeLightbox.title}
-              </h4>
-              <p className="font-poppins text-xs text-[#F5B301] mt-0.5">
-                {activeLightbox.location}, Nepal
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </section>
   );
 }

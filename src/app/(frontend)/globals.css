@@ -298,11 +298,38 @@
     50% { transform: scale(1.06); }
   }
 
+  @keyframes modalBackdropIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes modalContentIn {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
   --animate-float: float 6s ease-in-out infinite;
   --animate-spin-slow: spin-slow 20s linear infinite;
   --animate-shimmer: shimmer 2.5s ease-in-out infinite;
   --animate-scale-slow: scaleSlow 25s ease-in-out infinite;
+  --animate-modal-backdrop: modalBackdropIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-modal-content: modalContentIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --color-page-bg: #F5F2ED;
+}
+
+@layer utilities {
+  .animate-modal-backdrop {
+    animation: modalBackdropIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-modal-content {
+    animation: modalContentIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
 }
 
 @layer base {

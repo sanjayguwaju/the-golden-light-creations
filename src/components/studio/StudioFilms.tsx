@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "@/i18n/routing";
 import { Play, X, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { defaultFilms, type FallbackFilmItem } from "@/utilities/studioDefaults";
@@ -14,8 +15,13 @@ export function StudioFilms({
   items = defaultFilms,
   isHomepagePreview = false,
 }: StudioFilmsProps) {
+  const [mounted, setMounted] = useState(false);
   const [activeVideo, setActiveVideo] = useState<FallbackFilmItem | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollSlider = (direction: "left" | "right") => {
     if (sliderRef.current) {
@@ -24,20 +30,26 @@ export function StudioFilms({
     }
   };
 
-  // Lock background scroll and listen for Escape key when video modal is open
+  // Lock background scroll without layout shift and listen for Escape key when video modal is open
   useEffect(() => {
     if (activeVideo) {
+      const originalOverflow = document.body.style.overflow;
+      const originalPaddingRight = document.body.style.paddingRight;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
       document.body.style.overflow = "hidden";
+
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === "Escape") setActiveVideo(null);
       };
       window.addEventListener("keydown", handleKeyDown);
       return () => {
-        document.body.style.overflow = "";
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
         window.removeEventListener("keydown", handleKeyDown);
       };
-    } else {
-      document.body.style.overflow = "";
     }
   }, [activeVideo]);
 
@@ -140,50 +152,53 @@ export function StudioFilms({
         ))}
       </div>
 
-      {/* Video Player Modal (Strictly Centered in 100dvh with Dedicated Safe Controls) */}
-      {activeVideo && (
-        <div
-          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 h-[100dvh] w-full overflow-hidden animate-fadeIn"
-          onClick={() => setActiveVideo(null)}
-        >
-          {/* Top Bar with Title and Accessible Close Button */}
+      {/* Video Player Modal (Strictly Centered in 100dvh & Portaled to Body) */}
+      {mounted &&
+        activeVideo &&
+        createPortal(
           <div
-            className="w-full max-w-4xl flex items-center justify-between px-2 py-2 mb-2 sm:mb-3 z-20"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 h-[100dvh] w-full overflow-hidden select-none animate-modal-backdrop"
+            onClick={() => setActiveVideo(null)}
           >
-            <div className="flex items-center gap-2 text-xs font-montserrat text-white/80 truncate pr-2">
-              <span className="text-[#F5B301] font-bold uppercase tracking-wider shrink-0">
-                {activeVideo.category}
-              </span>
-              <span>•</span>
-              <span className="truncate text-white/90">{activeVideo.title}</span>
+            {/* Top Bar with Title and Accessible Close Button */}
+            <div
+              className="w-full max-w-4xl flex items-center justify-between px-2 py-2 mb-2 sm:mb-3 z-20 animate-modal-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center gap-2 text-xs font-montserrat text-white/80 truncate pr-2">
+                <span className="text-[#F5B301] font-bold uppercase tracking-wider shrink-0">
+                  {activeVideo.category}
+                </span>
+                <span>•</span>
+                <span className="truncate text-white/90">{activeVideo.title}</span>
+              </div>
+
+              <button
+                onClick={() => setActiveVideo(null)}
+                aria-label="Close Film Viewer"
+                className="flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-[#F5B301] text-white hover:text-black transition-all duration-200 rounded-full font-montserrat text-xs font-bold uppercase tracking-wider shrink-0 focus:outline-none hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+                <span>Close</span>
+              </button>
             </div>
 
-            <button
-              onClick={() => setActiveVideo(null)}
-              aria-label="Close Film Viewer"
-              className="flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-[#F5B301] text-white hover:text-black transition-colors rounded-full font-montserrat text-xs font-bold uppercase tracking-wider shrink-0 focus:outline-none"
+            {/* Interactive Player Frame */}
+            <div
+              className="relative w-full max-w-4xl aspect-video bg-black border border-[#F5B301]/40 shadow-2xl overflow-hidden rounded-sm animate-modal-content"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-4 h-4" />
-              <span>Close</span>
-            </button>
-          </div>
-
-          {/* Interactive Player Frame */}
-          <div
-            className="relative w-full max-w-4xl aspect-video bg-black border border-[#F5B301]/40 shadow-2xl overflow-hidden rounded-sm"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <iframe
-              src={activeVideo.videoUrl}
-              title={activeVideo.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full border-none"
-            />
-          </div>
-        </div>
-      )}
+              <iframe
+                src={activeVideo.videoUrl}
+                title={activeVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full border-none"
+              />
+            </div>
+          </div>,
+          document.body
+        )}
     </section>
   );
 }
