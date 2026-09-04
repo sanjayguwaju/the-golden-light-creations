@@ -1,16 +1,45 @@
 import type { Metadata } from "next";
-import { Link } from "@/i18n/routing";
-import { ChevronRight, ArrowUpRight } from "lucide-react";
+import { TypedLocale } from "payload";
+import { RenderBlocks } from "@/blocks/RenderBlocks";
+import { RenderHero } from "@/heros/RenderHero";
+import { queryPageBySlug } from "@/utilities/queryPageBySlug";
+import { generateMeta } from "@/utilities/generateMeta";
 import { StudioPortfolio } from "@/components/studio/StudioPortfolio";
 import { getStudioPortfolio } from "@/utilities/getStudioData";
+import { Link } from "@/i18n/routing";
+import { ChevronRight, ArrowUpRight } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Visual Portfolio | The Golden Light Creations",
-  description:
-    "Explore our complete gallery of luxury weddings, grand events, fashion editorials, and live concert photography across Nepal.",
+type Args = {
+  params: Promise<{
+    locale: TypedLocale;
+  }>;
 };
 
-export default async function PortfolioPage() {
+export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
+  const { locale } = await paramsPromise;
+  const page = await queryPageBySlug({ slug: "portfolio", locale });
+  if (page) return generateMeta({ doc: page });
+  return {
+    title: "Visual Portfolio | The Golden Light Creations",
+    description:
+      "Explore our complete gallery of luxury weddings, grand events, fashion editorials, and live concert photography across Nepal.",
+  };
+}
+
+export default async function PortfolioPage({ params: paramsPromise }: Args) {
+  const { locale } = await paramsPromise;
+  const page = await queryPageBySlug({ slug: "portfolio", locale });
+
+  if (page?.layout && page.layout.length > 0) {
+    return (
+      <div className="bg-white text-[#0A0A0A] min-h-screen">
+        {page.hero && <RenderHero {...page.hero} />}
+        <RenderBlocks blocks={page.layout} />
+      </div>
+    );
+  }
+
+  // Fallback if CMS page is not yet populated
   const portfolio = await getStudioPortfolio();
 
   return (

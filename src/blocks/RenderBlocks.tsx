@@ -24,17 +24,23 @@ import { StudioMarqueeBlockComponent } from "@/blocks/StudioMarquee/Component";
 import { StudioHeroBlockComponent } from "@/blocks/StudioHero/Component";
 import { StudioContactBlockComponent } from "@/blocks/StudioContact/Component";
 import { StudioTestimonialsBlockComponent } from "@/blocks/StudioTestimonials/Component";
+import { StudioPageHeaderBlockComponent } from "@/blocks/StudioPageHeader/Component";
+import { StudioBannerBlockComponent } from "@/blocks/StudioBanner/Component";
+import { StudioPillarsBlockComponent } from "@/blocks/StudioPillars/Component";
 
 const blockComponents = {
   studioHero: StudioHeroBlockComponent,
+  studioPageHeader: StudioPageHeaderBlockComponent,
   studioMarquee: StudioMarqueeBlockComponent,
   studioPortfolio: StudioPortfolioBlockComponent,
   studioFilms: StudioFilmsBlockComponent,
   studioServices: StudioServicesBlockComponent,
   studioStory: StudioStoryBlockComponent,
   studioStats: StudioStatsBlockComponent,
+  studioPillars: StudioPillarsBlockComponent,
   studioTestimonials: StudioTestimonialsBlockComponent,
   studioSocial: StudioSocialBlockComponent,
+  studioBanner: StudioBannerBlockComponent,
   studioContact: StudioContactBlockComponent,
   archive: ArchiveBlock,
   brandMarquee: BrandMarqueeBlock,

@@ -590,14 +590,52 @@ export interface Page {
   layout?:
     | (
         | StudioHeroBlock
+        | {
+            /**
+             * Text shown after 'Home >' (e.g. Portfolio)
+             */
+            breadcrumb?: string | null;
+            eyebrow?: string | null;
+            title?: string | null;
+            highlight?: string | null;
+            description?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'studioPageHeader';
+          }
         | StudioMarqueeBlock
         | StudioPortfolioBlock
         | StudioFilmsBlock
         | StudioServicesBlock
         | StudioStoryBlock
         | StudioStatsBlock
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            highlight?: string | null;
+            items?:
+              | {
+                  title: string;
+                  desc: string;
+                  iconType?: ('sparkles' | 'heart' | 'video' | 'shield') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'studioPillars';
+          }
         | StudioTestimonialsBlock
         | StudioSocialBlock
+        | {
+            eyebrow?: string | null;
+            heading?: string | null;
+            buttonText?: string | null;
+            buttonLink?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'studioBanner';
+          }
         | StudioContactBlock
         | CallToActionBlock
         | ContentBlock
@@ -2105,14 +2143,52 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         studioHero?: T | StudioHeroBlockSelect<T>;
+        studioPageHeader?:
+          | T
+          | {
+              breadcrumb?: T;
+              eyebrow?: T;
+              title?: T;
+              highlight?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
         studioMarquee?: T | StudioMarqueeBlockSelect<T>;
         studioPortfolio?: T | StudioPortfolioBlockSelect<T>;
         studioFilms?: T | StudioFilmsBlockSelect<T>;
         studioServices?: T | StudioServicesBlockSelect<T>;
         studioStory?: T | StudioStoryBlockSelect<T>;
         studioStats?: T | StudioStatsBlockSelect<T>;
+        studioPillars?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              highlight?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    desc?: T;
+                    iconType?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
         studioTestimonials?: T | StudioTestimonialsBlockSelect<T>;
         studioSocial?: T | StudioSocialBlockSelect<T>;
+        studioBanner?:
+          | T
+          | {
+              eyebrow?: T;
+              heading?: T;
+              buttonText?: T;
+              buttonLink?: T;
+              id?: T;
+              blockName?: T;
+            };
         studioContact?: T | StudioContactBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;

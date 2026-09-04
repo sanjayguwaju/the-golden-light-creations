@@ -1,17 +1,46 @@
 import type { Metadata } from "next";
-import { Link } from "@/i18n/routing";
-import { ChevronRight, ArrowUpRight, Sparkles, Heart, Shield, Camera, Video } from "lucide-react";
+import { TypedLocale } from "payload";
+import { RenderBlocks } from "@/blocks/RenderBlocks";
+import { RenderHero } from "@/heros/RenderHero";
+import { queryPageBySlug } from "@/utilities/queryPageBySlug";
+import { generateMeta } from "@/utilities/generateMeta";
 import { StudioStory } from "@/components/studio/StudioStory";
 import { StudioStats } from "@/components/studio/StudioStats";
 import { getStudioSettings } from "@/utilities/getStudioData";
+import { Link } from "@/i18n/routing";
+import { ChevronRight, ArrowUpRight, Sparkles, Heart, Shield, Video } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "About Our Studio | The Golden Light Creations",
-  description:
-    "Learn about The Golden Light Creations — Nepal's premier luxury photography and cinematic production studio. Crafting timeless visual stories since 2019.",
+type Args = {
+  params: Promise<{
+    locale: TypedLocale;
+  }>;
 };
 
-export default async function AboutPage() {
+export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
+  const { locale } = await paramsPromise;
+  const page = await queryPageBySlug({ slug: "about", locale });
+  if (page) return generateMeta({ doc: page });
+  return {
+    title: "About Our Studio | The Golden Light Creations",
+    description:
+      "Learn about The Golden Light Creations — Nepal's premier luxury photography and cinematic production studio. Crafting timeless visual stories since 2019.",
+  };
+}
+
+export default async function AboutPage({ params: paramsPromise }: Args) {
+  const { locale } = await paramsPromise;
+  const page = await queryPageBySlug({ slug: "about", locale });
+
+  if (page?.layout && page.layout.length > 0) {
+    return (
+      <div className="bg-white text-[#0A0A0A] min-h-screen">
+        {page.hero && <RenderHero {...page.hero} />}
+        <RenderBlocks blocks={page.layout} />
+      </div>
+    );
+  }
+
+  // Fallback if CMS page is not yet populated
   const settings = await getStudioSettings();
 
   const values = [

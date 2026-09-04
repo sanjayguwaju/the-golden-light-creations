@@ -10,6 +10,7 @@ import { TypedLocale } from "payload";
 import { RenderBlocks } from "@/blocks/RenderBlocks";
 import { RenderHero } from "@/heros/RenderHero";
 import { generateMeta } from "@/utilities/generateMeta";
+import { queryPageBySlug } from "@/utilities/queryPageBySlug";
 import PageClient from "./page.client";
 import { LivePreviewListener } from "@/components/LivePreviewListener";
 
@@ -86,25 +87,3 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 
   return generateMeta({ doc: page });
 }
-
-const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale: TypedLocale }) => {
-  const { isEnabled: draft } = await draftMode();
-
-  const payload = await getPayload({ config: configPromise });
-
-  const result = await payload.find({
-    collection: "pages",
-    draft,
-    limit: 1,
-    pagination: false,
-    overrideAccess: draft,
-    locale,
-    where: {
-      slug: {
-        equals: slug,
-      },
-    },
-  });
-
-  return result.docs?.[0] || null;
-});

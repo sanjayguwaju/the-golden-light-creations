@@ -1,16 +1,45 @@
 import type { Metadata } from "next";
-import { Link } from "@/i18n/routing";
-import { ChevronRight } from "lucide-react";
+import { TypedLocale } from "payload";
+import { RenderBlocks } from "@/blocks/RenderBlocks";
+import { RenderHero } from "@/heros/RenderHero";
+import { queryPageBySlug } from "@/utilities/queryPageBySlug";
+import { generateMeta } from "@/utilities/generateMeta";
 import { StudioContact } from "@/components/studio/StudioContact";
 import { getStudioSettings } from "@/utilities/getStudioData";
+import { Link } from "@/i18n/routing";
+import { ChevronRight } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Book a Shoot & Contact | The Golden Light Creations",
-  description:
-    "Contact The Golden Light Creations in Kathmandu, Nepal. Book wedding photography, cinematic films, drone coverage, and commercial branding.",
+type Args = {
+  params: Promise<{
+    locale: TypedLocale;
+  }>;
 };
 
-export default async function ContactPage() {
+export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
+  const { locale } = await paramsPromise;
+  const page = await queryPageBySlug({ slug: "contact", locale });
+  if (page) return generateMeta({ doc: page });
+  return {
+    title: "Book a Shoot & Contact | The Golden Light Creations",
+    description:
+      "Contact The Golden Light Creations in Kathmandu, Nepal. Book wedding photography, cinematic films, drone coverage, and commercial branding.",
+  };
+}
+
+export default async function ContactPage({ params: paramsPromise }: Args) {
+  const { locale } = await paramsPromise;
+  const page = await queryPageBySlug({ slug: "contact", locale });
+
+  if (page?.layout && page.layout.length > 0) {
+    return (
+      <div className="bg-white text-[#0A0A0A] min-h-screen">
+        {page.hero && <RenderHero {...page.hero} />}
+        <RenderBlocks blocks={page.layout} />
+      </div>
+    );
+  }
+
+  // Fallback if CMS page is not yet populated
   const settings = await getStudioSettings();
 
   return (

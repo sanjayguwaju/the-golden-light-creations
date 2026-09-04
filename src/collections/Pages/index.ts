@@ -23,6 +23,9 @@ import { StudioMarqueeBlock } from "@/blocks/StudioMarquee/config";
 import { StudioHeroBlock } from "@/blocks/StudioHero/config";
 import { StudioContactBlock } from "@/blocks/StudioContact/config";
 import { StudioTestimonialsBlock } from "@/blocks/StudioTestimonials/config";
+import { StudioPageHeaderBlock } from "@/blocks/StudioPageHeader/config";
+import { StudioBannerBlock } from "@/blocks/StudioBanner/config";
+import { StudioPillarsBlock } from "@/blocks/StudioPillars/config";
 import { slugField } from "payload";
 import { populatePublishedAt } from "../../hooks/populatePublishedAt";
 import { generatePreviewPath } from "../../utilities/generatePreviewPath";
@@ -87,14 +90,17 @@ export const Pages: CollectionConfig<"pages"> = {
               type: "blocks",
               blocks: [
                 StudioHeroBlock,
+                StudioPageHeaderBlock,
                 StudioMarqueeBlock,
                 StudioPortfolioBlock,
                 StudioFilmsBlock,
                 StudioServicesBlock,
                 StudioStoryBlock,
                 StudioStatsBlock,
+                StudioPillarsBlock,
                 StudioTestimonialsBlock,
                 StudioSocialBlock,
+                StudioBannerBlock,
                 StudioContactBlock,
                 CallToAction,
                 Content,

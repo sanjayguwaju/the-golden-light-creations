@@ -1,16 +1,45 @@
 import type { Metadata } from "next";
-import { Link } from "@/i18n/routing";
-import { ChevronRight, ArrowUpRight } from "lucide-react";
+import { TypedLocale } from "payload";
+import { RenderBlocks } from "@/blocks/RenderBlocks";
+import { RenderHero } from "@/heros/RenderHero";
+import { queryPageBySlug } from "@/utilities/queryPageBySlug";
+import { generateMeta } from "@/utilities/generateMeta";
 import { StudioFilms } from "@/components/studio/StudioFilms";
 import { getStudioFilms } from "@/utilities/getStudioData";
+import { Link } from "@/i18n/routing";
+import { ChevronRight, ArrowUpRight } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Cinematic Films | The Golden Light Creations",
-  description:
-    "Watch luxury wedding films, high-energy concert reels, music videos, and commercial advertisements produced in Nepal with Hollywood precision.",
+type Args = {
+  params: Promise<{
+    locale: TypedLocale;
+  }>;
 };
 
-export default async function FilmsPage() {
+export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
+  const { locale } = await paramsPromise;
+  const page = await queryPageBySlug({ slug: "films", locale });
+  if (page) return generateMeta({ doc: page });
+  return {
+    title: "Cinematic Films | The Golden Light Creations",
+    description:
+      "Watch luxury wedding films, high-energy concert reels, music videos, and commercial advertisements produced in Nepal with Hollywood precision.",
+  };
+}
+
+export default async function FilmsPage({ params: paramsPromise }: Args) {
+  const { locale } = await paramsPromise;
+  const page = await queryPageBySlug({ slug: "films", locale });
+
+  if (page?.layout && page.layout.length > 0) {
+    return (
+      <div className="bg-white text-[#0A0A0A] min-h-screen">
+        {page.hero && <RenderHero {...page.hero} />}
+        <RenderBlocks blocks={page.layout} />
+      </div>
+    );
+  }
+
+  // Fallback if CMS page is not yet populated
   const films = await getStudioFilms();
 
   return (
