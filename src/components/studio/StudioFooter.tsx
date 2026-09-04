@@ -29,7 +29,7 @@ export function StudioFooter() {
           {/* Brand Bio */}
           <div className="lg:col-span-4">
             <Link href="/" className="flex flex-col leading-none mb-6">
-              <span className="font-bebas text-3xl tracking-[0.15em] text-[#F5B301]">
+              <span className="font-bebas text-3xl tracking-[0.15em] text-[#C0171E]">
                 THE GOLDEN
               </span>
               <span className="font-montserrat text-xs font-bold tracking-[0.35em] text-white">
@@ -48,7 +48,7 @@ export function StudioFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-10 h-10 border border-white/15 hover:border-[#F5B301] text-white hover:text-[#F5B301] flex items-center justify-center transition-colors bg-white/5"
+                className="w-10 h-10 border border-white/15 hover:border-[#C0171E] text-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/5"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -57,7 +57,7 @@ export function StudioFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="w-10 h-10 border border-white/15 hover:border-[#F5B301] text-white hover:text-[#F5B301] flex items-center justify-center transition-colors bg-white/5"
+                className="w-10 h-10 border border-white/15 hover:border-[#C0171E] text-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/5"
               >
                 <Youtube className="w-4 h-4" />
               </a>
@@ -66,7 +66,7 @@ export function StudioFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
-                className="w-10 h-10 border border-white/15 hover:border-[#F5B301] text-white hover:text-[#F5B301] flex items-center justify-center transition-colors bg-white/5 font-bebas text-sm"
+                className="w-10 h-10 border border-white/15 hover:border-[#C0171E] text-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/5 font-bebas text-sm"
               >
                 🎵
               </a>
@@ -75,7 +75,7 @@ export function StudioFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="w-10 h-10 border border-white/15 hover:border-[#F5B301] text-white hover:text-[#F5B301] flex items-center justify-center transition-colors bg-white/5"
+                className="w-10 h-10 border border-white/15 hover:border-[#C0171E] text-white hover:text-[#C0171E] flex items-center justify-center transition-colors bg-white/5"
               >
                 <Facebook className="w-4 h-4" />
               </a>
@@ -84,7 +84,7 @@ export function StudioFooter() {
 
           {/* Column 2: Services Links */}
           <div className="lg:col-span-3">
-            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#F5B301] mb-6">
+            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#C0171E] mb-6">
               Services
             </h4>
             <ul className="flex flex-col gap-3">
@@ -92,9 +92,9 @@ export function StudioFooter() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="font-poppins text-xs sm:text-sm text-white/60 hover:text-[#F5B301] transition-colors flex items-center gap-2 group"
+                    className="font-poppins text-xs sm:text-sm text-white/60 hover:text-[#C0171E] transition-colors flex items-center gap-2 group"
                   >
-                    <span className="text-[#F5B301]/40 group-hover:text-[#F5B301] transition-colors">
+                    <span className="text-[#C0171E]/40 group-hover:text-[#C0171E] transition-colors">
                       —
                     </span>
                     <span>{item.label}</span>
@@ -106,7 +106,7 @@ export function StudioFooter() {
 
           {/* Column 3: Company Links */}
           <div className="lg:col-span-2">
-            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#F5B301] mb-6">
+            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#C0171E] mb-6">
               Company
             </h4>
             <ul className="flex flex-col gap-3">
@@ -114,9 +114,9 @@ export function StudioFooter() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="font-poppins text-xs sm:text-sm text-white/60 hover:text-[#F5B301] transition-colors flex items-center gap-2 group"
+                    className="font-poppins text-xs sm:text-sm text-white/60 hover:text-[#C0171E] transition-colors flex items-center gap-2 group"
                   >
-                    <span className="text-[#F5B301]/40 group-hover:text-[#F5B301] transition-colors">
+                    <span className="text-[#C0171E]/40 group-hover:text-[#C0171E] transition-colors">
                       —
                     </span>
                     <span>{item.label}</span>
@@ -128,14 +128,14 @@ export function StudioFooter() {
 
           {/* Column 4: Contact Links */}
           <div className="lg:col-span-3">
-            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#F5B301] mb-6">
+            <h4 className="font-montserrat text-xs font-bold tracking-[0.3em] uppercase text-[#C0171E] mb-6">
               Contact
             </h4>
             <ul className="flex flex-col gap-3.5">
               <li>
                 <a
                   href="tel:+9779810175322"
-                  className="font-poppins text-xs sm:text-sm text-white/80 hover:text-[#F5B301] transition-colors"
+                  className="font-poppins text-xs sm:text-sm text-white/80 hover:text-[#C0171E] transition-colors"
                 >
                   +977 9810175322
                 </a>
@@ -143,7 +143,7 @@ export function StudioFooter() {
               <li>
                 <a
                   href="mailto:info@thegoldenlightcreations.com"
-                  className="font-poppins text-xs sm:text-sm text-white/80 hover:text-[#F5B301] transition-colors"
+                  className="font-poppins text-xs sm:text-sm text-white/80 hover:text-[#C0171E] transition-colors"
                 >
                   info@thegoldenlightcreations.com
                 </a>
@@ -170,10 +170,10 @@ export function StudioFooter() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-poppins text-white/40">
           <p>
             &copy; {new Date().getFullYear()}{" "}
-            <span className="text-[#F5B301]">The Golden Light Creations</span>. All rights reserved.
+            <span className="text-[#C0171E]">The Golden Light Creations</span>. All rights reserved.
           </p>
           <p>
-            Crafted with ♥ in <span className="text-[#F5B301]">Nepal</span>
+            Crafted with ♥ in <span className="text-[#C0171E]">Nepal</span>
           </p>
         </div>
       </div>

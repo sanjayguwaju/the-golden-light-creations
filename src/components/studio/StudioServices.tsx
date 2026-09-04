@@ -58,7 +58,7 @@ export function StudioServices({
   const displayedItems = isHomepagePreview ? items.slice(0, 6) : items;
 
   return (
-    <section id="services" className="bg-[#111111] py-20 sm:py-32 px-4 sm:px-8 border-b border-white/5">
+    <section id="services" className="bg-[#C0171E] py-20 sm:py-32 px-4 sm:px-8 border-b border-white/5">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-20">
@@ -96,7 +96,7 @@ export function StudioServices({
             return (
               <MagicCard
                 key={srv.id || srv.num}
-                gradientColor="rgba(245, 179, 1, 0.14)"
+                gradientColor="rgba(255, 255, 255, 0.12)"
                 gradientSize={280}
                 className={`group relative bg-white/[0.02] p-6 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 ${
                   isFeatured

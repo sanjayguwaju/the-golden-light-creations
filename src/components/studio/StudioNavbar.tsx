@@ -42,17 +42,17 @@ export function StudioNavbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#0A0A0A]/95 backdrop-blur-xl py-3.5 border-b border-[#F5B301]/15 shadow-2xl"
-            : "bg-[#0A0A0A]/60 backdrop-blur-md py-5 border-b border-white/5"
+            ? "bg-white/95 backdrop-blur-xl py-3.5 border-b border-[#C0171E]/15 shadow-2xl shadow-black/5"
+            : "bg-transparent backdrop-blur-md py-5 border-b border-white/5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="group flex flex-col leading-none">
-            <span className="font-bebas text-2xl sm:text-3xl tracking-[0.15em] text-[#F5B301] group-hover:text-[#FFD04A] transition-colors">
+            <span className={`font-bebas text-2xl sm:text-3xl tracking-[0.15em] transition-colors ${isScrolled ? "text-[#C0171E] group-hover:text-[#A01018]" : "text-[#F5B301] group-hover:text-[#FFD04A]"}`}>
               THE GOLDEN
             </span>
-            <span className="font-montserrat text-[10px] sm:text-[11px] font-bold tracking-[0.35em] text-white/90">
+            <span className={`font-montserrat text-[10px] sm:text-[11px] font-bold tracking-[0.35em] transition-colors ${isScrolled ? "text-[#0A0A0A]/80" : "text-white/90"}`}>
               LIGHT CREATIONS
             </span>
           </Link>
@@ -66,12 +66,14 @@ export function StudioNavbar() {
                   key={item.label}
                   href={item.href}
                   className={`relative font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-colors py-1 group ${
-                    isActive ? "text-[#F5B301]" : "text-white/80 hover:text-[#F5B301]"
+                    isActive
+                      ? isScrolled ? "text-[#C0171E]" : "text-[#F5B301]"
+                      : isScrolled ? "text-[#0A0A0A]/70 hover:text-[#C0171E]" : "text-white/80 hover:text-white"
                   }`}
                 >
                   {item.label}
                   <span
-                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#F5B301] transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 h-[1.5px] transition-all duration-300 ${isScrolled ? "bg-[#C0171E]" : "bg-[#F5B301]"} ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
@@ -84,7 +86,11 @@ export function StudioNavbar() {
           <div className="flex items-center gap-4">
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 bg-[#F5B301] hover:bg-[#FFD04A] text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.2em] px-6 py-3 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-[#F5B301]/20"
+              className={`hidden sm:inline-flex items-center gap-2 font-montserrat font-bold text-xs uppercase tracking-[0.2em] px-6 py-3 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg ${
+                isScrolled
+                  ? "bg-[#C0171E] hover:bg-[#A01018] text-white shadow-[#C0171E]/20"
+                  : "bg-[#C0171E] hover:bg-[#A01018] text-white shadow-[#C0171E]/20"
+              }`}
             >
               <span>Book a Shoot</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -94,7 +100,7 @@ export function StudioNavbar() {
             <button
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open Navigation Menu"
-              className="lg:hidden p-2 text-white hover:text-[#F5B301] transition-colors focus:outline-none"
+              className={`lg:hidden p-2 transition-colors focus:outline-none ${isScrolled ? "text-[#0A0A0A] hover:text-[#C0171E]" : "text-white hover:text-[#F5B301]"}`}
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -164,7 +170,7 @@ export function StudioNavbar() {
           <Link
             href="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full bg-[#F5B301] text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.2em] py-4 text-center flex items-center justify-center gap-2 shadow-xl shadow-[#F5B301]/25"
+            className="w-full bg-[#C0171E] hover:bg-[#A01018] text-white font-montserrat font-bold text-xs uppercase tracking-[0.2em] py-4 text-center flex items-center justify-center gap-2 shadow-xl shadow-[#C0171E]/25 transition-colors"
           >
             <span>Book a Shoot</span>
             <ArrowUpRight className="w-4 h-4" />

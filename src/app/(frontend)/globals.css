@@ -64,12 +64,14 @@
   --color-gray: #888888;
   --color-gray-light: #CCCCCC;
 
-  --color-page-bg: #0A0A0A;
-  
-  --color-brand-primary: var(--color-gold);
-  --color-brand-secondary: var(--color-gold-light);
-  --color-brand-accent: var(--color-gold-dark);
-  --color-brand-surface: var(--color-black-soft);
+  --color-red: #C0171E;
+  --color-red-dark: #A01018;
+  --color-red-light: #FF4757;
+  --color-page-bg: #FFFFFF;
+  --color-brand-primary: var(--color-red);
+  --color-brand-secondary: var(--color-red-dark);
+  --color-brand-accent: var(--color-gold);
+  --color-brand-surface: var(--color-white-soft);
   --color-brand-neutral: var(--color-gray);
 
   --shadow-soft: none;

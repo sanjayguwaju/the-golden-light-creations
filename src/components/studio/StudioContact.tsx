@@ -67,21 +67,21 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
   const addressText = contact.address || "Kathmandu, Nepal";
 
   return (
-    <section id="contact" className="bg-[#F5F5F5] text-[#0A0A0A] py-20 sm:py-32 px-4 sm:px-8">
+    <section id="contact" className="bg-white text-[#0A0A0A] py-20 sm:py-32 px-4 sm:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           {/* Left Column: Contact Coordinates */}
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-3">
-              <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#C8920A] uppercase">
+              <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#C0171E] uppercase">
                 Get in Touch
               </span>
-              <span className="w-10 h-[1px] bg-[#C8920A]/60" />
+              <span className="w-10 h-[1px] bg-[#C0171E]/60" />
             </div>
 
             <h2 className="font-bebas text-4xl sm:text-6xl md:text-7xl tracking-[0.02em] text-[#0A0A0A] uppercase leading-[0.95] mb-4">
               Book Your <br />
-              <em className="text-[#C8920A] not-italic">Dream Shoot</em>
+              <em className="text-[#C0171E] not-italic">Dream Shoot</em>
             </h2>
 
             <p className="font-poppins text-sm text-[#0A0A0A]/70 font-light leading-relaxed mb-10">
@@ -93,16 +93,16 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
             <div className="flex flex-col gap-6 mb-10">
               {/* Phone / WhatsApp */}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-[#F5B301] text-[#0A0A0A] flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-[#C0171E] text-white flex items-center justify-center shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="font-montserrat text-[10px] font-bold uppercase tracking-[0.2em] text-[#C8920A] block">
+                  <span className="font-montserrat text-[10px] font-bold uppercase tracking-[0.2em] text-[#C0171E] block">
                     Call / WhatsApp
                   </span>
                   <a
                     href={`tel:${cleanPhone}`}
-                    className="font-poppins text-sm font-medium text-[#0A0A0A] hover:text-[#C8920A] transition-colors"
+                    className="font-poppins text-sm font-medium text-[#0A0A0A] hover:text-[#C0171E] transition-colors"
                   >
                     {cleanPhone}
                   </a>
@@ -111,11 +111,11 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
 
               {/* Location */}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-[#F5B301] text-[#0A0A0A] flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-[#C0171E] text-white flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="font-montserrat text-[10px] font-bold uppercase tracking-[0.2em] text-[#C8920A] block">
+                  <span className="font-montserrat text-[10px] font-bold uppercase tracking-[0.2em] text-[#C0171E] block">
                     Location
                   </span>
                   <span className="font-poppins text-sm font-medium text-[#0A0A0A]">
@@ -126,16 +126,16 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
 
               {/* Email */}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-[#F5B301] text-[#0A0A0A] flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 bg-[#C0171E] text-white flex items-center justify-center shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="font-montserrat text-[10px] font-bold uppercase tracking-[0.2em] text-[#C8920A] block">
+                  <span className="font-montserrat text-[10px] font-bold uppercase tracking-[0.2em] text-[#C0171E] block">
                     Email
                   </span>
                   <a
                     href={`mailto:${emailAddr}`}
-                    className="font-poppins text-sm font-medium text-[#0A0A0A] hover:text-[#C8920A] transition-colors"
+                    className="font-poppins text-sm font-medium text-[#0A0A0A] hover:text-[#C0171E] transition-colors"
                   >
                     {emailAddr}
                   </a>
@@ -157,7 +157,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
 
           {/* Right Column: Interactive Booking Form with Magic UI ShineBorder */}
           <div className="lg:col-span-7 bg-white p-5 sm:p-10 lg:p-12 border border-black/10 shadow-xl relative overflow-hidden">
-            <ShineBorder borderWidth={1.5} duration={14} shineColor={["#F5B301", "#FFD04A", "#C8920A"]} />
+            <ShineBorder borderWidth={1.5} duration={14} shineColor={["#C0171E", "#FF4757", "#F5B301"]} />
             {isSubmitted ? (
               <div className="py-12 flex flex-col items-center justify-center text-center animate-fadeIn">
                 <CheckCircle2 className="w-16 h-16 text-[#25D366] mb-4" />
@@ -183,7 +183,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                       placeholder="e.g. Anika Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors"
+                      className="w-full bg-[#FFF8F8] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C0171E] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors"
                     />
                   </div>
 
@@ -198,7 +198,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                       placeholder="+977 98XXXXXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors"
+                      className="w-full bg-[#FFF8F8] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C0171E] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -214,7 +214,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                     placeholder="your@email.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors"
+                    className="w-full bg-[#FFF8F8] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C0171E] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors"
                   />
                 </div>
 
@@ -226,7 +226,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors cursor-pointer"
+                    className="w-full bg-[#FFF8F8] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C0171E] px-4 py-3.5 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors cursor-pointer"
                   >
                     <option value="Wedding Photography & Film">Wedding Photography & Film</option>
                     <option value="Cinematic Videography">Cinematic Videography</option>
@@ -251,7 +251,7 @@ export function StudioContact({ contact = defaultStudioSettings.contact }: Studi
                     placeholder="Tell us about your vision, wedding/event date, venue..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-[#F5F5F5] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C8920A] p-4 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors resize-y"
+                    className="w-full bg-[#FFF8F8] border border-black/15 border-b-2 border-b-[#0A0A0A]/20 focus:border-b-[#C0171E] p-4 font-poppins text-base sm:text-sm text-[#0A0A0A] outline-none transition-colors resize-y"
                   />
                 </div>
 

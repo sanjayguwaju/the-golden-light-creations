@@ -102,19 +102,19 @@ export function StudioPortfolio({
   };
 
   return (
-    <section id="portfolio" className="bg-[#111111] py-20 sm:py-32 px-4 sm:px-8 border-b border-white/5">
+    <section id="portfolio" className="bg-white py-20 sm:py-32 px-4 sm:px-8 border-b border-black/5">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-16">
           <div>
             <div className="flex items-center gap-3 mb-2 sm:mb-3">
-              <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#F5B301] uppercase">
+              <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#C0171E] uppercase">
                 Our Work
               </span>
-              <span className="w-8 sm:w-10 h-[1px] bg-[#F5B301]/60" />
+              <span className="w-8 sm:w-10 h-[1px] bg-[#C0171E]/60" />
             </div>
-            <h2 className="font-bebas text-4xl sm:text-6xl md:text-7xl tracking-[0.02em] text-white uppercase leading-none">
-              Visual <em className="text-[#F5B301] not-italic">Portfolio</em>
+            <h2 className="font-bebas text-4xl sm:text-6xl md:text-7xl tracking-[0.02em] text-[#0A0A0A] uppercase leading-none">
+              Visual <em className="text-[#C0171E] not-italic">Portfolio</em>
             </h2>
           </div>
 
@@ -129,8 +129,8 @@ export function StudioPortfolio({
                 }}
                 className={`font-montserrat text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] px-4 sm:px-5 py-2 sm:py-2.5 whitespace-nowrap transition-all duration-200 shrink-0 ${
                   activeFilter === tab.key
-                    ? "bg-[#F5B301] text-[#0A0A0A] font-bold shadow-lg shadow-[#F5B301]/25"
-                    : "border border-white/20 text-white/70 hover:border-[#F5B301] hover:text-[#F5B301] bg-transparent"
+                    ? "bg-[#C0171E] text-white font-bold shadow-lg shadow-[#C0171E]/25"
+                    : "border border-black/20 text-[#0A0A0A]/70 hover:border-[#C0171E] hover:text-[#C0171E] bg-transparent"
                 }`}
               >
                 {tab.label}
@@ -145,7 +145,7 @@ export function StudioPortfolio({
             <div
               key={item.id}
               onClick={() => setActiveLightboxIndex(index)}
-              className="relative group overflow-hidden bg-[#0A0A0A] border border-white/5 cursor-pointer break-inside-avoid"
+              className="relative group overflow-hidden bg-[#FFF5F5] border border-[#C0171E]/8 cursor-pointer break-inside-avoid"
             >
               {/* Image */}
               <div className="relative aspect-[4/5] overflow-hidden">
@@ -158,13 +158,13 @@ export function StudioPortfolio({
               </div>
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/95 via-[#0A0A0A]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 sm:p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#C0171E]/95 via-[#0A0A0A]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 sm:p-6">
                 {/* Zoom Icon Button */}
-                <div className="absolute top-4 right-4 w-9 h-9 border border-[#F5B301]/80 rounded-full flex items-center justify-center text-[#F5B301] bg-[#0A0A0A]/40 backdrop-blur-sm group-hover:rotate-90 transition-transform duration-300">
+                <div className="absolute top-4 right-4 w-9 h-9 border border-[#C0171E]/80 rounded-full flex items-center justify-center text-[#C0171E] bg-[#0A0A0A]/40 backdrop-blur-sm group-hover:rotate-90 transition-transform duration-300">
                   <Plus className="w-4 h-4" />
                 </div>
 
-                <span className="font-montserrat text-[10px] font-bold tracking-[0.3em] uppercase text-[#F5B301] mb-1">
+                <span className="font-montserrat text-[10px] font-bold tracking-[0.3em] uppercase text-[#C0171E] mb-1">
                   {item.categoryLabel}
                 </span>
                 <h3 className="font-bebas text-xl sm:text-2xl tracking-[0.05em] text-white uppercase leading-tight">
@@ -183,7 +183,7 @@ export function StudioPortfolio({
           <div className="mt-12 sm:mt-16 flex justify-center">
             <Link
               href="/portfolio"
-              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto border border-[#F5B301] text-[#F5B301] hover:bg-[#F5B301] hover:text-[#0A0A0A] font-montserrat font-bold text-xs uppercase tracking-[0.25em] px-8 sm:px-10 py-4 transition-all duration-300 hover:-translate-y-0.5 text-center"
+              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto border border-[#C0171E] text-[#C0171E] hover:bg-[#C0171E] hover:text-white font-montserrat font-bold text-xs uppercase tracking-[0.25em] px-8 sm:px-10 py-4 transition-all duration-300 hover:-translate-y-0.5 text-center"
             >
               <span>Explore Complete Portfolio</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -208,7 +208,7 @@ export function StudioPortfolio({
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center gap-2 text-xs font-montserrat text-white/70">
-                <span className="text-[#F5B301] font-bold uppercase tracking-wider">
+                <span className="text-[#C0171E] font-bold uppercase tracking-wider">
                   {activeLightbox.categoryLabel}
                 </span>
                 <span>•</span>
@@ -220,7 +220,7 @@ export function StudioPortfolio({
               <button
                 onClick={() => setActiveLightboxIndex(null)}
                 aria-label="Close Lightbox"
-                className="flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-[#F5B301] text-white hover:text-black transition-all duration-200 rounded-full font-montserrat text-xs font-bold uppercase tracking-wider focus:outline-none hover:scale-105 active:scale-95 cursor-pointer"
+                className="flex items-center gap-2 px-3.5 py-1.5 bg-white/10 hover:bg-[#C0171E] text-white hover:text-white transition-all duration-200 rounded-full font-montserrat text-xs font-bold uppercase tracking-wider focus:outline-none hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <X className="w-4 h-4" />
                 <span className="hidden sm:inline">Close</span>
@@ -236,7 +236,7 @@ export function StudioPortfolio({
               <button
                 onClick={handlePrev}
                 aria-label="Previous Photo"
-                className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/70 hover:bg-[#F5B301] text-white hover:text-black border border-white/20 hover:border-[#F5B301] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
+                className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/70 hover:bg-[#C0171E] text-white hover:text-white border border-white/20 hover:border-[#C0171E] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
@@ -247,7 +247,7 @@ export function StudioPortfolio({
                   key={activeLightbox.id}
                   src={activeLightbox.src}
                   alt={activeLightbox.title}
-                  className="max-w-[92vw] sm:max-w-4xl max-h-[60dvh] sm:max-h-[72dvh] w-auto h-auto object-contain border border-[#F5B301]/30 shadow-2xl rounded-sm transition-all duration-200"
+                  className="max-w-[92vw] sm:max-w-4xl max-h-[60dvh] sm:max-h-[72dvh] w-auto h-auto object-contain border border-[#C0171E]/30 shadow-2xl rounded-sm transition-all duration-200"
                 />
               </div>
 
@@ -255,7 +255,7 @@ export function StudioPortfolio({
               <button
                 onClick={handleNext}
                 aria-label="Next Photo"
-                className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/70 hover:bg-[#F5B301] text-white hover:text-black border border-white/20 hover:border-[#F5B301] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
+                className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/70 hover:bg-[#C0171E] text-white hover:text-white border border-white/20 hover:border-[#C0171E] rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -265,7 +265,7 @@ export function StudioPortfolio({
                 <h4 className="font-bebas text-xl sm:text-3xl text-white tracking-[0.05em] uppercase line-clamp-1">
                   {activeLightbox.title}
                 </h4>
-                <p className="font-poppins text-xs text-[#F5B301] mt-0.5">
+                <p className="font-poppins text-xs text-[#C0171E] mt-0.5">
                   {activeLightbox.location}, Nepal
                 </p>
               </div>

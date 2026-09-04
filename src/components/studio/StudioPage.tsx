@@ -34,7 +34,7 @@ export function StudioPage({
   settings,
 }: StudioPageProps) {
   return (
-    <div className="relative w-full bg-[#0A0A0A] text-white selection:bg-[#F5B301] selection:text-[#0A0A0A]">
+    <div className="relative w-full bg-white text-[#0A0A0A] selection:bg-[#C0171E] selection:text-white">
       {/* 1. Hero Section */}
       <StudioHero />
 

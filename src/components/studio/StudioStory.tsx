@@ -48,12 +48,12 @@ function AnimatedStat({ end, suffix = "+", label }: CounterProps) {
 
   return (
     <div ref={elRef} className="flex flex-col">
-      <div className="font-bebas text-4xl sm:text-6xl text-[#F5B301] tracking-tight leading-none">
+      <div className="font-bebas text-4xl sm:text-6xl text-[#C0171E] tracking-tight leading-none">
         {count}
         {suffix}
       </div>
-      <div className="w-full h-[1px] bg-[#F5B301]/25 my-3" />
-      <div className="font-montserrat text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+      <div className="w-full h-[1px] bg-[#C0171E]/25 my-3" />
+      <div className="font-montserrat text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#0A0A0A]/50">
         {label}
       </div>
     </div>
@@ -83,16 +83,16 @@ export function StudioStory({
   isHomepagePreview = false,
 }: StudioStoryProps) {
   return (
-    <section id="about" className="bg-[#0A0A0A] py-20 sm:py-32 px-4 sm:px-8 border-b border-white/5 overflow-hidden">
+    <section id="about" className="bg-white py-20 sm:py-32 px-4 sm:px-8 border-b border-black/5 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left Column: Image with Luxury Gold Accent Frame */}
           <div className="relative">
             {/* Background Accent Box */}
-            <div className="absolute -bottom-6 -right-6 w-full h-full border border-[#F5B301]/30 hidden sm:block pointer-events-none" />
+            <div className="absolute -bottom-6 -right-6 w-full h-full border border-[#C0171E]/30 hidden sm:block pointer-events-none" />
 
             {/* Team / Story Image */}
-            <div className="relative aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-[#111111]">
+            <div className="relative aspect-[4/5] sm:aspect-[3/4] overflow-hidden bg-[#FFF5F5]">
               <img
                 src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=1000&q=85"
                 alt="The Golden Light Creations Studio Team"
@@ -101,11 +101,11 @@ export function StudioStory({
             </div>
 
             {/* Floating Glassmorphic Badge */}
-            <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-[#0A0A0A]/90 backdrop-blur-md border border-[#F5B301]/40 px-4 py-3 sm:px-6 sm:py-4 shadow-2xl">
-              <span className="font-bebas text-2xl sm:text-4xl text-[#F5B301] block leading-none">
+            <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-white/90 backdrop-blur-md border border-[#C0171E]/40 px-4 py-3 sm:px-6 sm:py-4 shadow-2xl">
+              <span className="font-bebas text-2xl sm:text-4xl text-[#C0171E] block leading-none">
                 {stats.yearsExperience}+
               </span>
-              <p className="font-montserrat text-[9px] sm:text-xs font-bold uppercase tracking-[0.25em] text-white/90 mt-1">
+              <p className="font-montserrat text-[9px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[#0A0A0A]/90 mt-1">
                 Years of Cinematic Excellence
               </p>
             </div>
@@ -114,25 +114,25 @@ export function StudioStory({
           {/* Right Column: Editorial Brand Narrative */}
           <div>
             <div className="flex items-center gap-3 mb-2 sm:mb-3">
-              <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#F5B301] uppercase">
+              <span className="font-montserrat text-xs font-bold tracking-[0.4em] text-[#C0171E] uppercase">
                 Our Story
               </span>
-              <span className="w-8 sm:w-10 h-[1px] bg-[#F5B301]/60" />
+              <span className="w-8 sm:w-10 h-[1px] bg-[#C0171E]/60" />
             </div>
 
-            <h2 className="font-bebas text-3xl sm:text-6xl md:text-7xl tracking-[0.02em] text-white uppercase leading-[0.95] mb-4 sm:mb-6">
+            <h2 className="font-bebas text-3xl sm:text-6xl md:text-7xl tracking-[0.02em] text-[#0A0A0A] uppercase leading-[0.95] mb-4 sm:mb-6">
               {headline}
             </h2>
 
-            <blockquote className="font-bebas text-xl sm:text-4xl text-[#F5B301] tracking-wide uppercase leading-tight mb-4 sm:mb-6 border-l-2 border-[#F5B301] pl-3 sm:pl-6">
+            <blockquote className="font-bebas text-xl sm:text-4xl text-[#C0171E] tracking-wide uppercase leading-tight mb-4 sm:mb-6 border-l-2 border-[#C0171E] pl-3 sm:pl-6">
               &ldquo;{quote}&rdquo;
             </blockquote>
 
-            <p className="font-poppins text-xs sm:text-base text-white/70 font-light leading-relaxed mb-4 sm:mb-6">
+            <p className="font-poppins text-xs sm:text-base text-[#0A0A0A]/70 font-light leading-relaxed mb-4 sm:mb-6">
               {paragraph1}
             </p>
 
-            <p className="font-poppins text-xs sm:text-base text-white/70 font-light leading-relaxed mb-8 sm:mb-10">
+            <p className="font-poppins text-xs sm:text-base text-[#0A0A0A]/70 font-light leading-relaxed mb-8 sm:mb-10">
               {paragraph2}
             </p>
 
@@ -147,7 +147,7 @@ export function StudioStory({
             {isHomepagePreview && (
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-[#F5B301] hover:text-[#FFD04A] transition-colors"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-[#C0171E] hover:text-[#A01018] transition-colors"
               >
                 <span>Read Full Studio Story</span>
                 <ArrowUpRight className="w-4 h-4" />

@@ -61,7 +61,7 @@ export function StudioSocial() {
                 className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110 brightness-90 group-hover:brightness-100"
               />
               {/* Gold Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#F5B301]/60 to-[#0A0A0A]/80 opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#C0171E]/80 via-[#C0171E]/40 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
                 <span className="font-bebas text-2xl text-white tracking-[0.1em] uppercase">
                   View
                 </span>
@@ -76,25 +76,25 @@ export function StudioSocial() {
             href="https://instagram.com/the_golden_creations"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 border border-white/20 hover:border-[#F5B301] text-white/80 hover:text-[#F5B301] px-6 py-3.5 font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-200 bg-white/[0.02]"
+            className="flex items-center gap-3 border border-white/20 hover:border-[#C0171E] text-white/80 hover:text-white px-6 py-3.5 font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-200 bg-white/[0.02]"
           >
-            <Instagram className="w-4 h-4 text-[#F5B301]" />
+            <Instagram className="w-4 h-4 text-[#C0171E]" />
             <span>Instagram</span>
           </a>
           <a
             href="https://youtube.com/@thegoldenlightcreations"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 border border-white/20 hover:border-[#F5B301] text-white/80 hover:text-[#F5B301] px-6 py-3.5 font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-200 bg-white/[0.02]"
+            className="flex items-center gap-3 border border-white/20 hover:border-[#C0171E] text-white/80 hover:text-white px-6 py-3.5 font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-200 bg-white/[0.02]"
           >
-            <Youtube className="w-4 h-4 text-[#F5B301]" />
+            <Youtube className="w-4 h-4 text-[#C0171E]" />
             <span>YouTube</span>
           </a>
           <a
             href="https://tiktok.com/@thegoldencreations"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 border border-white/20 hover:border-[#F5B301] text-white/80 hover:text-[#F5B301] px-6 py-3.5 font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-200 bg-white/[0.02]"
+            className="flex items-center gap-3 border border-white/20 hover:border-[#C0171E] text-white/80 hover:text-white px-6 py-3.5 font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-200 bg-white/[0.02]"
           >
             <span className="text-[#F5B301] text-sm">🎵</span>
             <span>TikTok</span>
@@ -103,9 +103,9 @@ export function StudioSocial() {
             href="https://facebook.com/thegoldenlightcreations"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 border border-white/20 hover:border-[#F5B301] text-white/80 hover:text-[#F5B301] px-6 py-3.5 font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-200 bg-white/[0.02]"
+            className="flex items-center gap-3 border border-white/20 hover:border-[#C0171E] text-white/80 hover:text-white px-6 py-3.5 font-montserrat text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-200 bg-white/[0.02]"
           >
-            <Facebook className="w-4 h-4 text-[#F5B301]" />
+            <Facebook className="w-4 h-4 text-[#C0171E]" />
             <span>Facebook</span>
           </a>
         </div>
