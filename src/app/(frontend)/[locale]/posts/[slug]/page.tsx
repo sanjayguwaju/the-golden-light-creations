@@ -19,6 +19,8 @@ import { BookOpen, Clock, Hash, ChevronLeft, CalendarDays } from "lucide-react";
 import Link from "next/link";
 import { ActionButtons } from "./ActionButtons";
 
+export const revalidate = 600;
+
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise });
   const posts = await payload.find({

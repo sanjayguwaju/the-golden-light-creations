@@ -19,6 +19,8 @@ import {
   getStudioSettings,
 } from "@/utilities/getStudioData";
 
+export const revalidate = 600;
+
 type Args = {
   params: Promise<{
     locale: TypedLocale;

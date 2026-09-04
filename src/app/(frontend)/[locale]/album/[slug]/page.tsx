@@ -17,6 +17,8 @@ import Gallery from "./Gallery";
 import { Separator } from "@/components/ui/separator";
 import type { Album } from "@/payload-types";
 
+export const revalidate = 600;
+
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise });
   const albums = await payload.find({

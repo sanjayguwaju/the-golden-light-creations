@@ -2,12 +2,20 @@ import type { CollectionConfig } from "payload";
 import { anyone } from "../../access/anyone";
 import { authenticated } from "../../access/authenticated";
 import { slugField } from "payload";
+import {
+  revalidateStudioCollection,
+  revalidateStudioCollectionDelete,
+} from "../../hooks/revalidateStudioCollection";
 
 export const Services: CollectionConfig = {
   slug: "services",
   labels: {
     singular: "Service",
     plural: "Services",
+  },
+  hooks: {
+    afterChange: [revalidateStudioCollection("services")],
+    afterDelete: [revalidateStudioCollectionDelete("services")],
   },
   admin: {
     group: "Studio",

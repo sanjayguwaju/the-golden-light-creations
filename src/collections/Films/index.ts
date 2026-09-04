@@ -2,12 +2,20 @@ import type { CollectionConfig } from "payload";
 import { anyone } from "../../access/anyone";
 import { authenticated } from "../../access/authenticated";
 import { slugField } from "payload";
+import {
+  revalidateStudioCollection,
+  revalidateStudioCollectionDelete,
+} from "../../hooks/revalidateStudioCollection";
 
 export const Films: CollectionConfig = {
   slug: "films",
   labels: {
     singular: "Film",
     plural: "Films",
+  },
+  hooks: {
+    afterChange: [revalidateStudioCollection("films")],
+    afterDelete: [revalidateStudioCollectionDelete("films")],
   },
   admin: {
     group: "Studio",

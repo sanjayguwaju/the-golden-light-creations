@@ -10,6 +10,8 @@ import { getStudioSettings } from "@/utilities/getStudioData";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, ArrowUpRight, Sparkles, Heart, Shield, Video } from "lucide-react";
 
+export const revalidate = 600;
+
 type Args = {
   params: Promise<{
     locale: TypedLocale;

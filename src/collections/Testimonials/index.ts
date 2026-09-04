@@ -1,12 +1,20 @@
 import type { CollectionConfig } from "payload";
 import { anyone } from "../../access/anyone";
 import { authenticated } from "../../access/authenticated";
+import {
+  revalidateStudioCollection,
+  revalidateStudioCollectionDelete,
+} from "../../hooks/revalidateStudioCollection";
 
 export const Testimonials: CollectionConfig = {
   slug: "testimonials",
   labels: {
     singular: "Testimonial",
     plural: "Testimonials",
+  },
+  hooks: {
+    afterChange: [revalidateStudioCollection("testimonials")],
+    afterDelete: [revalidateStudioCollectionDelete("testimonials")],
   },
   admin: {
     group: "Studio",
