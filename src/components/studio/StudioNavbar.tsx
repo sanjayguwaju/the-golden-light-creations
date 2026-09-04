@@ -32,6 +32,7 @@ export function StudioNavbar() {
     { label: "Portfolio", href: "/portfolio" },
     { label: "Films", href: "/films" },
     { label: "Services", href: "/services" },
+    { label: "Journal", href: "/posts" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ];

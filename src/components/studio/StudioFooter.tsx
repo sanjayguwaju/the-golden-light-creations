@@ -18,6 +18,7 @@ export function StudioFooter() {
     { label: "Portfolio", href: "/portfolio" },
     { label: "Films", href: "/films" },
     { label: "Services", href: "/services" },
+    { label: "Journal & Stories", href: "/posts" },
     { label: "Contact", href: "/contact" },
   ];
 
