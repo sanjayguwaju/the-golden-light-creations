@@ -22,6 +22,7 @@ import { StudioSocialBlock } from "@/blocks/StudioSocial/config";
 import { StudioMarqueeBlock } from "@/blocks/StudioMarquee/config";
 import { StudioHeroBlock } from "@/blocks/StudioHero/config";
 import { StudioContactBlock } from "@/blocks/StudioContact/config";
+import { StudioTestimonialsBlock } from "@/blocks/StudioTestimonials/config";
 import { slugField } from "payload";
 import { populatePublishedAt } from "../../hooks/populatePublishedAt";
 import { generatePreviewPath } from "../../utilities/generatePreviewPath";
@@ -92,6 +93,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 StudioServicesBlock,
                 StudioStoryBlock,
                 StudioStatsBlock,
+                StudioTestimonialsBlock,
                 StudioSocialBlock,
                 StudioContactBlock,
                 CallToAction,

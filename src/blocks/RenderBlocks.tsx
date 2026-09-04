@@ -23,6 +23,7 @@ import { StudioSocialBlockComponent } from "@/blocks/StudioSocial/Component";
 import { StudioMarqueeBlockComponent } from "@/blocks/StudioMarquee/Component";
 import { StudioHeroBlockComponent } from "@/blocks/StudioHero/Component";
 import { StudioContactBlockComponent } from "@/blocks/StudioContact/Component";
+import { StudioTestimonialsBlockComponent } from "@/blocks/StudioTestimonials/Component";
 
 const blockComponents = {
   studioHero: StudioHeroBlockComponent,
@@ -32,6 +33,7 @@ const blockComponents = {
   studioServices: StudioServicesBlockComponent,
   studioStory: StudioStoryBlockComponent,
   studioStats: StudioStatsBlockComponent,
+  studioTestimonials: StudioTestimonialsBlockComponent,
   studioSocial: StudioSocialBlockComponent,
   studioContact: StudioContactBlockComponent,
   archive: ArchiveBlock,

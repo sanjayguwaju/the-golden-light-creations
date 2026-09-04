@@ -596,6 +596,7 @@ export interface Page {
         | StudioServicesBlock
         | StudioStoryBlock
         | StudioStatsBlock
+        | StudioTestimonialsBlock
         | StudioSocialBlock
         | StudioContactBlock
         | CallToActionBlock
@@ -807,6 +808,17 @@ export interface StudioStatsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'studioStats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioTestimonialsBlock".
+ */
+export interface StudioTestimonialsBlock {
+  title?: string | null;
+  subtitle?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioTestimonials';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2099,6 +2111,7 @@ export interface PagesSelect<T extends boolean = true> {
         studioServices?: T | StudioServicesBlockSelect<T>;
         studioStory?: T | StudioStoryBlockSelect<T>;
         studioStats?: T | StudioStatsBlockSelect<T>;
+        studioTestimonials?: T | StudioTestimonialsBlockSelect<T>;
         studioSocial?: T | StudioSocialBlockSelect<T>;
         studioContact?: T | StudioContactBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
@@ -2203,6 +2216,16 @@ export interface StudioStatsBlockSelect<T extends boolean = true> {
   clientsCount?: T;
   socialReach?: T;
   yearsExperience?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioTestimonialsBlock_select".
+ */
+export interface StudioTestimonialsBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
   id?: T;
   blockName?: T;
 }

@@ -12,7 +12,19 @@ interface Streak {
   delay: number;
 }
 
-export function StudioHero() {
+interface StudioHeroProps {
+  eyebrow?: string;
+  headlinePart1?: string;
+  headlinePart2?: string;
+  subheadline?: string;
+}
+
+export function StudioHero({
+  eyebrow = "Nepal's Finest Creative Studio",
+  headlinePart1 = "We Don't Just Shoot —",
+  headlinePart2 = "We Create Emotions.",
+  subheadline = "Luxury Photography, Cinematic Films & Digital Branding Services in Nepal. Crafting timeless visual stories since 2019.",
+}: StudioHeroProps = {}) {
   const [streaks, setStreaks] = useState<Streak[]>([]);
 
   useEffect(() => {
@@ -86,24 +98,27 @@ export function StudioHero() {
             colorTo="#FF4757"
             className="font-montserrat text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase"
           >
-            Nepal&apos;s Finest Creative Studio
+            {eyebrow}
           </AnimatedGradientText>
           <span className="w-1.5 h-1.5 rounded-full bg-[#C0171E] animate-pulse" />
         </div>
 
         {/* Master Headline */}
         <h1 className="font-bebas text-4xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.02em] leading-[0.95] sm:leading-[0.92] text-white uppercase mb-5 sm:mb-6">
-          We Don&apos;t Just Shoot —
-          <em className="text-[#C0171E] not-italic block mt-1 drop-shadow-[0_0_45px_rgba(192,23,30,0.35)]">
-            We Create Emotions.
-          </em>
+          {headlinePart1}{" "}
+          {headlinePart2 && (
+            <em className="text-[#C0171E] not-italic block mt-1 drop-shadow-[0_0_45px_rgba(192,23,30,0.35)]">
+              {headlinePart2}
+            </em>
+          )}
         </h1>
 
         {/* Subtitle */}
-        <p className="font-poppins font-light text-xs sm:text-base md:text-lg text-white/80 max-w-2xl leading-relaxed tracking-wide mb-8 sm:mb-10 px-2">
-          Luxury Photography, Cinematic Films &amp; Digital Branding Services in Nepal. Crafting
-          timeless visual stories since 2019.
-        </p>
+        {subheadline && (
+          <p className="font-poppins font-light text-xs sm:text-base md:text-lg text-white/80 max-w-2xl leading-relaxed tracking-wide mb-8 sm:mb-10 px-2">
+            {subheadline}
+          </p>
+        )}
 
         {/* Action Triggers */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 w-full max-w-xs sm:max-w-none">

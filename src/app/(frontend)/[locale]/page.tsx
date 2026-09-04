@@ -77,7 +77,7 @@ export default async function HomePage({ params }: Args) {
     const { hero, layout } = page;
 
     return (
-      <article className="relative w-full bg-[#0A0A0A] text-white selection:bg-[#F5B301] selection:text-[#0A0A0A]">
+      <article className="relative w-full bg-white text-[#0A0A0A] selection:bg-[#C0171E] selection:text-white">
         <PageClient />
         <PayloadRedirects disableNotFound url="/" />
         {draft && <LivePreviewListener />}
