@@ -71,6 +71,7 @@ export interface Config {
     portfolio: Portfolio;
     films: Film;
     services: Service;
+    team: Team;
     albums: Album;
     'contact-submissions': ContactSubmission;
     testimonials: Testimonial;
@@ -101,6 +102,7 @@ export interface Config {
     portfolio: PortfolioSelect<false> | PortfolioSelect<true>;
     films: FilmsSelect<false> | FilmsSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
+    team: TeamSelect<false> | TeamSelect<true>;
     albums: AlbumsSelect<false> | AlbumsSelect<true>;
     'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
@@ -441,6 +443,50 @@ export interface Service {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team".
+ */
+export interface Team {
+  id: string;
+  name: string;
+  /**
+   * e.g. Founder & Creative Director, Lead Cinematographer
+   */
+  role: string;
+  photo?: (string | null) | Media;
+  /**
+   * Direct URL to high-resolution portrait if media is not uploaded
+   */
+  photoUrl?: string | null;
+  /**
+   * Brief 1-2 sentence description of their expertise and creative vision
+   */
+  bio?: string | null;
+  /**
+   * e.g. Cinema Lighting, Drone Elopements, Editorial Portraiture
+   */
+  specialties?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
+  socialLinks?: {
+    linkedin?: string | null;
+    instagram?: string | null;
+    twitter?: string | null;
+    facebook?: string | null;
+    email?: string | null;
+  };
+  /**
+   * Lower numbers appear first (e.g. 1 for Founder)
+   */
+  order?: number | null;
+  featured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "albums".
  */
 export interface Album {
@@ -749,6 +795,7 @@ export interface Page {
             blockName?: string | null;
             blockType: 'studioFAQ';
           }
+        | StudioTeamBlock
         | StudioTestimonialsBlock
         | StudioSocialBlock
         | {
@@ -970,6 +1017,18 @@ export interface StudioStatsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'studioStats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioTeamBlock".
+ */
+export interface StudioTeamBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  subtitle?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'studioTeam';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1950,6 +2009,10 @@ export interface PayloadLockedDocument {
         value: string | Service;
       } | null)
     | ({
+        relationTo: 'team';
+        value: string | Team;
+      } | null)
+    | ({
         relationTo: 'albums';
         value: string | Album;
       } | null)
@@ -2146,6 +2209,36 @@ export interface ServicesSelect<T extends boolean = true> {
   order?: T;
   generateSlug?: T;
   slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "team_select".
+ */
+export interface TeamSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  photo?: T;
+  photoUrl?: T;
+  bio?: T;
+  specialties?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        linkedin?: T;
+        instagram?: T;
+        twitter?: T;
+        facebook?: T;
+        email?: T;
+      };
+  order?: T;
+  featured?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2385,6 +2478,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        studioTeam?: T | StudioTeamBlockSelect<T>;
         studioTestimonials?: T | StudioTestimonialsBlockSelect<T>;
         studioSocial?: T | StudioSocialBlockSelect<T>;
         studioBanner?:
@@ -2500,6 +2594,17 @@ export interface StudioStatsBlockSelect<T extends boolean = true> {
   clientsCount?: T;
   socialReach?: T;
   yearsExperience?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StudioTeamBlock_select".
+ */
+export interface StudioTeamBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  subtitle?: T;
   id?: T;
   blockName?: T;
 }

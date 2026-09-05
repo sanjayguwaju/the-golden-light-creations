@@ -29,6 +29,7 @@ import { StudioPillarsBlock } from "@/blocks/StudioPillars/config";
 import { StudioProcessBlock } from "@/blocks/StudioProcess/config";
 import { StudioJournalBlock } from "@/blocks/StudioJournal/config";
 import { StudioFAQBlock } from "@/blocks/StudioFAQ/config";
+import { StudioTeamBlock } from "@/blocks/StudioTeam/config";
 import { slugField } from "payload";
 import { populatePublishedAt } from "../../hooks/populatePublishedAt";
 import { generatePreviewPath } from "../../utilities/generatePreviewPath";
@@ -104,6 +105,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 StudioProcessBlock,
                 StudioJournalBlock,
                 StudioFAQBlock,
+                StudioTeamBlock,
                 StudioTestimonialsBlock,
                 StudioSocialBlock,
                 StudioBannerBlock,

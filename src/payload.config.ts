@@ -10,6 +10,7 @@ import { Portfolio } from "./collections/Portfolio";
 import { Films } from "./collections/Films";
 import { Services } from "./collections/Services";
 import { Testimonials } from "./collections/Testimonials";
+import { Team } from "./collections/Team";
 import { Albums } from "./collections/Albums";
 import { ContactSubmissions } from "./collections/ContactSubmissions";
 
@@ -115,6 +116,7 @@ export default buildConfig({
     Portfolio,
     Films,
     Services,
+    Team,
     Albums,
 
     // Client Inquiries & Social Proof

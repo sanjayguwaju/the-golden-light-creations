@@ -4,7 +4,7 @@ import localization from "../i18n/localization";
 
 const LOCALES = localization.locales.map((l) => l.code);
 
-type StudioCollectionSlug = "portfolio" | "films" | "services" | "testimonials";
+type StudioCollectionSlug = "portfolio" | "films" | "services" | "testimonials" | "team";
 
 export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug): CollectionAfterChangeHook => {
   return ({ doc, req: { payload, context } }) => {
@@ -19,6 +19,9 @@ export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug)
           if (collectionSlug === "testimonials") {
             revalidatePath(`/${loc}/services`);
             revalidatePath(`/${loc}/services`, "page");
+          } else if (collectionSlug === "team") {
+            revalidatePath(`/${loc}/about`);
+            revalidatePath(`/${loc}/about`, "page");
           } else {
             revalidatePath(`/${loc}/${collectionSlug}`);
             revalidatePath(`/${loc}/${collectionSlug}`, "page");
@@ -35,6 +38,9 @@ export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug)
         if (collectionSlug === "testimonials") {
           revalidatePath("/services");
           revalidatePath("/services", "page");
+        } else if (collectionSlug === "team") {
+          revalidatePath("/about");
+          revalidatePath("/about", "page");
         } else {
           revalidatePath(`/${collectionSlug}`);
           revalidatePath(`/${collectionSlug}`, "page");
@@ -47,6 +53,8 @@ export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug)
         // 3. Revalidate App Router dynamic parameterized routes
         if (collectionSlug === "testimonials") {
           revalidatePath("/[locale]/services", "page");
+        } else if (collectionSlug === "team") {
+          revalidatePath("/[locale]/about", "page");
         } else {
           revalidatePath(`/[locale]/${collectionSlug}`, "page");
           if (collectionSlug === "services") {
@@ -81,6 +89,9 @@ export const revalidateStudioCollectionDelete = (collectionSlug: StudioCollectio
           if (collectionSlug === "testimonials") {
             revalidatePath(`/${loc}/services`);
             revalidatePath(`/${loc}/services`, "page");
+          } else if (collectionSlug === "team") {
+            revalidatePath(`/${loc}/about`);
+            revalidatePath(`/${loc}/about`, "page");
           } else {
             revalidatePath(`/${loc}/${collectionSlug}`);
             revalidatePath(`/${loc}/${collectionSlug}`, "page");
@@ -96,6 +107,9 @@ export const revalidateStudioCollectionDelete = (collectionSlug: StudioCollectio
         if (collectionSlug === "testimonials") {
           revalidatePath("/services");
           revalidatePath("/services", "page");
+        } else if (collectionSlug === "team") {
+          revalidatePath("/about");
+          revalidatePath("/about", "page");
         } else {
           revalidatePath(`/${collectionSlug}`);
           revalidatePath(`/${collectionSlug}`, "page");
@@ -107,6 +121,8 @@ export const revalidateStudioCollectionDelete = (collectionSlug: StudioCollectio
 
         if (collectionSlug === "testimonials") {
           revalidatePath("/[locale]/services", "page");
+        } else if (collectionSlug === "team") {
+          revalidatePath("/[locale]/about", "page");
         } else {
           revalidatePath(`/[locale]/${collectionSlug}`, "page");
           if (collectionSlug === "services") {

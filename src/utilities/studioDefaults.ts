@@ -434,6 +434,108 @@ export const defaultTestimonials: FallbackTestimonialItem[] = [
   },
 ];
 
+export interface FallbackTeamMember {
+  id: string;
+  name: string;
+  role: string;
+  photoUrl: string;
+  bio: string;
+  specialties: string[];
+  socialLinks: {
+    linkedin?: string;
+    instagram?: string;
+    twitter?: string;
+    facebook?: string;
+    email?: string;
+  };
+  featured?: boolean;
+  order?: number;
+}
+
+export const defaultTeamMembers: FallbackTeamMember[] = [
+  {
+    id: "tm1",
+    name: "Sanjay Guwaju",
+    role: "Founder & Creative Director",
+    photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=85",
+    bio: "Visionary filmmaker and master visual storyteller with over a decade of experience crafting royal destination weddings, high-fashion editorials, and iconic brand campaigns across Nepal and beyond.",
+    specialties: ["Creative Direction", "Anamorphic Cinema", "Lighting Design", "Visual Poetry"],
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/sanjayguwaju",
+      instagram: "https://instagram.com/thegoldenlightcreations",
+      twitter: "https://x.com/thegoldenlightc",
+      facebook: "https://facebook.com/thegoldenlightcreations",
+      email: "sanjay@thegoldenlightcreations.com",
+    },
+    featured: true,
+    order: 1,
+  },
+  {
+    id: "tm2",
+    name: "Aarav Shrestha",
+    role: "Lead Cinematographer & Drone Pilot",
+    photoUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=85",
+    bio: "CAAN-certified aerial cinema specialist and Director of Photography renowned for capturing high-altitude Himalayan elopements and dynamic cinematic camera movement.",
+    specialties: ["Aerial Cinema", "Steadicam Rigging", "Himalayan Expeditions", "Slow Motion 4K"],
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/aarav-shrestha-cinematography",
+      instagram: "https://instagram.com/aarav.films",
+      twitter: "https://x.com/aarav_cinemas",
+      email: "aarav@thegoldenlightcreations.com",
+    },
+    featured: true,
+    order: 2,
+  },
+  {
+    id: "tm3",
+    name: "Prashant Maharjan",
+    role: "Principal Portrait Artist & Lighting Master",
+    photoUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=85",
+    bio: "Obsessed with natural golden-hour luminescence and authentic human emotion, crafting editorial bridal portraits and luxury editorial spreads that look effortlessly painted with light.",
+    specialties: ["Bridal Editorial", "Fine-Art Lighting", "Medium Format", "Posing Direction"],
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/prashant-maharjan-portraits",
+      instagram: "https://instagram.com/prashant.light",
+      twitter: "https://x.com/prashant_studio",
+      email: "prashant@thegoldenlightcreations.com",
+    },
+    featured: true,
+    order: 3,
+  },
+  {
+    id: "tm4",
+    name: "Shristi Thapa",
+    role: "Senior Art Director & VIP Producer",
+    photoUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=85",
+    bio: "Leading concept art direction, wardrobe coordination, and VIP client hospitality for luxury editorial campaigns, high-profile celebrity shoots, and civic leader profiles.",
+    specialties: ["Art Direction", "VIP Management", "Wardrobe Styling", "Campaign Production"],
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/shristi-thapa-producer",
+      instagram: "https://instagram.com/shristi.creates",
+      twitter: "https://x.com/shristi_prod",
+      email: "shristi@thegoldenlightcreations.com",
+    },
+    featured: true,
+    order: 4,
+  },
+  {
+    id: "tm5",
+    name: "Rohan Joshi",
+    role: "Head of Post-Production & Colorist",
+    photoUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=85",
+    bio: "Color scientist and post-production supervisor preserving the signature warm-gold and rich-crimson tones across all studio deliveries with surgical precision.",
+    specialties: ["DaVinci Resolve Studio", "Film Emulation", "Master Sound Design", "HDR Delivery"],
+    socialLinks: {
+      linkedin: "https://www.linkedin.com/in/rohan-joshi-colorist",
+      instagram: "https://instagram.com/rohan.color",
+      twitter: "https://x.com/rohan_grade",
+      email: "rohan@thegoldenlightcreations.com",
+    },
+    featured: true,
+    order: 5,
+  },
+];
+
 export const defaultStudioSettings = {
   hero: {
     eyebrow: "Nepal's Finest Creative Studio",

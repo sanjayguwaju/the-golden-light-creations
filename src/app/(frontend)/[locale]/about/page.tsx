@@ -6,7 +6,8 @@ import { queryPageBySlug } from "@/utilities/queryPageBySlug";
 import { generateMeta } from "@/utilities/generateMeta";
 import { StudioStory } from "@/components/studio/StudioStory";
 import { StudioStats } from "@/components/studio/StudioStats";
-import { getStudioSettings } from "@/utilities/getStudioData";
+import { StudioTeam } from "@/components/studio/StudioTeam";
+import { getStudioSettings, getStudioTeam } from "@/utilities/getStudioData";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, ArrowUpRight, Sparkles, Heart, Shield, Video } from "lucide-react";
 
@@ -43,7 +44,10 @@ export default async function AboutPage({ params: paramsPromise }: Args) {
   }
 
   // Fallback if CMS page is not yet populated
-  const settings = await getStudioSettings();
+  const [settings, teamMembers] = await Promise.all([
+    getStudioSettings(),
+    getStudioTeam(),
+  ]);
 
   const values = [
     {
@@ -141,6 +145,9 @@ export default async function AboutPage({ params: paramsPromise }: Args) {
           ))}
         </div>
       </section>
+
+      {/* Team Showcase: High-res portrait cards with LinkedIn and social links */}
+      <StudioTeam members={teamMembers} />
 
       {/* Action Banner: Red background with white text and white button */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 mt-12 sm:mt-16">

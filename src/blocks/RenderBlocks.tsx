@@ -30,6 +30,7 @@ import { StudioPillarsBlockComponent } from "@/blocks/StudioPillars/Component";
 import { StudioProcessBlockComponent } from "@/blocks/StudioProcess/Component";
 import { StudioJournalBlockComponent } from "@/blocks/StudioJournal/Component";
 import { StudioFAQBlockComponent } from "@/blocks/StudioFAQ/Component";
+import { StudioTeamBlockComponent } from "@/blocks/StudioTeam/Component";
 
 const blockComponents = {
   studioHero: StudioHeroBlockComponent,
@@ -44,6 +45,7 @@ const blockComponents = {
   studioProcess: StudioProcessBlockComponent,
   studioJournal: StudioJournalBlockComponent,
   studioFAQ: StudioFAQBlockComponent,
+  studioTeam: StudioTeamBlockComponent,
   studioTestimonials: StudioTestimonialsBlockComponent,
   studioSocial: StudioSocialBlockComponent,
   studioBanner: StudioBannerBlockComponent,

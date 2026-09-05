@@ -5,6 +5,7 @@ import {
   defaultFilms,
   defaultServices,
   defaultTestimonials,
+  defaultTeamMembers,
   defaultStudioSettings,
   defaultPosts,
   defaultNavigation,
@@ -12,6 +13,7 @@ import {
   type FallbackFilmItem,
   type FallbackServiceItem,
   type FallbackTestimonialItem,
+  type FallbackTeamMember,
   type FallbackPostItem,
   type StudioNavigation,
 } from "./studioDefaults";
@@ -22,6 +24,7 @@ export {
   defaultFilms,
   defaultServices,
   defaultTestimonials,
+  defaultTeamMembers,
   defaultStudioSettings,
   defaultPosts,
   defaultNavigation,
@@ -29,6 +32,7 @@ export {
   type FallbackFilmItem,
   type FallbackServiceItem,
   type FallbackTestimonialItem,
+  type FallbackTeamMember,
   type FallbackPostItem,
   type StudioNavigation,
 };
@@ -229,6 +233,55 @@ export async function getStudioTestimonials(): Promise<FallbackTestimonialItem[]
   }
 
   return defaultTestimonials;
+}
+
+export async function getStudioTeam(): Promise<FallbackTeamMember[]> {
+  try {
+    const payload = await getPayload({ config: configPromise });
+    const result = await payload.find({
+      collection: "team" as any,
+      sort: "order",
+      limit: 50,
+      depth: 1,
+    });
+
+    if (result.docs && result.docs.length > 0) {
+      return result.docs.map((doc: any) => {
+        const photoUrl =
+          typeof doc.photo === "object" && doc.photo?.url
+            ? doc.photo.url
+            : doc.photoUrl || defaultTeamMembers[0].photoUrl;
+
+        const specialties = Array.isArray(doc.specialties)
+          ? doc.specialties
+              .map((s: any) => (typeof s === "string" ? s : s?.tag || ""))
+              .filter(Boolean)
+          : [];
+
+        return {
+          id: String(doc.id),
+          name: doc.name,
+          role: doc.role,
+          photoUrl,
+          bio: doc.bio || "",
+          specialties,
+          socialLinks: {
+            linkedin: doc.socialLinks?.linkedin || undefined,
+            instagram: doc.socialLinks?.instagram || undefined,
+            twitter: doc.socialLinks?.twitter || undefined,
+            facebook: doc.socialLinks?.facebook || undefined,
+            email: doc.socialLinks?.email || undefined,
+          },
+          featured: doc.featured ?? true,
+          order: doc.order ?? 10,
+        };
+      });
+    }
+  } catch (error) {
+    console.warn("Failed to fetch studio team from database, using fallback:", error);
+  }
+
+  return defaultTeamMembers;
 }
 
 export async function getStudioSettings() {
