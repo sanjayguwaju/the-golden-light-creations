@@ -444,6 +444,12 @@ export const defaultNavigation: StudioNavigation = {
           description: "Curated collection of our finest visual masterpieces.",
         },
         {
+          label: "Client Photo Albums",
+          href: "/albums",
+          description: "Private & public heirloom client wedding galleries.",
+          badge: "Client",
+        },
+        {
           label: "Weddings & Rituals",
           href: "/portfolio?category=weddings",
           description: "Sacred ceremonies and royal celebrations across South Asia.",
@@ -469,7 +475,6 @@ export const defaultNavigation: StudioNavigation = {
     {
       label: "Films",
       href: "/films",
-      badge: "4K",
       submenu: [
         {
           label: "Cinematic Film Reels",
@@ -526,11 +531,6 @@ export const defaultNavigation: StudioNavigation = {
       ],
     },
     {
-      label: "Albums",
-      href: "/albums",
-      badge: "Client",
-    },
-    {
       label: "Journal",
       href: "/posts",
       submenu: [
@@ -577,16 +577,12 @@ export const defaultNavigation: StudioNavigation = {
         },
       ],
     },
-    {
-      label: "Contact",
-      href: "/contact",
-    },
   ],
   ctaButton: {
     label: "Book a Shoot",
     href: "/contact",
   },
-  enableSearch: true,
-  enableWhatsApp: true,
+  enableSearch: false,
+  enableWhatsApp: false,
   enableLocaleSwitcher: true,
 };

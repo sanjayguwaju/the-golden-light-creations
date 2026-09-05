@@ -149,7 +149,7 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
 
           {/* Desktop Navigation Links & Dropdowns */}
           <nav
-            className="hidden xl:flex items-center gap-3.5 2xl:gap-6 shrink-0"
+            className="hidden lg:flex items-center gap-5 xl:gap-7 2xl:gap-9 shrink-0"
             aria-label="Main Navigation"
           >
             {navConfig.navItems.map((item) => {
@@ -353,7 +353,7 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
             <button
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open Navigation Menu"
-              className={`xl:hidden p-1.5 sm:p-2 transition-colors focus:outline-hidden shrink-0 ${
+              className={`lg:hidden p-1.5 sm:p-2 transition-colors focus:outline-hidden shrink-0 ${
                 isScrolled
                   ? "text-[#0A0A0A] hover:text-[#C0171E]"
                   : "text-white hover:text-[#FFD04A]"
@@ -367,7 +367,7 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
 
       {/* Full-Screen Mobile Drawer: Crimson Red with White Text */}
       <div
-        className={`fixed inset-0 z-[100] bg-[#C0171E] text-white flex flex-col justify-between p-6 sm:p-8 h-[100dvh] w-full overflow-y-auto transition-transform duration-500 ease-out xl:hidden ${
+        className={`fixed inset-0 z-[100] bg-[#C0171E] text-white flex flex-col justify-between p-6 sm:p-8 h-[100dvh] w-full overflow-y-auto transition-transform duration-500 ease-out lg:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
