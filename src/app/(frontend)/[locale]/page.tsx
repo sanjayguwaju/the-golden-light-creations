@@ -18,6 +18,7 @@ import {
   getStudioTestimonials,
   getStudioSettings,
   getStudioPosts,
+  getStudioTeam,
 } from "@/utilities/getStudioData";
 
 export const revalidate = 600;
@@ -91,13 +92,14 @@ export default async function HomePage({ params }: Args) {
   }
 
   // Fail-safe fallback: renders the complete luxury studio experience
-  const [portfolio, films, services, testimonials, settings, posts] = await Promise.all([
+  const [portfolio, films, services, testimonials, settings, posts, team] = await Promise.all([
     getStudioPortfolio(),
     getStudioFilms(),
     getStudioServices(),
     getStudioTestimonials(),
     getStudioSettings(),
     getStudioPosts(3),
+    getStudioTeam(),
   ]);
 
   return (
@@ -106,6 +108,7 @@ export default async function HomePage({ params }: Args) {
       films={films}
       services={services}
       testimonials={testimonials}
+      team={team}
       settings={settings}
       posts={posts}
     />

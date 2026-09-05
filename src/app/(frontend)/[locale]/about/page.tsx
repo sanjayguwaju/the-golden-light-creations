@@ -32,22 +32,22 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 
 export default async function AboutPage({ params: paramsPromise }: Args) {
   const { locale } = await paramsPromise;
-  const page = await queryPageBySlug({ slug: "about", locale });
+  const [page, settings, teamMembers] = await Promise.all([
+    queryPageBySlug({ slug: "about", locale }),
+    getStudioSettings(),
+    getStudioTeam(),
+  ]);
 
   if (page?.layout && page.layout.length > 0) {
+    const hasTeamBlock = page.layout.some((b: any) => b.blockType === "studioTeam");
     return (
       <div className="bg-white text-[#0A0A0A] min-h-screen">
         {page.hero && <RenderHero {...page.hero} />}
         <RenderBlocks blocks={page.layout} />
+        {!hasTeamBlock && <StudioTeam members={teamMembers} />}
       </div>
     );
   }
-
-  // Fallback if CMS page is not yet populated
-  const [settings, teamMembers] = await Promise.all([
-    getStudioSettings(),
-    getStudioTeam(),
-  ]);
 
   const values = [
     {

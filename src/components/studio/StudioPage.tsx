@@ -14,11 +14,13 @@ import { StudioTestimonials } from "./StudioTestimonials";
 import { StudioFAQ } from "./StudioFAQ";
 import { StudioSocial } from "./StudioSocial";
 import { StudioContact } from "./StudioContact";
+import { StudioTeam } from "./StudioTeam";
 import type {
   FallbackPortfolioItem,
   FallbackFilmItem,
   FallbackServiceItem,
   FallbackTestimonialItem,
+  FallbackTeamMember,
   FallbackPostItem,
 } from "@/utilities/studioDefaults";
 
@@ -27,6 +29,7 @@ interface StudioPageProps {
   films?: FallbackFilmItem[];
   services?: FallbackServiceItem[];
   testimonials?: FallbackTestimonialItem[];
+  team?: FallbackTeamMember[];
   posts?: FallbackPostItem[];
   settings?: any;
 }
@@ -36,6 +39,7 @@ export function StudioPage({
   films,
   services,
   testimonials,
+  team,
   posts,
   settings,
 }: StudioPageProps) {
@@ -75,7 +79,10 @@ export function StudioPage({
       {/* 9. Large Glowing Numbers Stat Band */}
       <StudioStats stats={settings?.stats} />
 
-      {/* 10. From the Studio Journal */}
+      {/* 10. The Creative Collective (Studio Team) */}
+      <StudioTeam members={team} />
+
+      {/* 11. From the Studio Journal */}
       <StudioJournal posts={posts} />
 
       {/* 11. Mid-Page Callout Banner */}
