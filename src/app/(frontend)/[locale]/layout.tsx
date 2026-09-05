@@ -55,6 +55,7 @@ import localization from "@/i18n/localization";
 import { StudioNavbar } from "@/components/studio/StudioNavbar";
 import { StudioFooter } from "@/components/studio/StudioFooter";
 import { InitTheme } from "@/providers/Theme/InitTheme";
+import { getStudioSettings } from "@/utilities/getStudioData";
 
 import "../globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -112,6 +113,7 @@ export default async function RootLayout({ children, params }: Args) {
   setRequestLocale(locale);
 
   const messages = await getMessages();
+  const studioSettings = await getStudioSettings();
 
   return (
     <html
@@ -137,7 +139,7 @@ export default async function RootLayout({ children, params }: Args) {
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <NuqsAdapter>
-              <StudioNavbar />
+              <StudioNavbar navigation={studioSettings?.navigation} />
               <main className="overflow-x-clip min-h-screen bg-white text-[#0A0A0A]">{children}</main>
               <StudioFooter />
             </NuqsAdapter>

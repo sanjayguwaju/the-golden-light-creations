@@ -7,11 +7,13 @@ import {
   defaultTestimonials,
   defaultStudioSettings,
   defaultPosts,
+  defaultNavigation,
   type FallbackPortfolioItem,
   type FallbackFilmItem,
   type FallbackServiceItem,
   type FallbackTestimonialItem,
   type FallbackPostItem,
+  type StudioNavigation,
 } from "./studioDefaults";
 
 // Re-export defaults and types for convenience
@@ -22,11 +24,13 @@ export {
   defaultTestimonials,
   defaultStudioSettings,
   defaultPosts,
+  defaultNavigation,
   type FallbackPortfolioItem,
   type FallbackFilmItem,
   type FallbackServiceItem,
   type FallbackTestimonialItem,
   type FallbackPostItem,
+  type StudioNavigation,
 };
 
 // ==============================================================================
@@ -207,13 +211,36 @@ export async function getStudioSettings() {
           tiktok: settings.socialHandles?.tiktok || defaultStudioSettings.socialHandles.tiktok,
           facebook: settings.socialHandles?.facebook || defaultStudioSettings.socialHandles.facebook,
         },
+        navigation: {
+          navItems:
+            settings.navigation?.navItems && settings.navigation.navItems.length > 0
+              ? settings.navigation.navItems
+              : defaultNavigation.navItems,
+          ctaButton: {
+            label:
+              settings.navigation?.ctaButton?.label ||
+              defaultNavigation.ctaButton?.label ||
+              "Book a Shoot",
+            href:
+              settings.navigation?.ctaButton?.href ||
+              defaultNavigation.ctaButton?.href ||
+              "/contact",
+          },
+          enableSearch: settings.navigation?.enableSearch ?? defaultNavigation.enableSearch,
+          enableWhatsApp: settings.navigation?.enableWhatsApp ?? defaultNavigation.enableWhatsApp,
+          enableLocaleSwitcher:
+            settings.navigation?.enableLocaleSwitcher ?? defaultNavigation.enableLocaleSwitcher,
+        },
       };
     }
   } catch (error) {
     console.warn("Failed to fetch studio settings global, using fallback:", error);
   }
 
-  return defaultStudioSettings;
+  return {
+    ...defaultStudioSettings,
+    navigation: defaultNavigation,
+  };
 }
 
 export async function getStudioPosts(limit = 3): Promise<FallbackPostItem[]> {

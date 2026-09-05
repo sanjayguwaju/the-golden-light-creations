@@ -167,5 +167,96 @@ export const StudioSettings: GlobalConfig = {
         },
       ],
     },
+    {
+      name: "navigation",
+      type: "group",
+      label: "Header Navigation",
+      fields: [
+        {
+          name: "navItems",
+          type: "array",
+          label: "Navigation Links",
+          fields: [
+            {
+              name: "label",
+              type: "text",
+              required: true,
+            },
+            {
+              name: "href",
+              type: "text",
+              required: true,
+            },
+            {
+              name: "badge",
+              type: "text",
+              label: "Badge (e.g. New, 4K)",
+            },
+            {
+              name: "submenu",
+              type: "array",
+              label: "Dropdown Submenu Items",
+              fields: [
+                {
+                  name: "label",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "href",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "description",
+                  type: "text",
+                  label: "Short Description",
+                },
+                {
+                  name: "badge",
+                  type: "text",
+                  label: "Badge",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "ctaButton",
+          type: "group",
+          label: "Call to Action Button",
+          fields: [
+            {
+              name: "label",
+              type: "text",
+              defaultValue: "Book a Shoot",
+            },
+            {
+              name: "href",
+              type: "text",
+              defaultValue: "/contact",
+            },
+          ],
+        },
+        {
+          name: "enableSearch",
+          type: "checkbox",
+          defaultValue: true,
+          label: "Show Search Icon Button",
+        },
+        {
+          name: "enableWhatsApp",
+          type: "checkbox",
+          defaultValue: true,
+          label: "Show Quick WhatsApp Direct Icon",
+        },
+        {
+          name: "enableLocaleSwitcher",
+          type: "checkbox",
+          defaultValue: true,
+          label: "Show Language Switcher",
+        },
+      ],
+    },
   ],
 };

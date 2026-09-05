@@ -3138,6 +3138,32 @@ export interface StudioSetting {
     tiktok?: string | null;
     facebook?: string | null;
   };
+  navigation?: {
+    navItems?:
+      | {
+          label: string;
+          href: string;
+          badge?: string | null;
+          submenu?:
+            | {
+                label: string;
+                href: string;
+                description?: string | null;
+                badge?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+    ctaButton?: {
+      label?: string | null;
+      href?: string | null;
+    };
+    enableSearch?: boolean | null;
+    enableWhatsApp?: boolean | null;
+    enableLocaleSwitcher?: boolean | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -3234,6 +3260,36 @@ export interface StudioSettingsSelect<T extends boolean = true> {
         youtube?: T;
         tiktok?: T;
         facebook?: T;
+      };
+  navigation?:
+    | T
+    | {
+        navItems?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+              badge?: T;
+              submenu?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    description?: T;
+                    badge?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        ctaButton?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+            };
+        enableSearch?: T;
+        enableWhatsApp?: T;
+        enableLocaleSwitcher?: T;
       };
   updatedAt?: T;
   createdAt?: T;

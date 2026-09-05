@@ -404,3 +404,189 @@ export const defaultPosts: FallbackPostItem[] = [
     readTime: "4 min read",
   },
 ];
+
+export interface NavSubmenuItem {
+  label: string;
+  href: string;
+  description?: string | null;
+  badge?: string | null;
+  id?: string | null;
+}
+
+export interface NavItem {
+  label: string;
+  href: string;
+  badge?: string | null;
+  id?: string | null;
+  submenu?: NavSubmenuItem[] | null;
+}
+
+export interface StudioNavigation {
+  navItems: NavItem[];
+  ctaButton?: {
+    label?: string | null;
+    href?: string | null;
+  } | null;
+  enableSearch?: boolean | null;
+  enableWhatsApp?: boolean | null;
+  enableLocaleSwitcher?: boolean | null;
+}
+
+export const defaultNavigation: StudioNavigation = {
+  navItems: [
+    {
+      label: "Portfolio",
+      href: "/portfolio",
+      submenu: [
+        {
+          label: "All Works",
+          href: "/portfolio",
+          description: "Curated collection of our finest visual masterpieces.",
+        },
+        {
+          label: "Weddings & Rituals",
+          href: "/portfolio?category=weddings",
+          description: "Sacred ceremonies and royal celebrations across South Asia.",
+          badge: "Featured",
+        },
+        {
+          label: "Fashion & Editorial",
+          href: "/portfolio?category=fashion",
+          description: "Haute couture and high-concept lifestyle campaigns.",
+        },
+        {
+          label: "Commercial & Brands",
+          href: "/portfolio?category=commercial",
+          description: "Impactful brand stories and corporate cinema.",
+        },
+        {
+          label: "Concerts & Live",
+          href: "/portfolio?category=concerts",
+          description: "High-energy festival and live performance photography.",
+        },
+      ],
+    },
+    {
+      label: "Films",
+      href: "/films",
+      badge: "4K",
+      submenu: [
+        {
+          label: "Cinematic Film Reels",
+          href: "/films",
+          description: "4K/8K anamorphic film showcase with bespoke scores.",
+          badge: "4K",
+        },
+        {
+          label: "Wedding Cinema",
+          href: "/films?category=weddings",
+          description: "Emotional heirloom love stories and teaser trailers.",
+        },
+        {
+          label: "Commercial Brand Ads",
+          href: "/films?category=commercial",
+          description: "High-production brand adverts and campaign reels.",
+        },
+        {
+          label: "Documentaries",
+          href: "/films?category=documentaries",
+          description: "Cultural heritage and high-altitude Himalayan stories.",
+        },
+      ],
+    },
+    {
+      label: "Services",
+      href: "/services",
+      submenu: [
+        {
+          label: "All Services",
+          href: "/services",
+          description: "Full spectrum of production and branding capabilities.",
+        },
+        {
+          label: "Wedding Photography",
+          href: "/services",
+          description: "Comprehensive multi-day wedding coverage.",
+        },
+        {
+          label: "Cinematography & 4K Video",
+          href: "/services",
+          description: "Hollywood-grade video production with cinema rigs.",
+        },
+        {
+          label: "Drone Aerial Cinematography",
+          href: "/services",
+          description: "Licensed high-altitude aerial perspectives.",
+        },
+        {
+          label: "Digital Branding",
+          href: "/services",
+          description: "Social media creative strategy and content scaling.",
+        },
+      ],
+    },
+    {
+      label: "Albums",
+      href: "/albums",
+      badge: "Client",
+    },
+    {
+      label: "Journal",
+      href: "/posts",
+      submenu: [
+        {
+          label: "Studio Stories",
+          href: "/posts",
+          description: "Behind the lens diaries and creative perspectives.",
+        },
+        {
+          label: "Lighting Breakdown",
+          href: "/posts/mastering-the-golden-hour-cinematic-lighting-secrets",
+          description: "Secrets to our signature high-altitude golden glow.",
+        },
+        {
+          label: "Himalayan Destination Guide",
+          href: "/posts/destination-pre-wedding-shoots-himalayas-mustang-pokhara",
+          description: "Mustang and Pokhara elopement photography guide.",
+        },
+      ],
+    },
+    {
+      label: "About",
+      href: "/about",
+      submenu: [
+        {
+          label: "The Studio Story",
+          href: "/about",
+          description: "Our founding vision, philosophy, and artistic roots.",
+        },
+        {
+          label: "Creative Production Process",
+          href: "/#process",
+          description: "The 4-step client journey from discovery to delivery.",
+        },
+        {
+          label: "Studio Pillars",
+          href: "/#pillars",
+          description: "The 4 standards of cinematic and artistic excellence.",
+        },
+        {
+          label: "Client Inquiries (FAQ)",
+          href: "/#faq",
+          description: "Answers to booking, gear, and delivery questions.",
+        },
+      ],
+    },
+    {
+      label: "Contact",
+      href: "/contact",
+    },
+  ],
+  ctaButton: {
+    label: "Book a Shoot",
+    href: "/contact",
+  },
+  enableSearch: true,
+  enableWhatsApp: true,
+  enableLocaleSwitcher: true,
+};
