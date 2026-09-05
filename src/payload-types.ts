@@ -625,6 +625,51 @@ export interface Page {
             blockName?: string | null;
             blockType: 'studioPillars';
           }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            highlight?: string | null;
+            description?: string | null;
+            steps?:
+              | {
+                  stepNumber: string;
+                  tag: string;
+                  title: string;
+                  description: string;
+                  iconType?: ('compass' | 'camera' | 'sliders' | 'sparkles') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'studioProcess';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            highlight?: string | null;
+            description?: string | null;
+            limit?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'studioJournal';
+          }
+        | {
+            eyebrow?: string | null;
+            title?: string | null;
+            highlight?: string | null;
+            description?: string | null;
+            items?:
+              | {
+                  question: string;
+                  answer: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'studioFAQ';
+          }
         | StudioTestimonialsBlock
         | StudioSocialBlock
         | {
@@ -2172,6 +2217,54 @@ export interface PagesSelect<T extends boolean = true> {
                     title?: T;
                     desc?: T;
                     iconType?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        studioProcess?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              highlight?: T;
+              description?: T;
+              steps?:
+                | T
+                | {
+                    stepNumber?: T;
+                    tag?: T;
+                    title?: T;
+                    description?: T;
+                    iconType?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        studioJournal?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              highlight?: T;
+              description?: T;
+              limit?: T;
+              id?: T;
+              blockName?: T;
+            };
+        studioFAQ?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              highlight?: T;
+              description?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
                     id?: T;
                   };
               id?: T;

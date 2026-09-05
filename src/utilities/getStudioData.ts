@@ -6,10 +6,12 @@ import {
   defaultServices,
   defaultTestimonials,
   defaultStudioSettings,
+  defaultPosts,
   type FallbackPortfolioItem,
   type FallbackFilmItem,
   type FallbackServiceItem,
   type FallbackTestimonialItem,
+  type FallbackPostItem,
 } from "./studioDefaults";
 
 // Re-export defaults and types for convenience
@@ -19,10 +21,12 @@ export {
   defaultServices,
   defaultTestimonials,
   defaultStudioSettings,
+  defaultPosts,
   type FallbackPortfolioItem,
   type FallbackFilmItem,
   type FallbackServiceItem,
   type FallbackTestimonialItem,
+  type FallbackPostItem,
 };
 
 // ==============================================================================
@@ -210,4 +214,57 @@ export async function getStudioSettings() {
   }
 
   return defaultStudioSettings;
+}
+
+export async function getStudioPosts(limit = 3): Promise<FallbackPostItem[]> {
+  try {
+    const payload = await getPayload({ config: configPromise });
+    const result = await payload.find({
+      collection: "posts",
+      sort: "-publishedAt",
+      limit,
+      depth: 1,
+      overrideAccess: false,
+    });
+
+    if (result.docs && result.docs.length > 0) {
+      return result.docs.map((doc: any) => {
+        const imageUrl =
+          typeof doc.meta?.image === "object" && doc.meta.image?.url
+            ? doc.meta.image.url
+            : typeof doc.heroImage === "object" && doc.heroImage?.url
+            ? doc.heroImage.url
+            : defaultPosts[0].image;
+
+        const categoryTitle =
+          Array.isArray(doc.categories) && doc.categories.length > 0 && typeof doc.categories[0] === "object"
+            ? doc.categories[0].title || "Stories"
+            : "Journal";
+
+        const formattedDate = doc.publishedAt
+          ? new Date(doc.publishedAt).toLocaleDateString("en-US", {
+              month: "short",
+              year: "numeric",
+            })
+          : "Recently";
+
+        return {
+          id: String(doc.id),
+          title: doc.title || "Untitled",
+          slug: doc.slug || "",
+          excerpt:
+            doc.meta?.description ||
+            "Read our latest studio perspectives, wedding advice, and cinematography breakdowns.",
+          category: categoryTitle,
+          date: formattedDate,
+          image: imageUrl,
+          readTime: "5 min read",
+        };
+      });
+    }
+  } catch (error) {
+    console.warn("Failed to fetch studio posts from database, using fallback:", error);
+  }
+
+  return defaultPosts.slice(0, limit);
 }

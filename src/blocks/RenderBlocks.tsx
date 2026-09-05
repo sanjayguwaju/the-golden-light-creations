@@ -27,6 +27,9 @@ import { StudioTestimonialsBlockComponent } from "@/blocks/StudioTestimonials/Co
 import { StudioPageHeaderBlockComponent } from "@/blocks/StudioPageHeader/Component";
 import { StudioBannerBlockComponent } from "@/blocks/StudioBanner/Component";
 import { StudioPillarsBlockComponent } from "@/blocks/StudioPillars/Component";
+import { StudioProcessBlockComponent } from "@/blocks/StudioProcess/Component";
+import { StudioJournalBlockComponent } from "@/blocks/StudioJournal/Component";
+import { StudioFAQBlockComponent } from "@/blocks/StudioFAQ/Component";
 
 const blockComponents = {
   studioHero: StudioHeroBlockComponent,
@@ -38,6 +41,9 @@ const blockComponents = {
   studioStory: StudioStoryBlockComponent,
   studioStats: StudioStatsBlockComponent,
   studioPillars: StudioPillarsBlockComponent,
+  studioProcess: StudioProcessBlockComponent,
+  studioJournal: StudioJournalBlockComponent,
+  studioFAQ: StudioFAQBlockComponent,
   studioTestimonials: StudioTestimonialsBlockComponent,
   studioSocial: StudioSocialBlockComponent,
   studioBanner: StudioBannerBlockComponent,

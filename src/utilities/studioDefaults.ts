@@ -357,3 +357,50 @@ export const defaultStudioSettings = {
     facebook: "https://facebook.com/thegoldenlightcreations",
   },
 };
+
+export interface FallbackPostItem {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  image: string;
+  readTime?: string;
+}
+
+export const defaultPosts: FallbackPostItem[] = [
+  {
+    id: "post-1",
+    title: "Mastering the Golden Hour: Creative Lighting Secrets Behind Our Signature Glow",
+    slug: "mastering-the-golden-hour-cinematic-lighting-secrets",
+    excerpt:
+      "A director's breakdown on utilizing negative fill, natural diffusion, and warm low-angle rim lighting across Nepal's most breathtaking landscapes.",
+    category: "Behind The Lens",
+    date: "Sep 2026",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1000&q=85",
+    readTime: "5 min read",
+  },
+  {
+    id: "post-2",
+    title: "Destination Pre-Wedding in the Himalayas: A Visual Guide to Mustang & Pokhara",
+    slug: "destination-pre-wedding-shoots-himalayas-mustang-pokhara",
+    excerpt:
+      "Balancing ancient sacred rituals with modern editorial fashion aesthetics. Why authentic human emotion beats posed perfection every single time.",
+    category: "Destination",
+    date: "Aug 2026",
+    image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1000&q=85",
+    readTime: "6 min read",
+  },
+  {
+    id: "post-3",
+    title: "The Art of Cinematography: Crafting 4K Film-Look Videos with Natural Light",
+    slug: "art-of-cinematography-4k-film-look-natural-light",
+    excerpt:
+      "Navigating altitude, extreme winds, and harsh desert canyons while crafting an ethereal high-fashion pre-wedding visual film in Upper Mustang.",
+    category: "Cinematography",
+    date: "Jul 2026",
+    image: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1000&q=85",
+    readTime: "4 min read",
+  },
+];

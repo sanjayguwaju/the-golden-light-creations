@@ -1,14 +1,17 @@
-"use client";
-
 import React from "react";
 import { StudioHero } from "./StudioHero";
 import { StudioMarquee } from "./StudioMarquee";
 import { StudioPortfolio } from "./StudioPortfolio";
 import { StudioFilms } from "./StudioFilms";
+import { StudioPillars } from "./StudioPillars";
 import { StudioServices } from "./StudioServices";
+import { StudioProcess } from "./StudioProcess";
 import { StudioStory } from "./StudioStory";
 import { StudioStats } from "./StudioStats";
+import { StudioJournal } from "./StudioJournal";
+import { StudioBanner } from "./StudioBanner";
 import { StudioTestimonials } from "./StudioTestimonials";
+import { StudioFAQ } from "./StudioFAQ";
 import { StudioSocial } from "./StudioSocial";
 import { StudioContact } from "./StudioContact";
 import type {
@@ -16,6 +19,7 @@ import type {
   FallbackFilmItem,
   FallbackServiceItem,
   FallbackTestimonialItem,
+  FallbackPostItem,
 } from "@/utilities/studioDefaults";
 
 interface StudioPageProps {
@@ -23,6 +27,7 @@ interface StudioPageProps {
   films?: FallbackFilmItem[];
   services?: FallbackServiceItem[];
   testimonials?: FallbackTestimonialItem[];
+  posts?: FallbackPostItem[];
   settings?: any;
 }
 
@@ -31,6 +36,7 @@ export function StudioPage({
   films,
   services,
   testimonials,
+  posts,
   settings,
 }: StudioPageProps) {
   return (
@@ -47,10 +53,16 @@ export function StudioPage({
       {/* 4. Cinematic Films Reel Slider + Video Modal */}
       <StudioFilms items={films} isHomepagePreview={true} />
 
-      {/* 5. Core Production Services Preview */}
+      {/* 5. The Studio Pillars */}
+      <StudioPillars />
+
+      {/* 6. Core Production Services Preview */}
       <StudioServices items={services} isHomepagePreview={true} />
 
-      {/* 6. Studio Story Narrative + Live Counter Stats */}
+      {/* 7. The Creative Journey / Process */}
+      <StudioProcess />
+
+      {/* 8. Studio Story Narrative + Live Counter Stats */}
       <StudioStory
         headline={settings?.story?.headline}
         quote={settings?.story?.quote}
@@ -60,16 +72,25 @@ export function StudioPage({
         isHomepagePreview={true}
       />
 
-      {/* 7. Large Glowing Numbers Stat Band */}
+      {/* 9. Large Glowing Numbers Stat Band */}
       <StudioStats stats={settings?.stats} />
 
-      {/* 8. Client Testimonials */}
+      {/* 10. From the Studio Journal */}
+      <StudioJournal posts={posts} />
+
+      {/* 11. Mid-Page Callout Banner */}
+      <StudioBanner />
+
+      {/* 12. Client Testimonials */}
       <StudioTestimonials items={testimonials} />
 
-      {/* 9. Curated Instagram Aesthetic Grid */}
+      {/* 13. Frequently Asked Questions */}
+      <StudioFAQ />
+
+      {/* 14. Curated Instagram Aesthetic Grid */}
       <StudioSocial />
 
-      {/* 10. Booking Inquiry & WhatsApp Direct Section */}
+      {/* 15. Booking Inquiry & WhatsApp Direct Section */}
       <StudioContact contact={settings?.contact} />
     </div>
   );

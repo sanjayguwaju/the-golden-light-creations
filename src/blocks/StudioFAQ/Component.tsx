@@ -1,19 +1,21 @@
 import React from "react";
-import { StudioPillars, PillarItem } from "@/components/studio/StudioPillars";
+import { StudioFAQ, FAQItem } from "@/components/studio/StudioFAQ";
 
 interface Props {
   eyebrow?: string;
   title?: string;
   highlight?: string;
-  items?: PillarItem[];
+  description?: string;
+  items?: FAQItem[];
 }
 
-export function StudioPillarsBlockComponent(props: Props) {
+export function StudioFAQBlockComponent(props: Props) {
   return (
-    <StudioPillars
+    <StudioFAQ
       eyebrow={props.eyebrow}
       title={props.title}
       highlight={props.highlight}
+      description={props.description}
       items={props.items}
     />
   );
