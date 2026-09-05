@@ -125,7 +125,12 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ne' | 'hr') | ('en' | 'ne' | 'hr')[];
+  fallbackLocale:
+    | ('false' | 'none' | 'null')
+    | false
+    | null
+    | ('en' | 'ne' | 'hi' | 'zh' | 'fr' | 'it' | 'ko' | 'ru' | 'hr')
+    | ('en' | 'ne' | 'hi' | 'zh' | 'fr' | 'it' | 'ko' | 'ru' | 'hr')[];
   globals: {
     'studio-settings': StudioSetting;
     'site-settings': SiteSetting;
@@ -134,7 +139,7 @@ export interface Config {
     'studio-settings': StudioSettingsSelect<false> | StudioSettingsSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
-  locale: 'en' | 'ne' | 'hr';
+  locale: 'en' | 'ne' | 'hi' | 'zh' | 'fr' | 'it' | 'ko' | 'ru' | 'hr';
   widgets: {
     collections: CollectionsWidget;
   };

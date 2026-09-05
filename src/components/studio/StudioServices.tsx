@@ -16,7 +16,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { defaultServices, type FallbackServiceItem } from "@/utilities/studioDefaults";
-import { MagicCard, BorderBeam } from "@/components/magicui";
+import { MagicCard } from "@/components/magicui";
 
 interface StudioServicesProps {
   items?: FallbackServiceItem[];
@@ -89,7 +89,7 @@ export function StudioServices({
           </div>
         </div>
 
-        {/* Services Grid with MagicCard Spotlight & BorderBeam on Flagship */}
+        {/* Services Grid with MagicCard Spotlight */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedItems.map((srv, index) => {
             const isFeatured = index === 0;
@@ -104,17 +104,6 @@ export function StudioServices({
                     : "border-white/[0.08] hover:border-[#F5B301]/40"
                 }`}
               >
-                {/* BorderBeam for Flagship Signature Service */}
-                {isFeatured && (
-                  <BorderBeam
-                    size={100}
-                    duration={8}
-                    colorFrom="#F5B301"
-                    colorTo="#FFD04A"
-                    borderWidth={1.5}
-                  />
-                )}
-
                 {/* Bottom expanding gold indicator */}
                 <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#F5B301] transition-all duration-500 ease-out group-hover:w-full" />
 

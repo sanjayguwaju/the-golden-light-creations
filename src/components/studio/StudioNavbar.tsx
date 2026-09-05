@@ -24,6 +24,12 @@ interface StudioNavbarProps {
 const languages = [
   { code: "en", label: "EN", fullLabel: "English", flag: "🇺🇸" },
   { code: "ne", label: "NE", fullLabel: "नेपाली", flag: "🇳🇵" },
+  { code: "hi", label: "HI", fullLabel: "हिन्दी", flag: "🇮🇳" },
+  { code: "zh", label: "ZH", fullLabel: "中文", flag: "🇨🇳" },
+  { code: "fr", label: "FR", fullLabel: "Français", flag: "🇫🇷" },
+  { code: "it", label: "IT", fullLabel: "Italiano", flag: "🇮🇹" },
+  { code: "ko", label: "KO", fullLabel: "한국어", flag: "🇰🇷" },
+  { code: "ru", label: "RU", fullLabel: "Русский", flag: "🇷🇺" },
   { code: "hr", label: "HR", fullLabel: "Hrvatski", flag: "🇭🇷" },
 ];
 
@@ -313,7 +319,7 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
                 </button>
 
                 {localeDropdownOpen && (
-                  <div className="absolute top-full right-0 mt-2 bg-white border border-[#C0171E]/15 rounded-xl shadow-2xl p-1.5 min-w-[130px] z-50 animate-in fade-in-0 zoom-in-95">
+                  <div className="absolute top-full right-0 mt-2 bg-white border border-[#C0171E]/15 rounded-xl shadow-2xl p-1.5 min-w-[150px] max-h-[300px] overflow-y-auto z-50 animate-in fade-in-0 zoom-in-95">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
@@ -496,24 +502,26 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
             </a>
           </div>
 
-          {/* Language Selector Row */}
-          <div className="flex items-center justify-center gap-2 py-1">
-            <span className="text-xs font-montserrat text-white/60 uppercase tracking-widest mr-2">
-              Language:
+          {/* Language Selector */}
+          <div className="flex flex-col items-center justify-center gap-2 py-1">
+            <span className="text-[11px] font-montserrat text-white/70 uppercase tracking-widest">
+              Language
             </span>
-            {languages.map((l) => (
-              <button
-                key={l.code}
-                onClick={() => onLocaleChange(l.code)}
-                className={`px-3 py-1 rounded-full text-xs font-montserrat font-bold uppercase tracking-wider transition-colors ${
-                  locale === l.code
-                    ? "bg-white text-[#C0171E]"
-                    : "bg-white/10 text-white hover:bg-white/20"
-                }`}
-              >
-                {l.flag} {l.label}
-              </button>
-            ))}
+            <div className="flex flex-wrap items-center justify-center gap-1.5 max-w-[320px]">
+              {languages.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => onLocaleChange(l.code)}
+                  className={`px-2.5 py-1 rounded-full text-[11px] font-montserrat font-bold uppercase tracking-wider transition-colors ${
+                    locale === l.code
+                      ? "bg-white text-[#C0171E] shadow-md"
+                      : "bg-white/10 text-white hover:bg-white/20"
+                  }`}
+                >
+                  {l.flag} {l.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <Link
