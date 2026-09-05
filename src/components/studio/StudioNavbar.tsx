@@ -120,17 +120,17 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
     <>
       {/* Top Fixed Navbar */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-xl py-3.5 border-b border-[#C0171E]/15 shadow-2xl shadow-black/5"
-            : "bg-transparent backdrop-blur-md py-5 border-b border-white/5"
+            ? "bg-white/95 backdrop-blur-xl py-2.5 sm:py-3.5 border-b border-[#C0171E]/15 shadow-2xl shadow-black/5"
+            : "bg-transparent backdrop-blur-md py-3.5 sm:py-5 border-b border-white/5"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-4 xl:px-8 flex items-center justify-between gap-2 sm:gap-4">
           {/* Brand Logo */}
-          <Link href="/" className="group flex flex-col leading-none shrink-0 mr-4 sm:mr-8">
+          <Link href="/" className="group flex flex-col leading-none shrink-0 mr-1 sm:mr-3 lg:mr-2 xl:mr-6">
             <span
-              className={`font-bebas text-2xl sm:text-3xl tracking-[0.15em] transition-colors ${
+              className={`font-bebas text-xl sm:text-2xl lg:text-2xl xl:text-3xl tracking-[0.12em] xl:tracking-[0.15em] transition-colors ${
                 isScrolled
                   ? "text-[#C0171E] group-hover:text-[#A01018]"
                   : "text-white group-hover:text-[#FFD04A]"
@@ -139,7 +139,7 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
               THE GOLDEN
             </span>
             <span
-              className={`font-montserrat text-[10px] sm:text-[11px] font-bold tracking-[0.35em] transition-colors ${
+              className={`font-montserrat text-[9px] sm:text-[10px] xl:text-[11px] font-bold tracking-[0.25em] xl:tracking-[0.35em] transition-colors ${
                 isScrolled ? "text-[#0A0A0A]/80" : "text-[#FFD04A]"
               }`}
             >
@@ -149,7 +149,7 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
 
           {/* Desktop Navigation Links & Dropdowns */}
           <nav
-            className="hidden lg:flex items-center gap-6 xl:gap-7"
+            className="hidden xl:flex items-center gap-3.5 2xl:gap-6 shrink-0"
             aria-label="Main Navigation"
           >
             {navConfig.navItems.map((item) => {
@@ -160,13 +160,13 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
               return (
                 <div
                   key={item.label}
-                  className="relative"
+                  className="relative shrink-0"
                   onMouseEnter={() => (hasSubmenu ? handleMouseEnter(item.label) : undefined)}
                   onMouseLeave={() => (hasSubmenu ? handleMouseLeave() : undefined)}
                 >
                   <Link
                     href={item.href}
-                    className={`relative font-montserrat text-xs font-semibold uppercase tracking-[0.18em] transition-colors py-2 flex items-center gap-1.5 group ${
+                    className={`relative font-montserrat text-[11px] xl:text-xs font-semibold uppercase tracking-[0.06em] lg:tracking-[0.08em] xl:tracking-[0.12em] 2xl:tracking-[0.18em] transition-colors py-2 flex items-center gap-1 xl:gap-1.5 group whitespace-nowrap shrink-0 ${
                       isActive || isDropdownOpen
                         ? isScrolled
                           ? "text-[#C0171E]"
@@ -180,7 +180,7 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
 
                     {/* Badge if present */}
                     {item.badge && (
-                      <span className="text-[9px] font-montserrat font-bold uppercase tracking-wider px-1.5 py-0.2 rounded-full bg-[#C0171E] text-white shadow-xs">
+                      <span className="text-[8px] xl:text-[9px] font-montserrat font-bold uppercase tracking-wider px-1 xl:px-1.5 py-0.5 rounded-full bg-[#C0171E] text-white shadow-xs shrink-0">
                         {item.badge}
                       </span>
                     )}
@@ -188,7 +188,7 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
                     {/* Chevron for submenus */}
                     {hasSubmenu && (
                       <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                        className={`w-3 h-3 transition-transform duration-200 shrink-0 ${
                           isDropdownOpen ? "rotate-180 text-[#C0171E]" : "opacity-60"
                         }`}
                       />
@@ -258,20 +258,20 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
           </nav>
 
           {/* Right Utility Cluster: Search, WhatsApp, Locale Switcher, CTA, Mobile Menu */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2 xl:gap-3 shrink-0">
             {/* Search Icon */}
             {navConfig.enableSearch && (
               <Link
                 href="/search"
                 aria-label="Search Studio Works"
-                className={`p-2 rounded-full transition-colors ${
+                className={`hidden sm:inline-flex p-1.5 xl:p-2 rounded-full transition-colors shrink-0 ${
                   isScrolled
                     ? "text-[#0A0A0A]/70 hover:text-[#C0171E] hover:bg-[#FFF5F5]"
                     : "text-white/80 hover:text-white hover:bg-white/10"
                 }`}
                 title="Search Stories & Films"
               >
-                <Search className="w-4 h-4" />
+                <Search className="w-3.5 h-3.5 xl:w-4 xl:h-4" />
               </Link>
             )}
 
@@ -283,33 +283,33 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
                 rel="noopener noreferrer"
                 aria-label="Chat on WhatsApp"
                 title="Chat with us on WhatsApp"
-                className={`p-2 rounded-full transition-colors ${
+                className={`hidden sm:inline-flex p-1.5 xl:p-2 rounded-full transition-colors shrink-0 ${
                   isScrolled
                     ? "text-[#0A0A0A]/70 hover:text-[#C0171E] hover:bg-[#FFF5F5]"
                     : "text-white/80 hover:text-white hover:bg-white/10"
                 }`}
               >
-                <MessageCircle className="w-4 h-4" />
+                <MessageCircle className="w-3.5 h-3.5 xl:w-4 xl:h-4" />
               </a>
             )}
 
             {/* Language Switcher Dropdown */}
             {navConfig.enableLocaleSwitcher && (
-              <div className="relative" ref={localeDropdownRef}>
+              <div className="relative shrink-0" ref={localeDropdownRef}>
                 <button
                   type="button"
                   onClick={() => setLocaleDropdownOpen(!localeDropdownOpen)}
                   disabled={isPending}
-                  className={`flex items-center gap-1 text-xs font-montserrat font-bold uppercase tracking-wider py-1.5 px-2.5 rounded-full border transition-all ${
+                  className={`flex items-center gap-1 text-[10px] xl:text-xs font-montserrat font-bold uppercase tracking-wider py-1 xl:py-1.5 px-2 xl:px-2.5 rounded-full border transition-all whitespace-nowrap shrink-0 ${
                     isScrolled
                       ? "border-[#C0171E]/20 text-[#0A0A0A] hover:border-[#C0171E] hover:bg-[#FFF5F5]"
                       : "border-white/20 text-white hover:border-white hover:bg-white/10"
                   }`}
                   aria-label="Switch Language"
                 >
-                  <Globe className="w-3.5 h-3.5 text-[#C0171E]" />
+                  <Globe className="w-3 h-3 xl:w-3.5 xl:h-3.5 text-[#C0171E] shrink-0" />
                   <span>{currentLang.code}</span>
-                  <ChevronDown className="w-3 h-3 opacity-60" />
+                  <ChevronDown className="w-2.5 h-2.5 xl:w-3 xl:h-3 opacity-60 shrink-0" />
                 </button>
 
                 {localeDropdownOpen && (
@@ -339,27 +339,27 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
             {/* Desktop CTA Button */}
             <Link
               href={navConfig.ctaButton?.href || "/contact"}
-              className={`hidden sm:inline-flex items-center gap-2 font-montserrat font-bold text-xs uppercase tracking-[0.2em] px-5 sm:px-6 py-2.5 sm:py-3 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg rounded-full ${
+              className={`hidden sm:inline-flex items-center gap-1.5 xl:gap-2 font-montserrat font-bold text-[10px] sm:text-[11px] xl:text-xs uppercase tracking-[0.10em] xl:tracking-[0.18em] px-3 sm:px-3.5 xl:px-5 2xl:px-6 py-1.5 sm:py-2 xl:py-2.5 2xl:py-3 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg rounded-full whitespace-nowrap shrink-0 ${
                 isScrolled
                   ? "bg-[#C0171E] hover:bg-[#A01018] text-white shadow-[#C0171E]/20"
                   : "bg-white hover:bg-[#FFF5F5] text-[#C0171E] shadow-xl"
               }`}
             >
               <span>{navConfig.ctaButton?.label || "Book a Shoot"}</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <ArrowUpRight className="w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0" />
             </Link>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open Navigation Menu"
-              className={`lg:hidden p-2 transition-colors focus:outline-hidden ${
+              className={`xl:hidden p-1.5 sm:p-2 transition-colors focus:outline-hidden shrink-0 ${
                 isScrolled
                   ? "text-[#0A0A0A] hover:text-[#C0171E]"
                   : "text-white hover:text-[#FFD04A]"
               }`}
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>
@@ -367,7 +367,7 @@ export function StudioNavbar({ navigation }: StudioNavbarProps) {
 
       {/* Full-Screen Mobile Drawer: Crimson Red with White Text */}
       <div
-        className={`fixed inset-0 z-[100] bg-[#C0171E] text-white flex flex-col justify-between p-6 sm:p-8 h-[100dvh] w-full overflow-y-auto transition-transform duration-500 ease-out lg:hidden ${
+        className={`fixed inset-0 z-[100] bg-[#C0171E] text-white flex flex-col justify-between p-6 sm:p-8 h-[100dvh] w-full overflow-y-auto transition-transform duration-500 ease-out xl:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
