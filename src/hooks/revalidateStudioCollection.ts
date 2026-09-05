@@ -7,10 +7,11 @@ const LOCALES = localization.locales.map((l) => l.code);
 type StudioCollectionSlug = "portfolio" | "films" | "services" | "testimonials";
 
 export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug): CollectionAfterChangeHook => {
-  return ({ req: { payload, context } }) => {
+  return ({ doc, req: { payload, context } }) => {
     if (!context.disableRevalidate) {
       try {
-        payload.logger.info(`Revalidating studio collection: ${collectionSlug}`);
+        const itemSlug = (doc as any)?.slug;
+        payload.logger.info(`Revalidating studio collection: ${collectionSlug}${itemSlug ? ` (${itemSlug})` : ""}`);
 
         // 1. Revalidate localized URLs
         for (const loc of LOCALES) {
@@ -21,6 +22,10 @@ export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug)
           } else {
             revalidatePath(`/${loc}/${collectionSlug}`);
             revalidatePath(`/${loc}/${collectionSlug}`, "page");
+            if (itemSlug) {
+              revalidatePath(`/${loc}/${collectionSlug}/${itemSlug}`);
+              revalidatePath(`/${loc}/${collectionSlug}/${itemSlug}`, "page");
+            }
           }
         }
 
@@ -33,6 +38,10 @@ export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug)
         } else {
           revalidatePath(`/${collectionSlug}`);
           revalidatePath(`/${collectionSlug}`, "page");
+          if (itemSlug) {
+            revalidatePath(`/${collectionSlug}/${itemSlug}`);
+            revalidatePath(`/${collectionSlug}/${itemSlug}`, "page");
+          }
         }
 
         // 3. Revalidate App Router dynamic parameterized routes
@@ -40,6 +49,9 @@ export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug)
           revalidatePath("/[locale]/services", "page");
         } else {
           revalidatePath(`/[locale]/${collectionSlug}`, "page");
+          if (collectionSlug === "services") {
+            revalidatePath(`/[locale]/services/[slug]`, "page");
+          }
         }
         revalidatePath("/[locale]", "page");
 
@@ -48,6 +60,9 @@ export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug)
 
         // 5. Invalidate Next.js cache tags
         revalidateTag(collectionSlug);
+        if (itemSlug) {
+          revalidateTag(`${collectionSlug}_${itemSlug}`);
+        }
         revalidateTag("pages");
       } catch (err) {
         payload.logger.error(`Error revalidating ${collectionSlug}: ${err}`);
@@ -57,9 +72,10 @@ export const revalidateStudioCollection = (collectionSlug: StudioCollectionSlug)
 };
 
 export const revalidateStudioCollectionDelete = (collectionSlug: StudioCollectionSlug): CollectionAfterDeleteHook => {
-  return ({ req: { payload, context } }) => {
+  return ({ doc, req: { payload, context } }) => {
     if (!context.disableRevalidate) {
       try {
+        const itemSlug = (doc as any)?.slug;
         for (const loc of LOCALES) {
           revalidatePath(`/${loc}`);
           if (collectionSlug === "testimonials") {
@@ -68,6 +84,10 @@ export const revalidateStudioCollectionDelete = (collectionSlug: StudioCollectio
           } else {
             revalidatePath(`/${loc}/${collectionSlug}`);
             revalidatePath(`/${loc}/${collectionSlug}`, "page");
+            if (itemSlug) {
+              revalidatePath(`/${loc}/${collectionSlug}/${itemSlug}`);
+              revalidatePath(`/${loc}/${collectionSlug}/${itemSlug}`, "page");
+            }
           }
         }
 
@@ -79,17 +99,27 @@ export const revalidateStudioCollectionDelete = (collectionSlug: StudioCollectio
         } else {
           revalidatePath(`/${collectionSlug}`);
           revalidatePath(`/${collectionSlug}`, "page");
+          if (itemSlug) {
+            revalidatePath(`/${collectionSlug}/${itemSlug}`);
+            revalidatePath(`/${collectionSlug}/${itemSlug}`, "page");
+          }
         }
 
         if (collectionSlug === "testimonials") {
           revalidatePath("/[locale]/services", "page");
         } else {
           revalidatePath(`/[locale]/${collectionSlug}`, "page");
+          if (collectionSlug === "services") {
+            revalidatePath(`/[locale]/services/[slug]`, "page");
+          }
         }
         revalidatePath("/[locale]", "page");
         revalidatePath("/", "layout");
 
         revalidateTag(collectionSlug);
+        if (itemSlug) {
+          revalidateTag(`${collectionSlug}_${itemSlug}`);
+        }
         revalidateTag("pages");
       } catch (err) {
         payload.logger.error(`Error revalidating deleted ${collectionSlug}: ${err}`);

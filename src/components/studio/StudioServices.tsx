@@ -93,12 +93,19 @@ export function StudioServices({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedItems.map((srv, index) => {
             const isFeatured = index === 0;
+            const serviceSlug =
+              srv.slug ||
+              srv.name
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "");
+
             return (
               <MagicCard
                 key={srv.id || srv.num}
                 gradientColor="rgba(255, 255, 255, 0.12)"
                 gradientSize={280}
-                className={`group relative bg-white/[0.02] p-6 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 ${
+                className={`group relative bg-white/[0.02] p-6 sm:p-10 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between ${
                   isFeatured
                     ? "border-[#F5B301]/50 shadow-[0_0_30px_rgba(245,179,1,0.12)]"
                     : "border-white/[0.08] hover:border-[#F5B301]/40"
@@ -107,32 +114,52 @@ export function StudioServices({
                 {/* Bottom expanding gold indicator */}
                 <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#F5B301] transition-all duration-500 ease-out group-hover:w-full" />
 
-                {/* Featured Badge */}
-                {isFeatured && (
-                  <span className="inline-block font-montserrat text-[9px] font-bold tracking-[0.25em] uppercase text-[#0A0A0A] bg-[#F5B301] px-2.5 py-0.5 mb-4 shadow-sm">
-                    Signature
-                  </span>
-                )}
+                <div>
+                  {/* Featured Badge */}
+                  {isFeatured && (
+                    <span className="inline-block font-montserrat text-[9px] font-bold tracking-[0.25em] uppercase text-[#0A0A0A] bg-[#F5B301] px-2.5 py-0.5 mb-4 shadow-sm">
+                      Signature
+                    </span>
+                  )}
 
-                {/* Icon Container */}
-                <div className="w-12 h-12 sm:w-14 sm:h-14 border border-[#F5B301]/30 group-hover:border-[#F5B301] group-hover:bg-[#F5B301]/10 flex items-center justify-center mb-5 sm:mb-6 transition-all duration-300">
-                  {resolveServiceIcon(srv.icon)}
+                  {/* Icon Container */}
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 border border-[#F5B301]/30 group-hover:border-[#F5B301] group-hover:bg-[#F5B301]/10 flex items-center justify-center mb-5 sm:mb-6 transition-all duration-300">
+                    {resolveServiceIcon(srv.icon)}
+                  </div>
+
+                  {/* Number */}
+                  <div className="font-bebas text-sm tracking-[0.25em] text-[#F5B301]/60 mb-2">
+                    {srv.num}
+                  </div>
+
+                  {/* Name */}
+                  <h3 className="font-montserrat text-base sm:text-lg font-bold uppercase tracking-wider text-white mb-2 sm:mb-3 group-hover:text-[#F5B301] transition-colors">
+                    <Link href={`/services/${serviceSlug}`}>
+                      {srv.name}
+                    </Link>
+                  </h3>
+
+                  {/* Description */}
+                  <p className="font-poppins text-xs sm:text-sm text-white/60 leading-relaxed font-light">
+                    {srv.desc}
+                  </p>
                 </div>
 
-                {/* Number */}
-                <div className="font-bebas text-sm tracking-[0.25em] text-[#F5B301]/60 mb-2">
-                  {srv.num}
+                {/* Individual Service Page Link */}
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                  <Link
+                    href={`/services/${serviceSlug}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-montserrat font-bold uppercase tracking-wider text-[#F5B301] group-hover:text-white transition-colors"
+                  >
+                    <span>Explore Service</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                  {srv.targetAudience && (
+                    <span className="text-[10px] font-montserrat text-white/40 uppercase tracking-wider truncate max-w-[130px]">
+                      {srv.targetAudience.split(",")[0]}
+                    </span>
+                  )}
                 </div>
-
-                {/* Name */}
-                <h3 className="font-montserrat text-base sm:text-lg font-bold uppercase tracking-wider text-white mb-2 sm:mb-3 group-hover:text-[#F5B301] transition-colors">
-                  {srv.name}
-                </h3>
-
-                {/* Description */}
-                <p className="font-poppins text-xs sm:text-sm text-white/60 leading-relaxed font-light">
-                  {srv.desc}
-                </p>
               </MagicCard>
             );
           })}

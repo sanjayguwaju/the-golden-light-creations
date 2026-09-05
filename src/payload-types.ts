@@ -351,9 +351,83 @@ export interface Service {
    * 3-digit prefix number (e.g. 001, 002, 003...)
    */
   serviceNumber: string;
+  /**
+   * Catchy single-sentence proposition (e.g. 'Cinema-grade media for civic leaders.')
+   */
+  tagline?: string | null;
+  /**
+   * Brief summary used in cards on homepage and services archive
+   */
   shortDescription: string;
+  /**
+   * Primary high-resolution hero photo for the single service page
+   */
+  heroImage?: (string | null) | Media;
+  /**
+   * External CDN/Unsplash image fallback URL if not uploading media
+   */
+  heroImageUrl?: string | null;
+  /**
+   * Detailed narrative explaining why clients commission this service
+   */
+  overview?: string | null;
+  /**
+   * Primary audience (e.g. 'Mayors, Civic Leaders, Celebrities, VIP Figures')
+   */
+  targetAudience?: string | null;
+  /**
+   * Notice displayed on VIP service pages (e.g. NDA / discretion guarantee)
+   */
+  confidentialityNotice?: string | null;
+  deliverables?:
+    | {
+        title: string;
+        description: string;
+        /**
+         * Optional badge tag (e.g. '4K HDR', 'Same-Day Press', 'NDA Protected')
+         */
+        highlight?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  processSteps?:
+    | {
+        stepNumber?: string | null;
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
   icon?:
-    | ('camera' | 'film' | 'compass' | 'party' | 'music' | 'video' | 'smartphone' | 'sparkles' | 'tv' | 'lightbulb')
+    | (
+        | 'camera'
+        | 'film'
+        | 'compass'
+        | 'party'
+        | 'music'
+        | 'video'
+        | 'smartphone'
+        | 'sparkles'
+        | 'tv'
+        | 'lightbulb'
+        | 'award'
+        | 'star'
+      )
     | null;
   featured?: boolean | null;
   order?: number | null;
@@ -2030,7 +2104,43 @@ export interface FilmsSelect<T extends boolean = true> {
 export interface ServicesSelect<T extends boolean = true> {
   title?: T;
   serviceNumber?: T;
+  tagline?: T;
   shortDescription?: T;
+  heroImage?: T;
+  heroImageUrl?: T;
+  overview?: T;
+  targetAudience?: T;
+  confidentialityNotice?: T;
+  deliverables?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        highlight?: T;
+        id?: T;
+      };
+  processSteps?:
+    | T
+    | {
+        stepNumber?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
   icon?: T;
   featured?: T;
   order?: T;

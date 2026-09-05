@@ -114,23 +114,87 @@ export async function getStudioServices(): Promise<FallbackServiceItem[]> {
       collection: "services",
       sort: "order",
       limit: 50,
-      depth: 0,
+      depth: 1,
     });
 
     if (result.docs && result.docs.length > 0) {
-      return result.docs.map((doc: any) => ({
-        id: String(doc.id),
-        num: doc.serviceNumber || "001",
-        name: doc.title,
-        desc: doc.shortDescription,
-        icon: doc.icon || "camera",
-      }));
+      return result.docs.map((doc: any) => {
+        const heroUrl =
+          typeof doc.heroImage === "object" && doc.heroImage?.url
+            ? doc.heroImage.url
+            : doc.heroImageUrl || defaultServices[0].heroImageUrl;
+
+        return {
+          id: String(doc.id),
+          num: doc.serviceNumber || "001",
+          name: doc.title,
+          slug: doc.slug || doc.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+          desc: doc.shortDescription,
+          icon: doc.icon || "camera",
+          tagline: doc.tagline,
+          heroImageUrl: heroUrl,
+          overview: doc.overview,
+          targetAudience: doc.targetAudience,
+          confidentialityNotice: doc.confidentialityNotice,
+          deliverables: doc.deliverables,
+          processSteps: doc.processSteps,
+          faqs: doc.faqs,
+        };
+      });
     }
   } catch (error) {
     console.warn("Failed to fetch studio services from database, using fallback:", error);
   }
 
   return defaultServices;
+}
+
+export async function getStudioServiceBySlug(
+  slug: string
+): Promise<FallbackServiceItem | null> {
+  try {
+    const payload = await getPayload({ config: configPromise });
+    const result = await payload.find({
+      collection: "services",
+      where: {
+        slug: {
+          equals: slug,
+        },
+      },
+      limit: 1,
+      depth: 1,
+    });
+
+    if (result.docs && result.docs.length > 0) {
+      const doc: any = result.docs[0];
+      const heroUrl =
+        typeof doc.heroImage === "object" && doc.heroImage?.url
+          ? doc.heroImage.url
+          : doc.heroImageUrl || defaultServices[0].heroImageUrl;
+
+      return {
+        id: String(doc.id),
+        num: doc.serviceNumber || "001",
+        name: doc.title,
+        slug: doc.slug || slug,
+        desc: doc.shortDescription,
+        icon: doc.icon || "camera",
+        tagline: doc.tagline,
+        heroImageUrl: heroUrl,
+        overview: doc.overview,
+        targetAudience: doc.targetAudience,
+        confidentialityNotice: doc.confidentialityNotice,
+        deliverables: doc.deliverables,
+        processSteps: doc.processSteps,
+        faqs: doc.faqs,
+      };
+    }
+  } catch (error) {
+    console.warn(`Failed to query service by slug [${slug}], checking defaults:`, error);
+  }
+
+  const fallback = defaultServices.find((s) => s.slug === slug);
+  return fallback || null;
 }
 
 export async function getStudioTestimonials(): Promise<FallbackTestimonialItem[]> {
