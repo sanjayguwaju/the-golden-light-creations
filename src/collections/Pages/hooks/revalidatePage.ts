@@ -18,22 +18,30 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
       for (const loc of LOCALES) {
         const path = slug === "home" ? `/${loc}` : `/${loc}/${slug}`;
         revalidatePath(path);
-        if (slug === "home") {
-          revalidatePath(`/${loc}`);
-        }
+        revalidatePath(path, "page");
 
         if (previousDoc?.slug && previousDoc.slug !== slug) {
           const oldPath = previousDoc.slug === "home" ? `/${loc}` : `/${loc}/${previousDoc.slug}`;
           revalidatePath(oldPath);
+          revalidatePath(oldPath, "page");
         }
       }
 
       const rootPath = slug === "home" ? "/" : `/${slug}`;
       revalidatePath(rootPath);
+      revalidatePath(rootPath, "page");
       if (previousDoc?.slug && previousDoc.slug !== slug) {
         const oldRootPath = previousDoc.slug === "home" ? "/" : `/${previousDoc.slug}`;
         revalidatePath(oldRootPath);
+        revalidatePath(oldRootPath, "page");
       }
+
+      if (slug === "home") {
+        revalidatePath("/[locale]", "page");
+      } else {
+        revalidatePath(`/[locale]/${slug}`, "page");
+      }
+      revalidatePath("/", "layout");
 
       revalidateTag("pages-sitemap");
       revalidateTag("pages");
@@ -60,10 +68,19 @@ export const revalidateDelete: CollectionAfterDeleteHook<Page> = ({
       for (const loc of LOCALES) {
         const path = slug === "home" ? `/${loc}` : `/${loc}/${slug}`;
         revalidatePath(path);
+        revalidatePath(path, "page");
       }
 
       const rootPath = slug === "home" ? "/" : `/${slug}`;
       revalidatePath(rootPath);
+      revalidatePath(rootPath, "page");
+
+      if (slug === "home") {
+        revalidatePath("/[locale]", "page");
+      } else {
+        revalidatePath(`/[locale]/${slug}`, "page");
+      }
+      revalidatePath("/", "layout");
 
       revalidateTag("pages-sitemap");
       revalidateTag("pages");
