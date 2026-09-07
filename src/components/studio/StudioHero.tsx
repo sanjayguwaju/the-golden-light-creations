@@ -41,23 +41,37 @@ export function StudioHero({
   return (
     <section
       id="hero"
-      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-24 pb-16 px-4"
+      className="relative min-h-[100dvh] h-screen w-full flex items-center justify-center overflow-hidden pt-24 pb-16 px-4"
     >
-      {/* Background Image with slow cinematic zoom and Crimson Red Overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out animate-pulse"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(192,23,30,0.88) 0%, rgba(160,16,24,0.78) 45%, rgba(130,12,18,0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80')`,
-          animation: "heroPan 22s ease-in-out infinite alternate",
-        }}
-      />
+      {/* Full Viewport Background Video with Instant Poster Still */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/hero-poster.jpg"
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+      >
+        <source src="/hero-video.mp4" type="video/mp4" />
+        <source src="/IMG_4304%20%282%29.MOV" type="video/quicktime" />
+      </video>
 
-      {/* Radial Gold Lighting Gradient */}
+      {/* Cinematic Dual-Tone Overlay for Luxury Tone & High Text Legibility */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 25% 60%, rgba(255,208,74,0.15) 0%, transparent 65%)",
+            "linear-gradient(135deg, rgba(192,23,30,0.72) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.85) 100%)",
+        }}
+      />
+
+      {/* Radial Gold Lighting Accent */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at 25% 60%, rgba(255,208,74,0.18) 0%, transparent 65%)",
         }}
       />
 
@@ -145,16 +159,8 @@ export function StudioHero({
         <div className="w-[1px] h-12 bg-gradient-to-b from-[#FFD04A] via-[#FFD04A]/60 to-transparent animate-pulse" />
       </div>
 
-      {/* Keyframe Styles for Streak & Particle Animations */}
+      {/* Keyframe Styles for Streak Animations */}
       <style jsx>{`
-        @keyframes heroPan {
-          0% {
-            transform: scale(1.06) translateX(-1.5%);
-          }
-          100% {
-            transform: scale(1.06) translateX(1.5%);
-          }
-        }
         @keyframes streakFall {
           0% {
             transform: translateY(-120%);

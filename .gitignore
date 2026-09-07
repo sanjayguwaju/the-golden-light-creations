@@ -27,3 +27,5 @@ downloads/r2-storage/
 *.pdf
 *.tsbuildinfo
 
+*.MOV
+*.mov
