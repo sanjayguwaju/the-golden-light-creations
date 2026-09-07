@@ -543,6 +543,8 @@ export const defaultStudioSettings = {
     headlinePart2: "We Create Emotions",
     subheadline:
       "Luxury Photography, Cinematic Films & Digital Branding Services in Nepal. Crafting timeless visual stories since 2019.",
+    videoUrl: "/hero-video.mp4",
+    posterUrl: "/hero-poster.jpg",
   },
   marqueeItems: [
     { text: "Wedding Photography" },

@@ -12,20 +12,47 @@ interface Streak {
   delay: number;
 }
 
-interface StudioHeroProps {
-  eyebrow?: string;
-  headlinePart1?: string;
-  headlinePart2?: string;
-  subheadline?: string;
+export interface StudioHeroProps {
+  eyebrow?: string | null;
+  headlinePart1?: string | null;
+  headlinePart2?: string | null;
+  subheadline?: string | null;
+  video?: any;
+  videoUrl?: string | null;
+  poster?: any;
+  posterUrl?: string | null;
 }
 
 export function StudioHero({
-  eyebrow = "Nepal's Finest Creative Studio",
-  headlinePart1 = "We Don't Just Shoot —",
-  headlinePart2 = "We Create Emotions.",
-  subheadline = "Luxury Photography, Cinematic Films & Digital Branding Services in Nepal. Crafting timeless visual stories since 2019.",
+  eyebrow,
+  headlinePart1,
+  headlinePart2,
+  subheadline,
+  video,
+  videoUrl,
+  poster,
+  posterUrl,
 }: StudioHeroProps = {}) {
+  const displayEyebrow = eyebrow || "Nepal's Finest Creative Studio";
+  const displayHeadline1 = headlinePart1 || "We Don't Just Shoot —";
+  const displayHeadline2 = headlinePart2 || "We Create Emotions.";
+  const displaySubheadline =
+    subheadline ||
+    "Luxury Photography, Cinematic Films & Digital Branding Services in Nepal. Crafting timeless visual stories since 2019.";
+
   const [streaks, setStreaks] = useState<Streak[]>([]);
+
+  // Resolve video URL from Payload Media relation or fallback string
+  const resolvedVideoUrl =
+    typeof video === "object" && video?.url
+      ? video.url
+      : videoUrl || "/hero-video.mp4";
+
+  // Resolve poster URL from Payload Media relation or fallback string
+  const resolvedPosterUrl =
+    typeof poster === "object" && poster?.url
+      ? poster.url
+      : posterUrl || "/hero-poster.jpg";
 
   useEffect(() => {
     const s: Streak[] = Array.from({ length: 8 }, (_, i) => ({
@@ -45,16 +72,28 @@ export function StudioHero({
     >
       {/* Full Viewport Background Video with Instant Poster Still */}
       <video
+        key={resolvedVideoUrl}
         autoPlay
         loop
         muted
         playsInline
-        poster="/hero-poster.jpg"
+        poster={resolvedPosterUrl}
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
       >
-        <source src="/hero-video.mp4" type="video/mp4" />
-        <source src="/IMG_4304%20%282%29.MOV" type="video/quicktime" />
+        <source
+          src={resolvedVideoUrl}
+          type={
+            resolvedVideoUrl.toLowerCase().endsWith(".mov")
+              ? "video/quicktime"
+              : resolvedVideoUrl.toLowerCase().endsWith(".webm")
+              ? "video/webm"
+              : "video/mp4"
+          }
+        />
+        {resolvedVideoUrl !== "/hero-video.mp4" && (
+          <source src="/hero-video.mp4" type="video/mp4" />
+        )}
       </video>
 
       {/* Cinematic Dual-Tone Overlay for Luxury Tone & High Text Legibility */}
@@ -112,25 +151,25 @@ export function StudioHero({
             colorTo="#FFD04A"
             className="font-montserrat text-[10px] sm:text-xs font-bold tracking-[0.35em] uppercase text-white"
           >
-            {eyebrow}
+            {displayEyebrow}
           </AnimatedGradientText>
           <span className="w-1.5 h-1.5 rounded-full bg-[#FFD04A] animate-pulse" />
         </div>
 
         {/* Master Headline */}
         <h1 className="font-bebas text-4xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.02em] leading-[0.95] sm:leading-[0.92] text-white uppercase mb-5 sm:mb-6">
-          {headlinePart1}{" "}
-          {headlinePart2 && (
+          {displayHeadline1}{" "}
+          {displayHeadline2 && (
             <em className="text-[#FFD04A] not-italic block mt-1 drop-shadow-[0_0_45px_rgba(255,208,74,0.35)]">
-              {headlinePart2}
+              {displayHeadline2}
             </em>
           )}
         </h1>
 
         {/* Subtitle */}
-        {subheadline && (
+        {displaySubheadline && (
           <p className="font-poppins font-light text-xs sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed tracking-wide mb-8 sm:mb-10 px-2">
-            {subheadline}
+            {displaySubheadline}
           </p>
         )}
 

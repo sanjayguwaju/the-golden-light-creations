@@ -33,5 +33,41 @@ export const StudioHeroBlock: Block = {
       defaultValue:
         "Luxury Photography, Cinematic Films & Digital Branding Services in Nepal. Crafting timeless visual stories since 2019.",
     },
+    {
+      name: "video",
+      type: "upload",
+      relationTo: "media",
+      label: "Hero Background Video (from Media Library)",
+      admin: {
+        description: "Select an uploaded video (.mp4 or .mov) from the Media Library stored on Cloudflare R2",
+      },
+    },
+    {
+      name: "videoUrl",
+      type: "text",
+      label: "External / Fallback Video URL",
+      defaultValue: "/hero-video.mp4",
+      admin: {
+        description: "Direct URL to video file if hosted externally or on R2 CDN",
+      },
+    },
+    {
+      name: "poster",
+      type: "upload",
+      relationTo: "media",
+      label: "Hero Video Poster Frame (from Media Library)",
+      admin: {
+        description: "High-resolution still image displayed instantly while video loads",
+      },
+    },
+    {
+      name: "posterUrl",
+      type: "text",
+      label: "Fallback Poster Image URL",
+      defaultValue: "/hero-poster.jpg",
+      admin: {
+        description: "Direct URL to poster still image",
+      },
+    },
   ],
 };

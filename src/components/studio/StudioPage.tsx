@@ -46,7 +46,16 @@ export function StudioPage({
   return (
     <div className="relative w-full bg-white text-[#0A0A0A] selection:bg-[#C0171E] selection:text-white">
       {/* 1. Hero Section */}
-      <StudioHero />
+      <StudioHero
+        eyebrow={settings?.hero?.eyebrow}
+        headlinePart1={settings?.hero?.headlinePart1}
+        headlinePart2={settings?.hero?.headlinePart2}
+        subheadline={settings?.hero?.subheadline}
+        video={settings?.hero?.video}
+        videoUrl={settings?.hero?.videoUrl}
+        poster={settings?.hero?.poster}
+        posterUrl={settings?.hero?.posterUrl}
+      />
 
       {/* 2. Seamless Marquee Ticker */}
       <StudioMarquee items={settings?.marqueeItems} />

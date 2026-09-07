@@ -920,6 +920,22 @@ export interface StudioHeroBlock {
   headlinePart1?: string | null;
   headlinePart2?: string | null;
   subheadline?: string | null;
+  /**
+   * Select an uploaded video (.mp4 or .mov) from the Media Library stored on Cloudflare R2
+   */
+  video?: (string | null) | Media;
+  /**
+   * Direct URL to video file if hosted externally or on R2 CDN
+   */
+  videoUrl?: string | null;
+  /**
+   * High-resolution still image displayed instantly while video loads
+   */
+  poster?: (string | null) | Media;
+  /**
+   * Direct URL to poster still image
+   */
+  posterUrl?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'studioHero';
@@ -2527,6 +2543,10 @@ export interface StudioHeroBlockSelect<T extends boolean = true> {
   headlinePart1?: T;
   headlinePart2?: T;
   subheadline?: T;
+  video?: T;
+  videoUrl?: T;
+  poster?: T;
+  posterUrl?: T;
   id?: T;
   blockName?: T;
 }
@@ -3327,6 +3347,22 @@ export interface StudioSetting {
     headlinePart1?: string | null;
     headlinePart2?: string | null;
     subheadline?: string | null;
+    /**
+     * Select an uploaded video (.mp4 or .mov) from the Media Library stored on Cloudflare R2
+     */
+    video?: (string | null) | Media;
+    /**
+     * Direct URL to video file if hosted externally or on R2 CDN
+     */
+    videoUrl?: string | null;
+    /**
+     * High-resolution still image displayed instantly while video loads
+     */
+    poster?: (string | null) | Media;
+    /**
+     * Direct URL to poster still image
+     */
+    posterUrl?: string | null;
   };
   marqueeItems?:
     | {
@@ -3442,6 +3478,10 @@ export interface StudioSettingsSelect<T extends boolean = true> {
         headlinePart1?: T;
         headlinePart2?: T;
         subheadline?: T;
+        video?: T;
+        videoUrl?: T;
+        poster?: T;
+        posterUrl?: T;
       };
   marqueeItems?:
     | T

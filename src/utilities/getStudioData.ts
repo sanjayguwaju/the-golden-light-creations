@@ -299,6 +299,10 @@ export async function getStudioSettings() {
           headlinePart1: settings.hero?.headlinePart1 || defaultStudioSettings.hero.headlinePart1,
           headlinePart2: settings.hero?.headlinePart2 || defaultStudioSettings.hero.headlinePart2,
           subheadline: settings.hero?.subheadline || defaultStudioSettings.hero.subheadline,
+          video: settings.hero?.video,
+          videoUrl: settings.hero?.videoUrl || defaultStudioSettings.hero.videoUrl,
+          poster: settings.hero?.poster,
+          posterUrl: settings.hero?.posterUrl || defaultStudioSettings.hero.posterUrl,
         },
         marqueeItems:
           settings.marqueeItems && settings.marqueeItems.length > 0
