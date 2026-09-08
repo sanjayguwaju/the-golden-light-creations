@@ -3,8 +3,8 @@ import type { Block } from "payload";
 export const StudioPageHeaderBlock: Block = {
   slug: "studioPageHeader",
   labels: {
-    singular: "Studio Page Header",
-    plural: "Studio Page Headers",
+    singular: "[Studio V1] Page Header",
+    plural: "[Studio V1] Page Headers",
   },
   fields: [
     {

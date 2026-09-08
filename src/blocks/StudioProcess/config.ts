@@ -3,8 +3,8 @@ import type { Block } from "payload";
 export const StudioProcessBlock: Block = {
   slug: "studioProcess",
   labels: {
-    singular: "Studio Process",
-    plural: "Studio Processes",
+    singular: "[Studio V1] Process",
+    plural: "[Studio V1] Processes",
   },
   fields: [
     {

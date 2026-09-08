@@ -37,6 +37,8 @@ export {
   type StudioNavigation,
 };
 
+export { getSiteSettings } from "./getSiteSettings";
+
 // ==============================================================================
 // Server-Side Data Loaders (Runs ONLY on the server)
 // ==============================================================================

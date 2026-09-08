@@ -49,6 +49,7 @@
   --font-montserrat: var(--font-montserrat), sans-serif;
   --font-poppins: var(--font-poppins), sans-serif;
   --font-sans: var(--font-poppins), var(--font-inter), sans-serif;
+  --font-fraunces: var(--font-fraunces), serif;
   --font-heading: var(--font-bebas), var(--font-outfit), sans-serif;
   --font-display: var(--font-bebas), var(--font-outfit), sans-serif;
   --font-mukta: var(--font-mukta);
@@ -90,6 +91,16 @@
   --white-soft: #F5F5F5;
   --gray: #888888;
   --gray-light: #CCCCCC;
+
+  /* V5 Luxury Editorial Design Tokens */
+  --v5-paper: #FFFFFF;
+  --v5-ink: #1A1414;
+  --v5-red: #A31621;
+  --v5-red-deep: #6E0F17;
+  --v5-red-soft: #F6E3E4;
+  --v5-line: #EDE7E3;
+  --v5-muted: #7A716C;
+  --v5-wash: #FAF7F4;
 }
 
 [lang="ne"] {

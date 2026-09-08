@@ -4,8 +4,8 @@ export const StudioTestimonialsBlock: Block = {
   slug: "studioTestimonials",
   interfaceName: "StudioTestimonialsBlock",
   labels: {
-    singular: "Studio Testimonials Marquee",
-    plural: "Studio Testimonials Marquees",
+    singular: "[Studio V1] Testimonials Marquee",
+    plural: "[Studio V1] Testimonials Marquees",
   },
   fields: [
     {

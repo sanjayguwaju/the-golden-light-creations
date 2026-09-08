@@ -3,8 +3,8 @@ import type { Block } from "payload";
 export const StudioPillarsBlock: Block = {
   slug: "studioPillars",
   labels: {
-    singular: "Studio Pillars",
-    plural: "Studio Pillars",
+    singular: "[Studio V1] Pillars",
+    plural: "[Studio V1] Pillars",
   },
   fields: [
     {

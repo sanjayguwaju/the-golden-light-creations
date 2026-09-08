@@ -4,8 +4,8 @@ export const StudioPortfolioBlock: Block = {
   slug: "studioPortfolio",
   interfaceName: "StudioPortfolioBlock",
   labels: {
-    singular: "Studio Portfolio Showcase",
-    plural: "Studio Portfolio Showcases",
+    singular: "[Studio V1] Portfolio Showcase",
+    plural: "[Studio V1] Portfolio Showcases",
   },
   fields: [
     {

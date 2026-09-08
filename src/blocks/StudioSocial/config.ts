@@ -4,8 +4,8 @@ export const StudioSocialBlock: Block = {
   slug: "studioSocial",
   interfaceName: "StudioSocialBlock",
   labels: {
-    singular: "Studio Instagram & Social Grid",
-    plural: "Studio Instagram & Social Grids",
+    singular: "[Studio V1] Instagram & Social Grid",
+    plural: "[Studio V1] Instagram & Social Grids",
   },
   fields: [
     {

@@ -4,8 +4,8 @@ export const StudioStatsBlock: Block = {
   slug: "studioStats",
   interfaceName: "StudioStatsBlock",
   labels: {
-    singular: "Studio Stats Bar",
-    plural: "Studio Stats Bars",
+    singular: "[Studio V1] Stats Bar",
+    plural: "[Studio V1] Stats Bars",
   },
   fields: [
     {

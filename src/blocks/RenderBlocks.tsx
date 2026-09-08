@@ -31,8 +31,30 @@ import { StudioProcessBlockComponent } from "@/blocks/StudioProcess/Component";
 import { StudioJournalBlockComponent } from "@/blocks/StudioJournal/Component";
 import { StudioFAQBlockComponent } from "@/blocks/StudioFAQ/Component";
 import { StudioTeamBlockComponent } from "@/blocks/StudioTeam/Component";
+import { V5HeroBlockComponent } from "@/blocks/V5Hero/Component";
+import { V5StatsBlockComponent } from "@/blocks/V5Stats/Component";
+import { V5ServicesBlockComponent } from "@/blocks/V5Services/Component";
+import { V5PortfolioBlockComponent } from "@/blocks/V5Portfolio/Component";
+import { V5LiveEventsBlockComponent } from "@/blocks/V5LiveEvents/Component";
+import { V5PackagesBlockComponent } from "@/blocks/V5Packages/Component";
+import { V5AboutBlockComponent } from "@/blocks/V5About/Component";
+import { V5FounderBlockComponent } from "@/blocks/V5Founder/Component";
+import { V5TestimonialsBlockComponent } from "@/blocks/V5Testimonials/Component";
+import { V5CtaBandBlockComponent } from "@/blocks/V5CtaBand/Component";
+import { V5ContactBlockComponent } from "@/blocks/V5Contact/Component";
 
 const blockComponents = {
+  v5Hero: V5HeroBlockComponent,
+  v5Stats: V5StatsBlockComponent,
+  v5Services: V5ServicesBlockComponent,
+  v5Portfolio: V5PortfolioBlockComponent,
+  v5LiveEvents: V5LiveEventsBlockComponent,
+  v5Packages: V5PackagesBlockComponent,
+  v5About: V5AboutBlockComponent,
+  v5Founder: V5FounderBlockComponent,
+  v5Testimonials: V5TestimonialsBlockComponent,
+  v5CtaBand: V5CtaBandBlockComponent,
+  v5Contact: V5ContactBlockComponent,
   studioHero: StudioHeroBlockComponent,
   studioPageHeader: StudioPageHeaderBlockComponent,
   studioMarquee: StudioMarqueeBlockComponent,

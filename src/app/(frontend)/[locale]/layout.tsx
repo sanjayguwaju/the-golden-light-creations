@@ -1,7 +1,13 @@
 import { cn } from "@/utilities/ui";
-import { Bebas_Neue, Montserrat, Poppins, Outfit, Inter, Mukta } from "next/font/google";
+import { Bebas_Neue, Montserrat, Poppins, Outfit, Inter, Mukta, Fraunces } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import React from "react";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
 
 const bebas = Bebas_Neue({
   weight: "400",
@@ -56,6 +62,8 @@ import { StudioNavbar } from "@/components/studio/StudioNavbar";
 import { StudioFooter } from "@/components/studio/StudioFooter";
 import { InitTheme } from "@/providers/Theme/InitTheme";
 import { getStudioSettings } from "@/utilities/getStudioData";
+import { getSiteSettings } from "@/utilities/getSiteSettings";
+import { TawkToChat } from "@/components/TawkToChat";
 
 import "../globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -114,10 +122,19 @@ export default async function RootLayout({ children, params }: Args) {
 
   const messages = await getMessages();
   const studioSettings = await getStudioSettings();
+  const siteSettings = await getSiteSettings();
+
+  // Resolve Google Analytics Measurement ID:
+  // Prioritize CMS settings if configured; otherwise fall back to environment variable.
+  const gaMeasurementId = siteSettings?.googleAnalytics
+    ? siteSettings.googleAnalytics.enableGoogleAnalytics && siteSettings.googleAnalytics.measurementId
+      ? siteSettings.googleAnalytics.measurementId.trim()
+      : null
+    : process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || null;
 
   return (
     <html
-      className={cn(bebas.variable, montserrat.variable, poppins.variable, outfit.variable, inter.variable, mukta.variable)}
+      className={cn(bebas.variable, montserrat.variable, poppins.variable, outfit.variable, inter.variable, mukta.variable, fraunces.variable)}
       lang={locale}
       dir={direction}
       data-theme="light"
@@ -172,8 +189,13 @@ export default async function RootLayout({ children, params }: Args) {
             }),
           }}
         />
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        {gaMeasurementId && <GoogleAnalytics gaId={gaMeasurementId} />}
+        {siteSettings?.tawkToChat?.enableTawkTo && siteSettings.tawkToChat.propertyId && (
+          <TawkToChat
+            propertyId={siteSettings.tawkToChat.propertyId}
+            widgetId={siteSettings.tawkToChat.widgetId}
+            isEnabled={siteSettings.tawkToChat.enableTawkTo}
+          />
         )}
       </body>
     </html>

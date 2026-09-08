@@ -4,8 +4,8 @@ export const StudioHeroBlock: Block = {
   slug: "studioHero",
   interfaceName: "StudioHeroBlock",
   labels: {
-    singular: "Studio Cinematic Hero",
-    plural: "Studio Cinematic Heroes",
+    singular: "[Studio V1] Cinematic Hero",
+    plural: "[Studio V1] Cinematic Heroes",
   },
   fields: [
     {

@@ -133,6 +133,77 @@ src/
 
 ---
 
+## 🧱 Homepage Blocks & Section Versioning Architecture
+
+To support evolving design versions (e.g. `Studio V1` dark cinema vs `V5 Editorial` warm paper & 3D tilt) without breaking existing pages, all homepage blocks follow a standardized **naming, versioning, and registry architecture**.
+
+### 1. Naming & Versioning Standard
+
+| Level | Convention | Example | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Folder** | `src/blocks/<VariantPrefix><Section>/` | `src/blocks/V5Hero/`, `src/blocks/StudioHero/` | Encapsulates schema and UI component together. |
+| **Slug (DB)** | `<variantPrefix><Section>` (camelCase) | `v5Hero`, `studioHero` | Unique block key stored in database. Never collides. |
+| **Interface** | `<VariantPrefix><Section>Block` | `V5HeroBlock`, `StudioHeroBlock` | Auto-generated TypeScript types in `payload-types.ts`. |
+| **Admin Label** | `[<Theme/Version>] <Section Name>` | `"[V5 Editorial] Cinema Hero"`, `"[Studio V1] Cinema Hero"` | Alphabetically groups blocks in Payload's "+ Add Block" picker. |
+
+### 2. Versioned Suites
+
+The repository currently maintains two modular suites:
+
+1. **`[Studio V1]` (Original Dark Cinematic Theme)**:
+   - `StudioHero`, `StudioMarquee`, `StudioPortfolio`, `StudioFilms`, `StudioServices`, `StudioStory`, `StudioStats`, `StudioPillars`, `StudioProcess`, `StudioJournal`, `StudioFAQ`, `StudioTeam`, `StudioTestimonials`, `StudioSocial`, `StudioBanner`, `StudioContact`, `StudioPageHeader`.
+2. **`[V5 Editorial]` (Warm Paper, Fraunces Serif, Interactive 3D Tilt)**:
+   - `V5Hero`, `V5Stats`, `V5Services`, `V5Portfolio`, `V5LiveEvents`, `V5Packages`, `V5About`, `V5Founder`, `V5Testimonials`, `V5CtaBand`, `V5Contact`.
+
+### 3. Central Block Registry (`src/blocks/registry.ts`)
+
+Blocks are bundled into versioned arrays in `src/blocks/registry.ts` and consumed cleanly by `Pages`:
+
+```typescript
+import { v5EditorialBlocks, studioV1Blocks, sharedContentBlocks, pageLayoutBlocks } from "@/blocks/registry";
+
+// Used directly in Pages collection layout blocks:
+export const pageLayoutBlocks = [
+  ...v5EditorialBlocks,
+  ...studioV1Blocks,
+  ...sharedContentBlocks,
+];
+```
+
+### 4. Adding a New Homepage Block Variant (Step-by-Step)
+
+When introducing a new section variant or design iteration (e.g., `V6Minimal`):
+
+1. **Create the block directory**:
+   ```
+   src/blocks/<VariantPrefix><Section>/
+   ├── config.ts      # Payload CMS Block schema
+   └── Component.tsx  # React Server/Client UI Component
+   ```
+2. **Configure `config.ts`**:
+   ```typescript
+   export const V6HeroBlock: Block = {
+     slug: "v6Hero",
+     interfaceName: "V6HeroBlock",
+     labels: {
+       singular: "[V6 Minimal] Hero Banner",
+       plural: "[V6 Minimal] Hero Banners",
+     },
+     fields: [ /* your custom fields */ ],
+   };
+   ```
+3. **Register in `src/blocks/registry.ts`**:
+   - Add to its versioned suite array (e.g. `v6MinimalBlocks`) and `pageLayoutBlocks`.
+4. **Register in `src/blocks/RenderBlocks.tsx`**:
+   - Add component mapping in `blockComponents`: `v6Hero: V6HeroBlockComponent`.
+5. **Generate types & validate**:
+   ```bash
+   pnpm generate:types
+   pnpm exec tsc --noEmit
+   ```
+
+---
+
 ## 📜 Available Scripts
 
 ### Development & Build

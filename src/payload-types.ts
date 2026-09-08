@@ -714,6 +714,17 @@ export interface Page {
   };
   layout?:
     | (
+        | V5HeroBlock
+        | V5StatsBlock
+        | V5ServicesBlock
+        | V5PortfolioBlock
+        | V5LiveEventsBlock
+        | V5PackagesBlock
+        | V5AboutBlock
+        | V5FounderBlock
+        | V5TestimonialsBlock
+        | V5CtaBandBlock
+        | V5ContactBlock
         | StudioHeroBlock
         | {
             /**
@@ -910,6 +921,230 @@ export interface Category {
   slug: string;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5HeroBlock".
+ */
+export interface V5HeroBlock {
+  /**
+   * Upload an MP4/WebM video file from the media library
+   */
+  video?: (string | null) | Media;
+  /**
+   * Path or URL to hero background video
+   */
+  videoUrl?: string | null;
+  poster?: (string | null) | Media;
+  posterUrl?: string | null;
+  mobileVideo?: (string | null) | Media;
+  mobileVideoUrl?: string | null;
+  showScrollCue?: boolean | null;
+  showAccentStrip?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5Hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5StatsBlock".
+ */
+export interface V5StatsBlock {
+  stats?:
+    | {
+        num: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  pullUp?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5Stats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5ServicesBlock".
+ */
+export interface V5ServicesBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  description?: string | null;
+  services?:
+    | {
+        idx: string;
+        title: string;
+        description: string;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5Services';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5PortfolioBlock".
+ */
+export interface V5PortfolioBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  ctaText?: string | null;
+  ctaLink?: string | null;
+  items?:
+    | {
+        title: string;
+        image?: (string | null) | Media;
+        imageUrl?: string | null;
+        size?: ('standard' | 'tall') | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5Portfolio';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5LiveEventsBlock".
+ */
+export interface V5LiveEventsBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  description?: string | null;
+  items?:
+    | {
+        title: string;
+        image?: (string | null) | Media;
+        imageUrl?: string | null;
+        span?: ('standard' | 'tall' | 'wide') | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5LiveEvents';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5PackagesBlock".
+ */
+export interface V5PackagesBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  description?: string | null;
+  packages?:
+    | {
+        name: string;
+        price: string;
+        featured?: boolean | null;
+        badge?: string | null;
+        features?:
+          | {
+              item: string;
+              id?: string | null;
+            }[]
+          | null;
+        buttonText?: string | null;
+        buttonLink?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5Packages';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5AboutBlock".
+ */
+export interface V5AboutBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  quote?: string | null;
+  paragraph?: string | null;
+  image?: (string | null) | Media;
+  imageUrl?: string | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5About';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5FounderBlock".
+ */
+export interface V5FounderBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  quote?: string | null;
+  message1?: string | null;
+  message2?: string | null;
+  founderName?: string | null;
+  founderTagTitle?: string | null;
+  founderSignRole?: string | null;
+  portrait?: (string | null) | Media;
+  portraitUrl?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5Founder';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5TestimonialsBlock".
+ */
+export interface V5TestimonialsBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  testimonials?:
+    | {
+        quote: string;
+        name: string;
+        role: string;
+        avatar?: (string | null) | Media;
+        avatarUrl?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5Testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5CtaBandBlock".
+ */
+export interface V5CtaBandBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  buttonText?: string | null;
+  buttonLink?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5CtaBand';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5ContactBlock".
+ */
+export interface V5ContactBlock {
+  eyebrow?: string | null;
+  title?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  address?: string | null;
+  serviceOptions?:
+    | {
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'v5Contact';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2427,6 +2662,17 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        v5Hero?: T | V5HeroBlockSelect<T>;
+        v5Stats?: T | V5StatsBlockSelect<T>;
+        v5Services?: T | V5ServicesBlockSelect<T>;
+        v5Portfolio?: T | V5PortfolioBlockSelect<T>;
+        v5LiveEvents?: T | V5LiveEventsBlockSelect<T>;
+        v5Packages?: T | V5PackagesBlockSelect<T>;
+        v5About?: T | V5AboutBlockSelect<T>;
+        v5Founder?: T | V5FounderBlockSelect<T>;
+        v5Testimonials?: T | V5TestimonialsBlockSelect<T>;
+        v5CtaBand?: T | V5CtaBandBlockSelect<T>;
+        v5Contact?: T | V5ContactBlockSelect<T>;
         studioHero?: T | StudioHeroBlockSelect<T>;
         studioPageHeader?:
           | T
@@ -2549,6 +2795,213 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5HeroBlock_select".
+ */
+export interface V5HeroBlockSelect<T extends boolean = true> {
+  video?: T;
+  videoUrl?: T;
+  poster?: T;
+  posterUrl?: T;
+  mobileVideo?: T;
+  mobileVideoUrl?: T;
+  showScrollCue?: T;
+  showAccentStrip?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5StatsBlock_select".
+ */
+export interface V5StatsBlockSelect<T extends boolean = true> {
+  stats?:
+    | T
+    | {
+        num?: T;
+        label?: T;
+        id?: T;
+      };
+  pullUp?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5ServicesBlock_select".
+ */
+export interface V5ServicesBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  description?: T;
+  services?:
+    | T
+    | {
+        idx?: T;
+        title?: T;
+        description?: T;
+        link?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5PortfolioBlock_select".
+ */
+export interface V5PortfolioBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  ctaText?: T;
+  ctaLink?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        imageUrl?: T;
+        size?: T;
+        link?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5LiveEventsBlock_select".
+ */
+export interface V5LiveEventsBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  description?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        imageUrl?: T;
+        span?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5PackagesBlock_select".
+ */
+export interface V5PackagesBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  description?: T;
+  packages?:
+    | T
+    | {
+        name?: T;
+        price?: T;
+        featured?: T;
+        badge?: T;
+        features?:
+          | T
+          | {
+              item?: T;
+              id?: T;
+            };
+        buttonText?: T;
+        buttonLink?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5AboutBlock_select".
+ */
+export interface V5AboutBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  quote?: T;
+  paragraph?: T;
+  image?: T;
+  imageUrl?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5FounderBlock_select".
+ */
+export interface V5FounderBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  quote?: T;
+  message1?: T;
+  message2?: T;
+  founderName?: T;
+  founderTagTitle?: T;
+  founderSignRole?: T;
+  portrait?: T;
+  portraitUrl?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5TestimonialsBlock_select".
+ */
+export interface V5TestimonialsBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        name?: T;
+        role?: T;
+        avatar?: T;
+        avatarUrl?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5CtaBandBlock_select".
+ */
+export interface V5CtaBandBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "V5ContactBlock_select".
+ */
+export interface V5ContactBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  phone?: T;
+  email?: T;
+  address?: T;
+  serviceOptions?:
+    | T
+    | {
+        label?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -3499,6 +3952,16 @@ export interface SiteSetting {
      */
     widgetId?: string | null;
   };
+  /**
+   * Configure Google Analytics 4 (GA4) tracking for website analytics
+   */
+  googleAnalytics?: {
+    enableGoogleAnalytics?: boolean | null;
+    /**
+     * Your Google Analytics 4 Measurement ID (e.g., G-XXXXXXXXXX). Found in GA4 Admin > Data Streams.
+     */
+    measurementId?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -3627,6 +4090,12 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         enableTawkTo?: T;
         propertyId?: T;
         widgetId?: T;
+      };
+  googleAnalytics?:
+    | T
+    | {
+        enableGoogleAnalytics?: T;
+        measurementId?: T;
       };
   updatedAt?: T;
   createdAt?: T;

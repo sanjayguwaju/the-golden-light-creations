@@ -4,8 +4,8 @@ export const StudioFilmsBlock: Block = {
   slug: "studioFilms",
   interfaceName: "StudioFilmsBlock",
   labels: {
-    singular: "Studio Films Showcase",
-    plural: "Studio Films Showcases",
+    singular: "[Studio V1] Films Showcase",
+    plural: "[Studio V1] Films Showcases",
   },
   fields: [
     {

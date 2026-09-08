@@ -4,8 +4,8 @@ export const StudioMarqueeBlock: Block = {
   slug: "studioMarquee",
   interfaceName: "StudioMarqueeBlock",
   labels: {
-    singular: "Studio Marquee Band",
-    plural: "Studio Marquee Bands",
+    singular: "[Studio V1] Marquee Band",
+    plural: "[Studio V1] Marquee Bands",
   },
   fields: [
     {

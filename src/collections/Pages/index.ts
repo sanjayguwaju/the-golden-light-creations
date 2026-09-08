@@ -1,35 +1,8 @@
 import type { CollectionConfig } from "payload";
 import { authenticated } from "../../access/authenticated";
 import { authenticatedOrPublished } from "../../access/authenticatedOrPublished";
-import { Archive } from "../../blocks/ArchiveBlock/config";
-import { CallToAction } from "../../blocks/CallToAction/config";
-import { BrandMarquee } from "../../blocks/BrandMarquee/config";
-import { Content } from "../../blocks/Content/config";
-import { FormBlock } from "../../blocks/Form/config";
-import { MediaBlock } from "../../blocks/MediaBlock/config";
-import { Gallery } from "../../blocks/Gallery/config";
 import { hero } from "@/heros/config";
-import { AboutUs } from "@/blocks/AboutUs/config";
-import { CarouselBlock } from "@/blocks/Carousel/config";
-import { Testimonials } from "@/blocks/Testimonials/config";
-import { Contact } from "@/blocks/Contact/config";
-import { StudioPortfolioBlock } from "@/blocks/StudioPortfolio/config";
-import { StudioFilmsBlock } from "@/blocks/StudioFilms/config";
-import { StudioServicesBlock } from "@/blocks/StudioServices/config";
-import { StudioStoryBlock } from "@/blocks/StudioStory/config";
-import { StudioStatsBlock } from "@/blocks/StudioStats/config";
-import { StudioSocialBlock } from "@/blocks/StudioSocial/config";
-import { StudioMarqueeBlock } from "@/blocks/StudioMarquee/config";
-import { StudioHeroBlock } from "@/blocks/StudioHero/config";
-import { StudioContactBlock } from "@/blocks/StudioContact/config";
-import { StudioTestimonialsBlock } from "@/blocks/StudioTestimonials/config";
-import { StudioPageHeaderBlock } from "@/blocks/StudioPageHeader/config";
-import { StudioBannerBlock } from "@/blocks/StudioBanner/config";
-import { StudioPillarsBlock } from "@/blocks/StudioPillars/config";
-import { StudioProcessBlock } from "@/blocks/StudioProcess/config";
-import { StudioJournalBlock } from "@/blocks/StudioJournal/config";
-import { StudioFAQBlock } from "@/blocks/StudioFAQ/config";
-import { StudioTeamBlock } from "@/blocks/StudioTeam/config";
+import { pageLayoutBlocks } from "@/blocks/registry";
 import { slugField } from "payload";
 import { populatePublishedAt } from "../../hooks/populatePublishedAt";
 import { generatePreviewPath } from "../../utilities/generatePreviewPath";
@@ -92,36 +65,7 @@ export const Pages: CollectionConfig<"pages"> = {
             {
               name: "layout",
               type: "blocks",
-              blocks: [
-                StudioHeroBlock,
-                StudioPageHeaderBlock,
-                StudioMarqueeBlock,
-                StudioPortfolioBlock,
-                StudioFilmsBlock,
-                StudioServicesBlock,
-                StudioStoryBlock,
-                StudioStatsBlock,
-                StudioPillarsBlock,
-                StudioProcessBlock,
-                StudioJournalBlock,
-                StudioFAQBlock,
-                StudioTeamBlock,
-                StudioTestimonialsBlock,
-                StudioSocialBlock,
-                StudioBannerBlock,
-                StudioContactBlock,
-                CallToAction,
-                Content,
-                MediaBlock,
-                Archive,
-                FormBlock,
-                Gallery,
-                BrandMarquee,
-                CarouselBlock,
-                Testimonials,
-                Contact,
-                AboutUs,
-              ],
+              blocks: pageLayoutBlocks,
               required: false,
               localized: true,
               admin: {
