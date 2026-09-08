@@ -21,6 +21,17 @@ export interface StudioHeroProps {
   videoUrl?: string | null;
   poster?: any;
   posterUrl?: string | null;
+  mobileVideo?: any;
+  mobileVideoUrl?: string | null;
+  mobilePoster?: any;
+  mobilePosterUrl?: string | null;
+}
+
+function getVideoMimeType(url: string) {
+  const lower = url.toLowerCase();
+  if (lower.endsWith(".mov")) return "video/quicktime";
+  if (lower.endsWith(".webm")) return "video/webm";
+  return "video/mp4";
 }
 
 export function StudioHero({
@@ -32,6 +43,10 @@ export function StudioHero({
   videoUrl,
   poster,
   posterUrl,
+  mobileVideo,
+  mobileVideoUrl,
+  mobilePoster,
+  mobilePosterUrl,
 }: StudioHeroProps = {}) {
   const displayEyebrow = eyebrow || "Nepal's Finest Creative Studio";
   const displayHeadline1 = headlinePart1 || "We Don't Just Shoot —";
@@ -42,17 +57,31 @@ export function StudioHero({
 
   const [streaks, setStreaks] = useState<Streak[]>([]);
 
-  // Resolve video URL from Payload Media relation or fallback string
+  // Resolve desktop video URL & poster
   const resolvedVideoUrl =
     typeof video === "object" && video?.url
       ? video.url
       : videoUrl || "/hero-video.mp4";
 
-  // Resolve poster URL from Payload Media relation or fallback string
   const resolvedPosterUrl =
     typeof poster === "object" && poster?.url
       ? poster.url
       : posterUrl || "/hero-poster.jpg";
+
+  // Resolve mobile video URL & poster (falls back to desktop if not set)
+  const resolvedMobileVideoUrl =
+    typeof mobileVideo === "object" && mobileVideo?.url
+      ? mobileVideo.url
+      : mobileVideoUrl || "";
+
+  const resolvedMobilePosterUrl =
+    typeof mobilePoster === "object" && mobilePoster?.url
+      ? mobilePoster.url
+      : mobilePosterUrl || resolvedPosterUrl;
+
+  const hasSeparateMobileVideo = Boolean(
+    resolvedMobileVideoUrl && resolvedMobileVideoUrl !== resolvedVideoUrl
+  );
 
   useEffect(() => {
     const s: Streak[] = Array.from({ length: 8 }, (_, i) => ({
@@ -70,31 +99,67 @@ export function StudioHero({
       id="hero"
       className="relative min-h-[100dvh] h-screen w-full flex items-center justify-center overflow-hidden pt-24 pb-16 px-4"
     >
-      {/* Full Viewport Background Video with Instant Poster Still */}
-      <video
-        key={resolvedVideoUrl}
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster={resolvedPosterUrl}
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-      >
-        <source
-          src={resolvedVideoUrl}
-          type={
-            resolvedVideoUrl.toLowerCase().endsWith(".mov")
-              ? "video/quicktime"
-              : resolvedVideoUrl.toLowerCase().endsWith(".webm")
-              ? "video/webm"
-              : "video/mp4"
-          }
-        />
-        {resolvedVideoUrl !== "/hero-video.mp4" && (
-          <source src="/hero-video.mp4" type="video/mp4" />
-        )}
-      </video>
+      {/* Full Viewport Background Videos with Instant Poster Still */}
+      {hasSeparateMobileVideo ? (
+        <>
+          {/* Mobile Video (portrait 9:16, active on < 768px) */}
+          <video
+            key={`mobile-${resolvedMobileVideoUrl}`}
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={resolvedMobilePosterUrl}
+            preload="auto"
+            className="block md:hidden absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+          >
+            <source
+              src={resolvedMobileVideoUrl}
+              type={getVideoMimeType(resolvedMobileVideoUrl)}
+            />
+          </video>
+
+          {/* Desktop Video (widescreen 16:9, active on >= 768px) */}
+          <video
+            key={`desktop-${resolvedVideoUrl}`}
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={resolvedPosterUrl}
+            preload="auto"
+            className="hidden md:block absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+          >
+            <source
+              src={resolvedVideoUrl}
+              type={getVideoMimeType(resolvedVideoUrl)}
+            />
+            {resolvedVideoUrl !== "/hero-video.mp4" && (
+              <source src="/hero-video.mp4" type="video/mp4" />
+            )}
+          </video>
+        </>
+      ) : (
+        /* Universal Video (when no separate mobile video is configured) */
+        <video
+          key={`universal-${resolvedVideoUrl}`}
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={resolvedPosterUrl}
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+        >
+          <source
+            src={resolvedVideoUrl}
+            type={getVideoMimeType(resolvedVideoUrl)}
+          />
+          {resolvedVideoUrl !== "/hero-video.mp4" && (
+            <source src="/hero-video.mp4" type="video/mp4" />
+          )}
+        </video>
+      )}
 
       {/* Cinematic Dual-Tone Overlay for Luxury Tone & High Text Legibility */}
       <div

@@ -69,5 +69,39 @@ export const StudioHeroBlock: Block = {
         description: "Direct URL to poster still image",
       },
     },
+    {
+      name: "mobileVideo",
+      type: "upload",
+      relationTo: "media",
+      label: "Hero Mobile Background Video (from Media Library)",
+      admin: {
+        description: "Select a portrait/vertical video (9:16) for mobile devices (< 768px). Falls back to desktop video if not set.",
+      },
+    },
+    {
+      name: "mobileVideoUrl",
+      type: "text",
+      label: "External / Fallback Mobile Video URL",
+      admin: {
+        description: "Direct URL to mobile vertical video file (optional)",
+      },
+    },
+    {
+      name: "mobilePoster",
+      type: "upload",
+      relationTo: "media",
+      label: "Hero Mobile Poster Frame (from Media Library)",
+      admin: {
+        description: "Vertical still image displayed instantly on mobile devices while video loads",
+      },
+    },
+    {
+      name: "mobilePosterUrl",
+      type: "text",
+      label: "Fallback Mobile Poster Image URL",
+      admin: {
+        description: "Direct URL to mobile poster still image (optional)",
+      },
+    },
   ],
 };

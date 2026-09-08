@@ -936,6 +936,22 @@ export interface StudioHeroBlock {
    * Direct URL to poster still image
    */
   posterUrl?: string | null;
+  /**
+   * Select a portrait/vertical video (9:16) for mobile devices (< 768px). Falls back to desktop video if not set.
+   */
+  mobileVideo?: (string | null) | Media;
+  /**
+   * Direct URL to mobile vertical video file (optional)
+   */
+  mobileVideoUrl?: string | null;
+  /**
+   * Vertical still image displayed instantly on mobile devices while video loads
+   */
+  mobilePoster?: (string | null) | Media;
+  /**
+   * Direct URL to mobile poster still image (optional)
+   */
+  mobilePosterUrl?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'studioHero';
@@ -2547,6 +2563,10 @@ export interface StudioHeroBlockSelect<T extends boolean = true> {
   videoUrl?: T;
   poster?: T;
   posterUrl?: T;
+  mobileVideo?: T;
+  mobileVideoUrl?: T;
+  mobilePoster?: T;
+  mobilePosterUrl?: T;
   id?: T;
   blockName?: T;
 }
@@ -3363,6 +3383,22 @@ export interface StudioSetting {
      * Direct URL to poster still image
      */
     posterUrl?: string | null;
+    /**
+     * Select a portrait/vertical video (9:16) for mobile devices (< 768px). Falls back to desktop video if not set.
+     */
+    mobileVideo?: (string | null) | Media;
+    /**
+     * Direct URL to mobile vertical video file (optional)
+     */
+    mobileVideoUrl?: string | null;
+    /**
+     * Vertical still image displayed instantly on mobile devices while video loads
+     */
+    mobilePoster?: (string | null) | Media;
+    /**
+     * Direct URL to mobile poster still image (optional)
+     */
+    mobilePosterUrl?: string | null;
   };
   marqueeItems?:
     | {
@@ -3482,6 +3518,10 @@ export interface StudioSettingsSelect<T extends boolean = true> {
         videoUrl?: T;
         poster?: T;
         posterUrl?: T;
+        mobileVideo?: T;
+        mobileVideoUrl?: T;
+        mobilePoster?: T;
+        mobilePosterUrl?: T;
       };
   marqueeItems?:
     | T

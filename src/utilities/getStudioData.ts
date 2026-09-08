@@ -303,6 +303,10 @@ export async function getStudioSettings() {
           videoUrl: settings.hero?.videoUrl || defaultStudioSettings.hero.videoUrl,
           poster: settings.hero?.poster,
           posterUrl: settings.hero?.posterUrl || defaultStudioSettings.hero.posterUrl,
+          mobileVideo: settings.hero?.mobileVideo,
+          mobileVideoUrl: settings.hero?.mobileVideoUrl || defaultStudioSettings.hero.mobileVideoUrl,
+          mobilePoster: settings.hero?.mobilePoster,
+          mobilePosterUrl: settings.hero?.mobilePosterUrl || defaultStudioSettings.hero.mobilePosterUrl,
         },
         marqueeItems:
           settings.marqueeItems && settings.marqueeItems.length > 0

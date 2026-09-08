@@ -55,6 +55,10 @@ export function StudioPage({
         videoUrl={settings?.hero?.videoUrl}
         poster={settings?.hero?.poster}
         posterUrl={settings?.hero?.posterUrl}
+        mobileVideo={settings?.hero?.mobileVideo}
+        mobileVideoUrl={settings?.hero?.mobileVideoUrl}
+        mobilePoster={settings?.hero?.mobilePoster}
+        mobilePosterUrl={settings?.hero?.mobilePosterUrl}
       />
 
       {/* 2. Seamless Marquee Ticker */}
