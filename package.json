@@ -29,7 +29,8 @@
     "download:media": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/download-media.ts",
     "download:media:all": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/download-media.ts --all",
     "download:r2": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/download-r2-direct.ts",
-    "r2:cleanup": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/cleanup-r2-variants.ts"
+    "r2:cleanup": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/cleanup-r2-variants.ts",
+    "seed:hero-video": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed-hero-media.ts"
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",

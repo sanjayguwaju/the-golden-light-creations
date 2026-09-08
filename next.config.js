@@ -46,9 +46,14 @@ const nextConfig = {
   redirects,
   serverExternalPackages: ["nepali-datetime"],
   transpilePackages: ["@react-pdf/renderer"],
+  serverActions: {
+    bodySizeLimit: "200mb",
+  },
   experimental: {
     workerThreads: false,
     cpus: 2,
+    middlewareClientMaxBodySize: "200mb",
+    proxyClientMaxBodySize: "200mb",
     serverActions: {
       bodySizeLimit: "200mb",
     },
